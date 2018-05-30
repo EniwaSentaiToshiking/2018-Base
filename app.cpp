@@ -10,7 +10,6 @@
 
 #include "ev3api.h"
 #include "app.h"
-#include "balancer.h"
 #include "TouchSensor.h"
 #include "SonarSensor.h"
 #include "ColorSensor.h"
@@ -121,7 +120,6 @@ void main_task(intptr_t unused)
     
     /* ジャイロセンサーリセット */
     gyroSensor->reset();
-    balance_init(); /* 倒立振子API初期化 */
 
     ev3_led_set_color(LED_GREEN); /* スタート通知 */
 
@@ -146,11 +144,13 @@ void main_task(intptr_t unused)
             forward = 30; /* 前進命令 */
             if (colorSensor->getBrightness() >= (LIGHT_WHITE + LIGHT_BLACK)/2)
             {
-                turn =  20; /* 左旋回命令 */
+                pwm_L = forward; /* 左旋回命令 */
+                pwm_R = 0;
             }
             else
             {
-                turn = -20; /* 右旋回命令 */
+                pwm_R = forward; /* 右旋回命令 */
+                pwm_L = 0;
             }
         }
 
@@ -159,19 +159,6 @@ void main_task(intptr_t unused)
         motor_ang_r = rightMotor->getCount();
         gyro = gyroSensor->getAnglerVelocity();
         volt = ev3_battery_voltage_mV();
-
-        /* 倒立振子制御APIを呼び出し、倒立走行するための */
-        /* 左右モータ出力値を得る */
-        balance_control(
-            (float)forward,
-            (float)turn,
-            (float)gyro,
-            (float)GYRO_OFFSET,
-            (float)motor_ang_l,
-            (float)motor_ang_r,
-            (float)volt,
-            (int8_t *)&pwm_L,
-            (int8_t *)&pwm_R);
 
         leftMotor->setPWM(pwm_L);
         rightMotor->setPWM(pwm_R);
