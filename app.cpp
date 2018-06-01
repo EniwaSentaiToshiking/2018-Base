@@ -71,10 +71,10 @@ void main_task(intptr_t unused)
     int8_t pwm_L, pwm_R; /* 左右モータPWM出力 */
 
     /* 各オブジェクトを生成・初期化する */
-    touchSensor = new TouchSensor(PORT_1);
+    touchSensor = new TouchSensor(PORT_4);
     colorSensor = new ColorSensor(PORT_2);
     sonarSensor = new SonarSensor(PORT_3);
-    gyroSensor  = new GyroSensor(PORT_4);
+    gyroSensor  = new GyroSensor(PORT_1);
     leftMotor   = new Motor(PORT_C);
     rightMotor  = new Motor(PORT_B);
     tailMotor   = new Motor(PORT_A);
