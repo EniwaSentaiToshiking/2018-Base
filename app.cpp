@@ -45,11 +45,6 @@ static FILE     *bt = NULL;      /* Bluetoothファイルハンドル */
 //#define PASS_KEY        "1234" /* パスキー    hrp2/target/ev3.h BLUETOOTH_PIN_CODEで設定 */
 #define CMD_START         '1'    /* リモートスタートコマンド */
 
-/* LCDフォントサイズ */
-#define CALIB_FONT (EV3_FONT_SMALL)
-#define CALIB_FONT_WIDTH (6/*TODO: magic number*/)
-#define CALIB_FONT_HEIGHT (8/*TODO: magic number*/)
-
 /* 関数プロトタイプ宣言 */
 static void tail_control(int32_t angle);
 static void colorMotor_control(int32_t angle);
@@ -82,10 +77,6 @@ void main_task(intptr_t unused)
     clock       = new Clock();
     objectDetecter = new ObjectDetecter();
     ui = new UI();
-
-    /* LCD画面表示 */
-    ev3_lcd_fill_rect(0, 0, EV3_LCD_WIDTH, EV3_LCD_HEIGHT, EV3_LCD_WHITE);
-    ev3_lcd_draw_string("EV3way-ET sample_cpp", 0, CALIB_FONT_HEIGHT*1);
 
     /* 尻尾モーターのリセット */
     tailMotor->reset();
