@@ -11,11 +11,11 @@
 #include "ev3api.h"
 #include "app.h"
 #include "TouchSensor.h"
-#include "SonarSensor.h"
 #include "ColorSensor.h"
 #include "GyroSensor.h"
 #include "Motor.h"
 #include "Clock.h"
+#include "ObjectDetecter.h"
 
 using namespace ev3api;
 
@@ -35,7 +35,6 @@ static FILE     *bt = NULL;      /* Bluetoothファイルハンドル */
 #define GYRO_OFFSET           0  /* ジャイロセンサオフセット値(角速度0[deg/sec]時) */
 #define LIGHT_WHITE          40  /* 白色の光センサ値 */
 #define LIGHT_BLACK           0  /* 黒色の光センサ値 */
-#define SONAR_ALERT_DISTANCE 30  /* 超音波センサによる障害物検知距離[cm] */
 #define TAIL_ANGLE_DEFAULT    0  /* 尻尾の初期角度[度] */
 #define TAIL_ANGLE_EXTEND  4800  /* 尻尾を伸ばした時の角度[度] (適当)*/
 #define COLOR_ANGLE_DRIVE    25  /* 走行中のカラーセンサの角度[度] (適当)*/
@@ -52,13 +51,11 @@ static FILE     *bt = NULL;      /* Bluetoothファイルハンドル */
 #define CALIB_FONT_HEIGHT (8/*TODO: magic number*/)
 
 /* 関数プロトタイプ宣言 */
-static int32_t sonar_alert(void);
 static void tail_control(int32_t angle);
 static void colorMotor_control(int32_t angle);
 
 /* オブジェクトへのポインタ定義 */
 TouchSensor*    touchSensor;
-SonarSensor*    sonarSensor;
 ColorSensor*    colorSensor;
 GyroSensor*     gyroSensor;
 Motor*          leftMotor;
@@ -66,6 +63,7 @@ Motor*          rightMotor;
 Motor*          tailMotor;
 Motor*          colorMotor;
 Clock*          clock;
+ObjectDetecter* objectDetecter;
 
 /* メインタスク */
 void main_task(intptr_t unused)
@@ -77,13 +75,13 @@ void main_task(intptr_t unused)
     /* 各オブジェクトを生成・初期化する */
     touchSensor = new TouchSensor(PORT_4);
     colorSensor = new ColorSensor(PORT_2);
-    sonarSensor = new SonarSensor(PORT_3);
     gyroSensor  = new GyroSensor(PORT_1);
     leftMotor   = new Motor(PORT_C);
     rightMotor  = new Motor(PORT_B);
     tailMotor   = new Motor(PORT_A);
     colorMotor  = new Motor(PORT_D);
     clock       = new Clock();
+    objectDetecter = new ObjectDetecter();
 
     /* LCD画面表示 */
     ev3_lcd_fill_rect(0, 0, EV3_LCD_WIDTH, EV3_LCD_HEIGHT, EV3_LCD_WHITE);
@@ -143,7 +141,7 @@ void main_task(intptr_t unused)
         tail_control(TAIL_ANGLE_DEFAULT); /* バランス走行用角度に制御 */
         colorMotor_control(COLOR_ANGLE_DRIVE); /* 走行用角度に制御 */
 
-        if (sonar_alert() == 1) /* 障害物検知 */
+        if (objectDetecter->detect()) /* 障害物検知 */
         {
             forward = turn = 0; /* 障害物を検知したら停止 */
         }
@@ -180,41 +178,6 @@ void main_task(intptr_t unused)
     fclose(bt);
 
     ext_tsk();
-}
-
-//*****************************************************************************
-// 関数名 : sonar_alert
-// 引数 : 無し
-// 返り値 : 1(障害物あり)/0(障害物無し)
-// 概要 : 超音波センサによる障害物検知
-//*****************************************************************************
-static int32_t sonar_alert(void)
-{
-    static uint32_t counter = 0;
-    static int32_t alert = 0;
-
-    int32_t distance;
-
-    if (++counter == 40/4) /* 約40msec周期毎に障害物検知  */
-    {
-        /*
-         * 超音波センサによる距離測定周期は、超音波の減衰特性に依存します。
-         * NXTの場合は、40msec周期程度が経験上の最短測定周期です。
-         * EV3の場合は、要確認
-         */
-        distance = sonarSensor->getDistance();
-        if ((distance <= SONAR_ALERT_DISTANCE) && (distance >= 0))
-        {
-            alert = 1; /* 障害物を検知 */
-        }
-        else
-        {
-            alert = 0; /* 障害物無し */
-        }
-        counter = 0;
-    }
-
-    return alert;
 }
 
 //*****************************************************************************
