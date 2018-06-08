@@ -5,6 +5,8 @@ APPL_COBJS +=
 APPL_CXXOBJS += \
     SonarSensorDriver.o \
     ObjectDetecter.o \
+    TouchSensorDriver.o \
+    UI.o \
 
 SRCLANG := c++
 
@@ -18,7 +20,9 @@ endif
 APPL_DIR += \
     $(mkfile_path)/Detecters \
     $(mkfile_path)/Devices \
+    $(mkfile_path)/UI \
 
 INCLUDES += \
     -I$(mkfile_path)/Detecters \
     -I$(mkfile_path)/Devices \
+    -I$(mkfile_path)/UI \

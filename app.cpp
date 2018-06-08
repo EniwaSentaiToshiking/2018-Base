@@ -10,12 +10,12 @@
 
 #include "ev3api.h"
 #include "app.h"
-#include "TouchSensor.h"
 #include "ColorSensor.h"
 #include "GyroSensor.h"
 #include "Motor.h"
 #include "Clock.h"
 #include "ObjectDetecter.h"
+#include "UI.h"
 
 using namespace ev3api;
 
@@ -55,7 +55,6 @@ static void tail_control(int32_t angle);
 static void colorMotor_control(int32_t angle);
 
 /* オブジェクトへのポインタ定義 */
-TouchSensor*    touchSensor;
 ColorSensor*    colorSensor;
 GyroSensor*     gyroSensor;
 Motor*          leftMotor;
@@ -64,6 +63,7 @@ Motor*          tailMotor;
 Motor*          colorMotor;
 Clock*          clock;
 ObjectDetecter* objectDetecter;
+UI* ui;
 
 /* メインタスク */
 void main_task(intptr_t unused)
@@ -73,7 +73,6 @@ void main_task(intptr_t unused)
     int8_t pwm_L, pwm_R; /* 左右モータPWM出力 */
 
     /* 各オブジェクトを生成・初期化する */
-    touchSensor = new TouchSensor(PORT_4);
     colorSensor = new ColorSensor(PORT_2);
     gyroSensor  = new GyroSensor(PORT_1);
     leftMotor   = new Motor(PORT_C);
@@ -82,6 +81,7 @@ void main_task(intptr_t unused)
     colorMotor  = new Motor(PORT_D);
     clock       = new Clock();
     objectDetecter = new ObjectDetecter();
+    ui = new UI();
 
     /* LCD画面表示 */
     ev3_lcd_fill_rect(0, 0, EV3_LCD_WIDTH, EV3_LCD_HEIGHT, EV3_LCD_WHITE);
@@ -111,7 +111,7 @@ void main_task(intptr_t unused)
             break; /* リモートスタート */
         }
 
-        if (touchSensor->isPressed())
+        if (ui->isTouched())
         {
             break; /* タッチセンサが押された */
         }
