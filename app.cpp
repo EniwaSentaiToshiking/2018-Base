@@ -16,6 +16,7 @@
 #include "ObjectDetecter.h"
 #include "UI.h"
 #include "ColorSensorDriver.h"
+#include "WheelMotorDriver.h"
 
 using namespace ev3api;
 
@@ -51,8 +52,8 @@ static void colorMotor_control(int32_t angle);
 
 /* オブジェクトへのポインタ定義 */
 GyroSensor*     gyroSensor;
-Motor*          leftMotor;
-Motor*          rightMotor;
+WheelMotorDriver*          leftMotor;
+WheelMotorDriver*          rightMotor;
 Motor*          tailMotor;
 Motor*          colorMotor;
 Clock*          clock;
@@ -69,8 +70,8 @@ void main_task(intptr_t unused)
 
     /* 各オブジェクトを生成・初期化する */
     gyroSensor  = new GyroSensor(PORT_1);
-    leftMotor   = new Motor(PORT_C);
-    rightMotor  = new Motor(PORT_B);
+    leftMotor   = new WheelMotorDriver(PORT_C);
+    rightMotor  = new WheelMotorDriver(PORT_B);
     tailMotor   = new Motor(PORT_A);
     colorMotor  = new Motor(PORT_D);
     clock       = new Clock();
@@ -157,8 +158,8 @@ void main_task(intptr_t unused)
         gyro = gyroSensor->getAnglerVelocity();
         volt = ev3_battery_voltage_mV();
 
-        leftMotor->setPWM(pwm_L);
-        rightMotor->setPWM(pwm_R);
+        leftMotor->controlMotor(pwm_L);
+        rightMotor->controlMotor(pwm_R);
 
         clock->sleep(4); /* 4msec周期起動 */
     }
