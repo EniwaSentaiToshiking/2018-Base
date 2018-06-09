@@ -9,6 +9,7 @@ APPL_CXXOBJS += \
     UI.o \
     ColorSensorDriver.o \
     WheelMotorDriver.o \
+    ArmMotorDriver.o \
 
 SRCLANG := c++
 

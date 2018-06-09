@@ -11,12 +11,13 @@
 #include "ev3api.h"
 #include "app.h"
 #include "GyroSensor.h"
-#include "Motor.h"
 #include "Clock.h"
 #include "ObjectDetecter.h"
 #include "UI.h"
 #include "ColorSensorDriver.h"
 #include "WheelMotorDriver.h"
+#include "ArmMotorDriver.h"
+#include "TailMotorDriver.h"
 
 using namespace ev3api;
 
@@ -38,7 +39,6 @@ static FILE     *bt = NULL;      /* Bluetoothファイルハンドル */
 #define LIGHT_BLACK           0  /* 黒色の光センサ値 */
 #define TAIL_ANGLE_DEFAULT    0  /* 尻尾の初期角度[度] */
 #define TAIL_ANGLE_EXTEND  4800  /* 尻尾を伸ばした時の角度[度] (適当)*/
-#define COLOR_ANGLE_DRIVE    25  /* 走行中のカラーセンサの角度[度] (適当)*/
   /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F  /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60  /* 完全停止用モータ制御PWM絶対最大値 */
@@ -48,14 +48,13 @@ static FILE     *bt = NULL;      /* Bluetoothファイルハンドル */
 
 /* 関数プロトタイプ宣言 */
 static void tail_control(int32_t angle);
-static void colorMotor_control(int32_t angle);
 
 /* オブジェクトへのポインタ定義 */
 GyroSensor*     gyroSensor;
 WheelMotorDriver*          leftMotor;
 WheelMotorDriver*          rightMotor;
-Motor*          tailMotor;
-Motor*          colorMotor;
+ArmMotorDriver* armMotor;
+TailMotorDriver*          tailMotor;
 Clock*          clock;
 ObjectDetecter* objectDetecter;
 UI* ui;
@@ -72,8 +71,8 @@ void main_task(intptr_t unused)
     gyroSensor  = new GyroSensor(PORT_1);
     leftMotor   = new WheelMotorDriver(PORT_C);
     rightMotor  = new WheelMotorDriver(PORT_B);
+    armMotor    = new ArmMotorDriver();
     tailMotor   = new Motor(PORT_A);
-    colorMotor  = new Motor(PORT_D);
     clock       = new Clock();
     objectDetecter = new ObjectDetecter();
     ui = new UI();
@@ -81,7 +80,7 @@ void main_task(intptr_t unused)
 
     /* 尻尾モーターのリセット */
     tailMotor->reset();
-    colorMotor->reset();
+    armMotor->reset();
     
     /* Open Bluetooth file */
     bt = ev3_serial_open_file(EV3_SERIAL_BT);
@@ -96,7 +95,7 @@ void main_task(intptr_t unused)
     while(1)
     {
         tail_control(TAIL_ANGLE_DEFAULT); /* 完全停止用角度に制御 */
-        colorMotor_control(COLOR_ANGLE_DRIVE); /* 完全停止中の角度に制御*/
+        armMotor->rotateDefault(); /* 完全停止中の角度に制御*/
 
         if (bt_cmd == 1)
         {
@@ -131,7 +130,7 @@ void main_task(intptr_t unused)
         if (ev3_button_is_pressed(BACK_BUTTON)) break;
 
         tail_control(TAIL_ANGLE_DEFAULT); /* バランス走行用角度に制御 */
-        colorMotor_control(COLOR_ANGLE_DRIVE); /* 走行用角度に制御 */
+        armMotor->rotateDefault();
 
         if (objectDetecter->detect()) /* 障害物検知 */
         {
@@ -192,28 +191,6 @@ static void tail_control(int32_t angle)
     }
 
     tailMotor->setPWM(pwm);
-}
-
-//*****************************************************************************
-// 関数名 : colorMotor_control
-// 引数 : angle (モータ目標角度[度])
-// 返り値 : 無し
-// 概要 : 走行体完全停止用モータの角度制御
-//*****************************************************************************
-static void colorMotor_control(int32_t angle)
-{
-    float pwm = (float)(angle - colorMotor->getCount()) * P_GAIN; /* 比例制御 */
-    /* PWM出力飽和処理 */
-    if (pwm > PWM_ABS_MAX)
-    {
-        pwm = PWM_ABS_MAX;
-    }
-    else if (pwm < -PWM_ABS_MAX)
-    {
-        pwm = -PWM_ABS_MAX;
-    }
-
-    colorMotor->setPWM(pwm);
 }
 
 //*****************************************************************************
