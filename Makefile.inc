@@ -7,6 +7,7 @@ APPL_CXXOBJS += \
     ObjectDetecter.o \
     TouchSensorDriver.o \
     UI.o \
+    ColorSensorDriver.o \
 
 SRCLANG := c++
 

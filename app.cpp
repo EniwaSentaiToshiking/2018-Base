@@ -10,12 +10,12 @@
 
 #include "ev3api.h"
 #include "app.h"
-#include "ColorSensor.h"
 #include "GyroSensor.h"
 #include "Motor.h"
 #include "Clock.h"
 #include "ObjectDetecter.h"
 #include "UI.h"
+#include "ColorSensorDriver.h"
 
 using namespace ev3api;
 
@@ -50,7 +50,6 @@ static void tail_control(int32_t angle);
 static void colorMotor_control(int32_t angle);
 
 /* オブジェクトへのポインタ定義 */
-ColorSensor*    colorSensor;
 GyroSensor*     gyroSensor;
 Motor*          leftMotor;
 Motor*          rightMotor;
@@ -59,6 +58,7 @@ Motor*          colorMotor;
 Clock*          clock;
 ObjectDetecter* objectDetecter;
 UI* ui;
+ColorSensorDriver* colorSensorDriver;
 
 /* メインタスク */
 void main_task(intptr_t unused)
@@ -68,7 +68,6 @@ void main_task(intptr_t unused)
     int8_t pwm_L, pwm_R; /* 左右モータPWM出力 */
 
     /* 各オブジェクトを生成・初期化する */
-    colorSensor = new ColorSensor(PORT_2);
     gyroSensor  = new GyroSensor(PORT_1);
     leftMotor   = new Motor(PORT_C);
     rightMotor  = new Motor(PORT_B);
@@ -77,6 +76,7 @@ void main_task(intptr_t unused)
     clock       = new Clock();
     objectDetecter = new ObjectDetecter();
     ui = new UI();
+    colorSensorDriver = new ColorSensorDriver();
 
     /* 尻尾モーターのリセット */
     tailMotor->reset();
@@ -139,7 +139,7 @@ void main_task(intptr_t unused)
         else
         {
             forward = 30; /* 前進命令 */
-            if (colorSensor->getBrightness() >= (LIGHT_WHITE + LIGHT_BLACK)/2)
+            if (colorSensorDriver->getBrightness() >= (LIGHT_WHITE + LIGHT_BLACK)/2)
             {
                 pwm_L = forward; /* 左旋回命令 */
                 pwm_R = 0;
