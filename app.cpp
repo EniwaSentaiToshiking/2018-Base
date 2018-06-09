@@ -37,17 +37,9 @@ static FILE     *bt = NULL;      /* Bluetoothファイルハンドル */
 #define GYRO_OFFSET           0  /* ジャイロセンサオフセット値(角速度0[deg/sec]時) */
 #define LIGHT_WHITE          40  /* 白色の光センサ値 */
 #define LIGHT_BLACK           0  /* 黒色の光センサ値 */
-#define TAIL_ANGLE_DEFAULT    0  /* 尻尾の初期角度[度] */
-#define TAIL_ANGLE_EXTEND  4800  /* 尻尾を伸ばした時の角度[度] (適当)*/
-  /* バランス走行時の角度[度] */
-#define P_GAIN             2.5F  /* 完全停止用モータ制御比例係数 */
-#define PWM_ABS_MAX          60  /* 完全停止用モータ制御PWM絶対最大値 */
 //#define DEVICE_NAME     "ET0"  /* Bluetooth名 hrp2/target/ev3.h BLUETOOTH_LOCAL_NAMEで設定 */
 //#define PASS_KEY        "1234" /* パスキー    hrp2/target/ev3.h BLUETOOTH_PIN_CODEで設定 */
 #define CMD_START         '1'    /* リモートスタートコマンド */
-
-/* 関数プロトタイプ宣言 */
-static void tail_control(int32_t angle);
 
 /* オブジェクトへのポインタ定義 */
 GyroSensor*     gyroSensor;
@@ -72,7 +64,7 @@ void main_task(intptr_t unused)
     leftMotor   = new WheelMotorDriver(PORT_C);
     rightMotor  = new WheelMotorDriver(PORT_B);
     armMotor    = new ArmMotorDriver();
-    tailMotor   = new Motor(PORT_A);
+    tailMotor   = new TailMotorDriver();
     clock       = new Clock();
     objectDetecter = new ObjectDetecter();
     ui = new UI();
@@ -94,7 +86,7 @@ void main_task(intptr_t unused)
     /* スタート待機 */
     while(1)
     {
-        tail_control(TAIL_ANGLE_DEFAULT); /* 完全停止用角度に制御 */
+        tailMotor->rotateDefault();
         armMotor->rotateDefault(); /* 完全停止中の角度に制御*/
 
         if (bt_cmd == 1)
@@ -129,7 +121,7 @@ void main_task(intptr_t unused)
 
         if (ev3_button_is_pressed(BACK_BUTTON)) break;
 
-        tail_control(TAIL_ANGLE_DEFAULT); /* バランス走行用角度に制御 */
+        tailMotor->rotateDefault();
         armMotor->rotateDefault();
 
         if (objectDetecter->detect()) /* 障害物検知 */
@@ -169,28 +161,6 @@ void main_task(intptr_t unused)
     fclose(bt);
 
     ext_tsk();
-}
-
-//*****************************************************************************
-// 関数名 : tail_control
-// 引数 : angle (モータ目標角度[度])
-// 返り値 : 無し
-// 概要 : 走行体完全停止用モータの角度制御
-//*****************************************************************************
-static void tail_control(int32_t angle)
-{
-    float pwm = (float)(angle - tailMotor->getCount()) * P_GAIN; /* 比例制御 */
-    /* PWM出力飽和処理 */
-    if (pwm > PWM_ABS_MAX)
-    {
-        pwm = PWM_ABS_MAX;
-    }
-    else if (pwm < -PWM_ABS_MAX)
-    {
-        pwm = -PWM_ABS_MAX;
-    }
-
-    tailMotor->setPWM(pwm);
 }
 
 //*****************************************************************************
