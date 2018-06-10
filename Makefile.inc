@@ -13,6 +13,7 @@ APPL_CXXOBJS += \
     TailMotorDriver.o \
     PID.o \
     PIDController.o \
+    Filter.o \
 
 SRCLANG := c++
 
