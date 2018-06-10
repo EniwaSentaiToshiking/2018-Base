@@ -2,6 +2,7 @@
 #include "app.h"
 #include "Clock.h"
 #include "UI.h"
+#include "RunManager.h"
 
 using namespace ev3api;
 
@@ -25,6 +26,7 @@ static FILE     *bt = NULL;      /* Bluetoothファイルハンドル */
 /* オブジェクトへのポインタ定義 */
 Clock*          clock;
 UI* ui;
+RunManager* runManager;
 
 /* メインタスク */
 void main_task(intptr_t unused)
@@ -33,6 +35,7 @@ void main_task(intptr_t unused)
     /* 各オブジェクトを生成・初期化する */
     clock       = new Clock();
     ui = new UI();
+    runManager = new RunManager();
     
     /* Open Bluetooth file */
     bt = ev3_serial_open_file(EV3_SERIAL_BT);
@@ -70,6 +73,7 @@ void main_task(intptr_t unused)
 
         if (ev3_button_is_pressed(BACK_BUTTON)) break;
 
+        runManager->run();
 
         clock->sleep(4); /* 4msec周期起動 */
     }
