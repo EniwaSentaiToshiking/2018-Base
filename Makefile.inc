@@ -20,6 +20,7 @@ APPL_CXXOBJS += \
     TailCommander.o \
     LineTrace.o \
     RunManager.o \
+    Logger.o \
 
 SRCLANG := c++
 
