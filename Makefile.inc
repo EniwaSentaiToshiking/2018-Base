@@ -11,6 +11,8 @@ APPL_CXXOBJS += \
     WheelMotorDriver.o \
     ArmMotorDriver.o \
     TailMotorDriver.o \
+    PID.o \
+    PIDController.o \
 
 SRCLANG := c++
 
@@ -25,8 +27,10 @@ APPL_DIR += \
     $(mkfile_path)/Detecters \
     $(mkfile_path)/Devices \
     $(mkfile_path)/UI \
+    $(mkfile_path)/Utils \
 
 INCLUDES += \
     -I$(mkfile_path)/Detecters \
     -I$(mkfile_path)/Devices \
     -I$(mkfile_path)/UI \
+    -I$(mkfile_path)/Utils \
