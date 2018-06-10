@@ -17,6 +17,7 @@ APPL_CXXOBJS += \
     Localization.o \
     RunCommander.o \
     ArmCommander.o \
+    TailCommander.o \
 
 SRCLANG := c++
 
