@@ -1,7 +1,7 @@
 #include "GrayLineDetecter.h"
 
 GrayLineDetecter::GrayLineDetecter(){
-
+    courceMonitor = new CourceMonitor();
 }
 
 GrayLineDetecter::~GrayLineDetecter(){
@@ -10,8 +10,7 @@ GrayLineDetecter::~GrayLineDetecter(){
 
 bool GrayLineDetecter::detect(){
    
-   //Todo 現在の輝度値を取得する
-    int current_color = 0;
+    int current_color = courceMonitor->getCurrentBrightness();
 
     gray_buffer[gray_buffer_num] = current_color;
 

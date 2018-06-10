@@ -1,4 +1,5 @@
 #include "Detecter.h"
+#include "CourceMonitor.h"
 #include "ev3api.h"
 
 #define gray_buffer_max 1000
@@ -7,6 +8,8 @@
 class GrayLineDetecter : public Detecter {
 
 private:
+    CourceMonitor *courceMonitor;
+
     int gray_buffer[gray_buffer_max] = {};
     int gray_buffer_num = 0;
     int gray_count = 0;

@@ -2,12 +2,12 @@
 
 LineTrace::LineTrace(){
     pidController = new PIDController();
-    colorSensor = new ColorSensorDriver();
+    courceMonitor = new CourceMonitor();
 }
 
 LineTrace::~LineTrace(){
     delete pidController;
-    delete colorSensor;
+    delete courceMonitor;
 }
 
 int LineTrace::getTurnValue(){
@@ -19,7 +19,7 @@ int LineTrace::getTurnValueByOnOFF(){
     
     int turn = 0;
     
-    if (colorSensor->getBrightness() >= (LIGHT_WHITE + LIGHT_BLACK)/2)
+    if (courceMonitor->getCurrentBrightness() >= (LIGHT_WHITE + LIGHT_BLACK)/2)
     {
         turn = 30;
     }
@@ -29,4 +29,8 @@ int LineTrace::getTurnValueByOnOFF(){
     }
 
     return turn;
+}
+
+void LineTrace::setTargetBrightness(){
+    targetBrightness = courceMonitor->getCurrentBrightness();
 }
