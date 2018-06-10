@@ -1,9 +1,10 @@
+#include "Detecter.h"
 #include "SonarSensorDriver.h"
 using namespace ev3api;
 
 #define SONAR_ALERT_DISTANCE 30  /* 超音波センサによる障害物検知距離[cm] */
 
-class ObjectDetecter {
+class ObjectDetecter : public Detecter {
 
 private:
     SonarSensorDriver *sonarSensor;
