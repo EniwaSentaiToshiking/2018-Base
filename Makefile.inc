@@ -19,6 +19,7 @@ APPL_CXXOBJS += \
     ArmCommander.o \
     TailCommander.o \
     LineTrace.o \
+    RunManager.o \
 
 SRCLANG := c++
 
