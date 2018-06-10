@@ -16,6 +16,7 @@ APPL_CXXOBJS += \
     Filter.o \
     Localization.o \
     RunCommander.o \
+    ArmCommander.o \
 
 SRCLANG := c++
 
