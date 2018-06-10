@@ -14,6 +14,7 @@ APPL_CXXOBJS += \
     PID.o \
     PIDController.o \
     Filter.o \
+    Localization.o \
 
 SRCLANG := c++
 
