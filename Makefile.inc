@@ -18,6 +18,7 @@ APPL_CXXOBJS += \
     RunCommander.o \
     ArmCommander.o \
     TailCommander.o \
+    LineTrace.o \
 
 SRCLANG := c++
 
@@ -33,6 +34,7 @@ APPL_DIR += \
     $(mkfile_path)/Devices \
     $(mkfile_path)/UI \
     $(mkfile_path)/Utils \
+    $(mkfile_path)/RunStyles \
     $(mkfile_path)/RunMethods \
 
 INCLUDES += \
@@ -40,4 +42,5 @@ INCLUDES += \
     -I$(mkfile_path)/Devices \
     -I$(mkfile_path)/UI \
     -I$(mkfile_path)/Utils \
+    -I$(mkfile_path)/RunStyles \
     -I$(mkfile_path)/RunMethods \
