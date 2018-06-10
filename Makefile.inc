@@ -5,6 +5,7 @@ APPL_COBJS +=
 APPL_CXXOBJS += \
     SonarSensorDriver.o \
     ObjectDetecter.o \
+    GrayLineDetecter.o \
     TouchSensorDriver.o \
     UI.o \
     ColorSensorDriver.o \
