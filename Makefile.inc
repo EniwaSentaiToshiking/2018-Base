@@ -22,6 +22,7 @@ APPL_CXXOBJS += \
     LineTrace.o \
     RunManager.o \
     Logger.o \
+    CourceMonitor.o \
 
 SRCLANG := c++
 
