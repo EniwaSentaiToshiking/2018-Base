@@ -15,6 +15,7 @@ APPL_CXXOBJS += \
     PIDController.o \
     Filter.o \
     Localization.o \
+    RunCommander.o \
 
 SRCLANG := c++
 
@@ -30,9 +31,11 @@ APPL_DIR += \
     $(mkfile_path)/Devices \
     $(mkfile_path)/UI \
     $(mkfile_path)/Utils \
+    $(mkfile_path)/RunMethods \
 
 INCLUDES += \
     -I$(mkfile_path)/Detecters \
     -I$(mkfile_path)/Devices \
     -I$(mkfile_path)/UI \
     -I$(mkfile_path)/Utils \
+    -I$(mkfile_path)/RunMethods \

@@ -4,9 +4,10 @@ using namespace ev3api;
 class WheelMotorDriver {
 
 private:
-    Motor *motor;
 
 public:
+    Motor *motor;
+
     WheelMotorDriver(ePortM port);
 
     /**
