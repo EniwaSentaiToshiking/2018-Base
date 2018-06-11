@@ -18,7 +18,7 @@ private:
   float anR = 0.0; //左回転角度
   float anL = 0.0; //右回転角度
 
-  float R = 4.1; //車輪の半径
+  float R = 5.1; //車輪の半径
 
   float TR = 0.0; //左タイヤの進んだ距離
   float TL = 0.0; //右タイヤの進んだ距離
