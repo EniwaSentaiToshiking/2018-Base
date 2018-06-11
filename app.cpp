@@ -15,24 +15,24 @@ using namespace ev3api;
 #endif
 
 /* Bluetooth */
-static int32_t   bt_cmd = 0;      /* BluetoothƒRƒ}ƒ“ƒh 1:ƒŠƒ‚[ƒgƒXƒ^[ƒg */
-static FILE     *bt = NULL;      /* Bluetoothƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹ */
+static int32_t   bt_cmd = 0;      /* Bluetoothï¿½Rï¿½}ï¿½ï¿½ï¿½h 1:ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½gï¿½Xï¿½^ï¿½[ï¿½g */
+static FILE     *bt = NULL;      /* Bluetoothï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ */
 
-/* ‰º‹L‚Ìƒ}ƒNƒ‚ÍŒÂ‘Ì/ŠÂ‹«‚É‡‚í‚¹‚Ä•ÏX‚·‚é•K—v‚ª‚ ‚è‚Ü‚· */
-//#define DEVICE_NAME     "ET0"  /* Bluetooth–¼ hrp2/target/ev3.h BLUETOOTH_LOCAL_NAME‚Åİ’è */
-//#define PASS_KEY        "1234" /* ƒpƒXƒL[    hrp2/target/ev3.h BLUETOOTH_PIN_CODE‚Åİ’è */
-#define CMD_START         '1'    /* ƒŠƒ‚[ƒgƒXƒ^[ƒgƒRƒ}ƒ“ƒh */
+/* ï¿½ï¿½ï¿½Lï¿½Ìƒ}ï¿½Nï¿½ï¿½ï¿½ÍŒÂ‘ï¿½/ï¿½Â‹ï¿½ï¿½Éï¿½ï¿½í‚¹ï¿½Ä•ÏXï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ */
+//#define DEVICE_NAME     "ET0"  /* Bluetoothï¿½ï¿½ hrp2/target/ev3.h BLUETOOTH_LOCAL_NAMEï¿½Åİ’ï¿½ */
+//#define PASS_KEY        "1234" /* ï¿½pï¿½Xï¿½Lï¿½[    hrp2/target/ev3.h BLUETOOTH_PIN_CODEï¿½Åİ’ï¿½ */
+#define CMD_START         '1'    /* ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½gï¿½Xï¿½^ï¿½[ï¿½gï¿½Rï¿½}ï¿½ï¿½ï¿½h */
 
-/* ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^’è‹` */
+/* ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ö‚Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½ï¿½` */
 Clock*          clock;
 UI* ui;
 RunManager* runManager;
 
-/* ƒƒCƒ“ƒ^ƒXƒN */
+/* ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½^ï¿½Xï¿½N */
 void main_task(intptr_t unused)
 {
 
-    /* ŠeƒIƒuƒWƒFƒNƒg‚ğ¶¬E‰Šú‰»‚·‚é */
+    /* ï¿½eï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ğ¶ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
     clock       = new Clock();
     ui = new UI();
     runManager = new RunManager();
@@ -41,29 +41,31 @@ void main_task(intptr_t unused)
     bt = ev3_serial_open_file(EV3_SERIAL_BT);
     assert(bt != NULL);
 
-    /* Bluetooth’ÊMƒ^ƒXƒN‚Ì‹N“® */
+    /* Bluetoothï¿½ÊMï¿½^ï¿½Xï¿½Nï¿½Ì‹Nï¿½ï¿½ */
     act_tsk(BT_TASK);
 
-    ev3_led_set_color(LED_ORANGE); /* ‰Šú‰»Š®—¹’Ê’m */
+    ev3_led_set_color(LED_ORANGE); /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’m */
 
-    /* ƒXƒ^[ƒg‘Ò‹@ */
+    /* ï¿½Xï¿½^ï¿½[ï¿½gï¿½Ò‹@ */
     while(1)
     {
 
+        runManager->init();
+
         if (bt_cmd == 1)
         {
-            break; /* ƒŠƒ‚[ƒgƒXƒ^[ƒg */
+            break; /* ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½gï¿½Xï¿½^ï¿½[ï¿½g */
         }
 
         if (ui->isTouched())
         {
-            break; /* ƒ^ƒbƒ`ƒZƒ“ƒT‚ª‰Ÿ‚³‚ê‚½ */
+            break; /* ï¿½^ï¿½bï¿½`ï¿½Zï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ */
         }
 
         clock->sleep(10);
     }
 
-    ev3_led_set_color(LED_GREEN); /* ƒXƒ^[ƒg’Ê’m */
+    ev3_led_set_color(LED_GREEN); /* ï¿½Xï¿½^ï¿½[ï¿½gï¿½Ê’m */
 
     /**
     * Main loop
@@ -75,7 +77,7 @@ void main_task(intptr_t unused)
 
         runManager->run();
 
-        clock->sleep(4); /* 4msecüŠú‹N“® */
+        clock->sleep(4); /* 4msecï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ */
     }
 
     ter_tsk(BT_TASK);
@@ -85,17 +87,17 @@ void main_task(intptr_t unused)
 }
 
 //*****************************************************************************
-// ŠÖ”–¼ : bt_task
-// ˆø” : unused
-// •Ô‚è’l : ‚È‚µ
-// ŠT—v : Bluetooth’ÊM‚É‚æ‚éƒŠƒ‚[ƒgƒXƒ^[ƒgB Tera Term‚È‚Ç‚Ìƒ^[ƒ~ƒiƒ‹ƒ\ƒtƒg‚©‚çA
-//       ASCIIƒR[ƒh‚Å1‚ğ‘—M‚·‚é‚ÆAƒŠƒ‚[ƒgƒXƒ^[ƒg‚·‚éB
+// ï¿½Öï¿½ï¿½ï¿½ : bt_task
+// ï¿½ï¿½ï¿½ï¿½ : unused
+// ï¿½Ô‚ï¿½l : ï¿½È‚ï¿½
+// ï¿½Tï¿½v : Bluetoothï¿½ÊMï¿½É‚ï¿½éƒŠï¿½ï¿½ï¿½[ï¿½gï¿½Xï¿½^ï¿½[ï¿½gï¿½B Tera Termï¿½È‚Ç‚Ìƒ^ï¿½[ï¿½~ï¿½iï¿½ï¿½ï¿½\ï¿½tï¿½gï¿½ï¿½ï¿½ï¿½A
+//       ASCIIï¿½Rï¿½[ï¿½hï¿½ï¿½1ï¿½ğ‘—Mï¿½ï¿½ï¿½ï¿½ÆAï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½gï¿½Xï¿½^ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½B
 //*****************************************************************************
 void bt_task(intptr_t unused)
 {
     while(1)
     {
-        uint8_t c = fgetc(bt); /* óM */
+        uint8_t c = fgetc(bt); /* ï¿½ï¿½M */
         switch(c)
         {
         case '1':
@@ -104,6 +106,6 @@ void bt_task(intptr_t unused)
         default:
             break;
         }
-        fputc(c, bt); /* ƒGƒR[ƒoƒbƒN */
+        fputc(c, bt); /* ï¿½Gï¿½Rï¿½[ï¿½oï¿½bï¿½N */
     }
 }

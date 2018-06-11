@@ -14,6 +14,11 @@ RunManager::~RunManager(){
     delete lineTrace;
 }
 
+void RunManager::init(){
+    tailCommander->rotateDefault();
+    armCommander->rotateDefault();
+}
+
 void RunManager::run(){
     tailCommander->rotateDefault();
     armCommander->rotateDefault();

@@ -15,6 +15,14 @@ public:
     RunManager();
 
     /**
+     * init - 走行前の初期設定
+     *
+     * @param  {void}
+     * @return {void}
+     */
+    void init();
+
+    /**
      * run - 走行する
      *
      * @param  {void}
