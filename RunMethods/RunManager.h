@@ -2,6 +2,7 @@
 #include "ArmCommander.h"
 #include "TailCommander.h"
 #include "LineTrace.h"
+#include "Localization.h"
 
 class RunManager {
 
@@ -10,6 +11,7 @@ private:
     ArmCommander *armCommander;
     TailCommander *tailCommander;
     LineTrace *lineTrace;
+    Localization *localization;
 
 public:
     RunManager();
@@ -30,5 +32,6 @@ public:
      */
     void run();
     virtual ~RunManager();
+
 
 };

@@ -5,6 +5,7 @@ RunManager::RunManager(){
     armCommander    = new ArmCommander();
     tailCommander   = new TailCommander();
     lineTrace = new LineTrace();
+    localization = new Localization();
 }
 
 RunManager::~RunManager(){
@@ -20,7 +21,12 @@ void RunManager::init(){
 }
 
 void RunManager::run(){
+    localization->update();
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
+    float distance = localization->getCurrentDistance();
+    if (distance > 100) {
+        ev3_speaker_play_tone (480,100);
+    }
     runCommander->steer(30, lineTrace->getTurnValueByOnOFF());
 }
