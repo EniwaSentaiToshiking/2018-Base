@@ -22,8 +22,15 @@ void RunManager::init(){
 }
 
 void RunManager::run(){
+    localization->update();
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
+
+    float distance = localization->getCurrentDistance();
+    if (distance > 100) {
+        ev3_speaker_play_tone (480,100);
+    }
+
     //Todo if 走行区画が変わったら or シナリオが変わったら
     lineTrace->updateParams(lotManager->getCurrentLotPID());
     //----------
