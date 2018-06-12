@@ -2,6 +2,8 @@
 #include "ArmCommander.h"
 #include "TailCommander.h"
 #include "LineTrace.h"
+#include "Localization.h"
+#include "LotManager.h"
 
 class RunManager {
 
@@ -10,6 +12,8 @@ private:
     ArmCommander *armCommander;
     TailCommander *tailCommander;
     LineTrace *lineTrace;
+    Localization *localization;
+    LotManager *lotManager;
 
 public:
     RunManager();

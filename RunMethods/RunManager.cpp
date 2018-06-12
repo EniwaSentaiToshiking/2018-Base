@@ -5,6 +5,8 @@ RunManager::RunManager(){
     armCommander    = new ArmCommander();
     tailCommander   = new TailCommander();
     lineTrace = new LineTrace();
+    localization = new Localization();
+    lotManager = new LotManager(0);
 }
 
 RunManager::~RunManager(){
@@ -22,5 +24,8 @@ void RunManager::init(){
 void RunManager::run(){
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
-    runCommander->steer(30, lineTrace->getTurnValueByOnOFF());
+    //Todo if 走行区画が変わったら or シナリオが変わったら
+    lineTrace->updateParams(lotManager->getCurrentLotPID());
+    //----------
+    runCommander->steer(30, lineTrace->getTurnValue());
 }
