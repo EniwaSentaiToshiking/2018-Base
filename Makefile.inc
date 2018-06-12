@@ -23,6 +23,8 @@ APPL_CXXOBJS += \
     RunManager.o \
     Logger.o \
     CourceMonitor.o \
+    Lot.o \
+    LotManager.o \
 
 SRCLANG := c++
 
