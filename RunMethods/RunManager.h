@@ -4,6 +4,7 @@
 #include "LineTrace.h"
 #include "Localization.h"
 #include "LotManager.h"
+#include "CourceMonitor.h"
 
 class RunManager {
 
@@ -14,6 +15,7 @@ private:
     LineTrace *lineTrace;
     Localization *localization;
     LotManager *lotManager;
+    CourceMonitor *courceMonitor;
 
 public:
     RunManager();

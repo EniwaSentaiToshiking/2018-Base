@@ -14,3 +14,7 @@ int CourceMonitor::getCurrentBrightness()
 {
     return colorSensor->getBrightness();
 }
+
+colorid_t CourceMonitor::getColorNumber(){
+	return colorSensor->getColorNumber();
+}

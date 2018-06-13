@@ -14,6 +14,13 @@ class CourceMonitor
   public:
     CourceMonitor();
     int getCurrentBrightness();
+    /**
+     * getColorNumber - RGBを測定する 
+     *
+     * @param  {void}
+     * @return {colorid_t}      
+     */
+    colorid_t getColorNumber(); 
     virtual ~CourceMonitor();
 };
 
