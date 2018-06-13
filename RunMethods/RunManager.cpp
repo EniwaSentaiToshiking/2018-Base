@@ -1,4 +1,14 @@
 #include "RunManager.h"
+#define UNKNOWN 0
+#define BLACK 1
+#define BLUE 2
+#define GREEN 3
+#define YELLOW 4
+#define RED 5
+#define WHITE 6
+#define BROWN 7
+
+int flag = 0; //テスト用、削除していい。色検知したらフラグを1にする
 
 RunManager::RunManager(){
     runCommander = new RunCommander();
@@ -35,15 +45,14 @@ void RunManager::run(){
     //Todo if 走行区画が変わったら or シナリオが変わったら
     lineTrace->updateParams(lotManager->getCurrentLotPID(), 100);
     //----------
-    if (courceMonitor->getColorNumber() == 5){
-        runCommander->steerStop();
+    if (courceMonitor->getColorNumber() == RED){
         ev3_speaker_play_tone(480,100);
-    }
-    else if(courceMonitor->getColorNumber() == 2){
-        runCommander->steerStop();
-        ev3_speaker_play_tone(480,100);
-    }else{
+        flag = 1;
+    }else if (flag == 0){
         runCommander->steer(lotManager->getCurrentLotSpeed(), lineTrace->getTurnValue());
+    }
+    else {
+        runCommander->steerStop();
     }
 
 }
