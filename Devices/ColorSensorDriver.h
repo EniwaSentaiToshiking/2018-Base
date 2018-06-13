@@ -25,5 +25,13 @@ public:
      */
     uint8_t getAmbient();
 
+    /**
+     * getColorNumber - RGBを測定する 
+     *
+     * @param  {void}
+     * @return {colorid_t}      
+     */
+    colorid_t getColorNumber(); 
+
 virtual ~ColorSensorDriver();
 };
