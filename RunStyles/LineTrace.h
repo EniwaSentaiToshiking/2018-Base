@@ -6,7 +6,7 @@ class LineTrace : public RunStyle {
 private:
     CourceMonitor *courceMonitor;
     PID *pid;
-    int targetBrightness = 25;
+    int targetBrightness = 20;
     int absMaxSpeed = 30;
 
 public:
@@ -18,7 +18,7 @@ public:
      * @param  {PID, int, int} pid PID係数, absMaxSpeed 絶対値（最大PWM）, targetBrightness 目標輝度
      * @return {void}
      */
-    void updateParams(PID *pid, int absMaxSpeed = 30, int targetBrightness = 25);
+    void updateParams(PID *pid, int absMaxSpeed, int targetBrightness = 10);
 
     /**
      * getTurnValue - ライントレース時(PID制御)の操作量を取得
