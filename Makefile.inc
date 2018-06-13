@@ -25,6 +25,7 @@ APPL_CXXOBJS += \
     CourceMonitor.o \
     Lot.o \
     LotManager.o \
+    SpeedCal.o \
 
 SRCLANG := c++
 
