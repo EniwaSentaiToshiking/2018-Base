@@ -2,6 +2,7 @@
 
 LineTrace::LineTrace(){
     pidController = new PIDController();
+    pid = new PID(0,0,0);
     courceMonitor = new CourceMonitor();
 }
 
@@ -10,16 +11,21 @@ LineTrace::~LineTrace(){
     delete courceMonitor;
 }
 
+void LineTrace::updateParams(PID *pid, int absMaxSpeed, int targetBrightness) {
+    this->pid = pid;
+    this->targetBrightness = targetBrightness;
+    this->absMaxSpeed = absMaxSpeed;
+}
+
 int LineTrace::getTurnValue(){
-    //Todo PID制御で計算された操作量を返す
-    return 0;
+    return pidController->getTurn(this->pid, this->courceMonitor->getCurrentBrightness(), this->targetBrightness, this->absMaxSpeed);
 }
 
 int LineTrace::getTurnValueByOnOFF(){
     
     int turn = 0;
     
-    if (courceMonitor->getCurrentBrightness() >= (LIGHT_WHITE + LIGHT_BLACK)/2)
+    if (this->courceMonitor->getCurrentBrightness() >= this->targetBrightness)
     {
         turn = 30;
     }
@@ -29,8 +35,4 @@ int LineTrace::getTurnValueByOnOFF(){
     }
 
     return turn;
-}
-
-void LineTrace::setTargetBrightness(){
-    targetBrightness = courceMonitor->getCurrentBrightness();
 }

@@ -13,8 +13,8 @@ class PIDController
 
   public:
 	PIDController();
-	int getTurn(PID *pid, unsigned int sensor_val, unsigned int target_val, int min, int max);
-	int math_limit(int pid_value, int min, int max);
+	int getTurn(PID *pid, unsigned int sensor_val, unsigned int target_val, int absMax);
+	int math_limit(int pid_value, int absMax);
 
 	virtual ~PIDController();
 };

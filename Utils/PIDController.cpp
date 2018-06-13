@@ -8,7 +8,7 @@ PIDController::~PIDController()
 {
 }
 
-int PIDController::getTurn(PID *pid, unsigned int sensor_val, unsigned int target_val, int min, int max)
+int PIDController::getTurn(PID *pid, unsigned int sensor_val, unsigned int target_val, int absMax)
 {
   int p, i, d;
   float KP, KI, KD;
@@ -25,14 +25,14 @@ int PIDController::getTurn(PID *pid, unsigned int sensor_val, unsigned int targe
   i = KI * integral;
   d = KD * (diff[1] - diff[0]) / DELTA_T;
 
-  return math_limit(p + i + d, min, max);
+  return math_limit(p + i + d, absMax);
 }
 
-int PIDController::math_limit(int pid_value, int min, int max)
+int PIDController::math_limit(int pid_value, int absMax)
 {
-  if (pid_value > max)
-    pid_value = max;
-  else if (pid_value < min)
-    pid_value = min;
+  if (pid_value > absMax)
+    pid_value = absMax;
+  else if (pid_value < absMax * -1)
+    pid_value = absMax * - 1;
   return pid_value;
 }

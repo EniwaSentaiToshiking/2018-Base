@@ -1,20 +1,40 @@
 #include "RunStyle.h"
 #include "CourceMonitor.h"
 
-#define LIGHT_WHITE          40  /* 白色の光センサ値 */
-#define LIGHT_BLACK           0  /* 黒色の光センサ値 */
-
 class LineTrace : public RunStyle {
 
 private:
     CourceMonitor *courceMonitor;
-    int targetBrightness = 0;
+    PID *pid;
+    int targetBrightness = 20;
+    int absMaxSpeed = 30;
 
 public:
     LineTrace();
+
+    /**
+     * updateParams - パラメータ設定
+     *
+     * @param  {PID, int, int} pid PID係数, absMaxSpeed 絶対値（最大PWM）, targetBrightness 目標輝度
+     * @return {void}
+     */
+    void updateParams(PID *pid, int absMaxSpeed, int targetBrightness);
+
+    /**
+     * getTurnValue - ライントレース時(PID制御)の操作量を取得
+     *
+     * @param  {void} 
+     * @return {int} 操作量
+     */
     int getTurnValue();
+
+    /**
+     * getTurnValue - ライントレース時(OnOff制御)の操作量を取得
+     *
+     * @param  {void}
+     * @return {int} 操作量
+     */
     int getTurnValueByOnOFF();
-    void setTargetBrightness();
     virtual ~LineTrace();
 
 };

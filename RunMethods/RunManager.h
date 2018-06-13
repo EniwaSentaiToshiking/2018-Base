@@ -3,6 +3,8 @@
 #include "TailCommander.h"
 #include "LineTrace.h"
 #include "Localization.h"
+#include "LotManager.h"
+#include "CourceMonitor.h"
 
 class RunManager {
 
@@ -12,6 +14,8 @@ private:
     TailCommander *tailCommander;
     LineTrace *lineTrace;
     Localization *localization;
+    LotManager *lotManager;
+    CourceMonitor *courceMonitor;
 
 public:
     RunManager();
