@@ -18,7 +18,7 @@ public:
      * @param  {PID, int, int} pid PID係数, absMaxSpeed 絶対値（最大PWM）, targetBrightness 目標輝度
      * @return {void}
      */
-    void updateParams(PID *pid, int absMaxSpeed, int targetBrightness = 10);
+    void updateParams(PID *pid, int absMaxSpeed, int targetBrightness);
 
     /**
      * getTurnValue - ライントレース時(PID制御)の操作量を取得
