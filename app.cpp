@@ -3,6 +3,7 @@
 #include "Clock.h"
 #include "UI.h"
 #include "RunManager.h"
+#include "string.h"
 
 using namespace ev3api;
 
@@ -97,15 +98,12 @@ void bt_task(intptr_t unused)
 {
     while(1)
     {
-        uint8_t c = fgetc(bt); /* ��M */
-        switch(c)
-        {
-        case '1':
+        char c[6];
+        fgets(c, 6, bt); /*文字列を受け取る*/  
+
+        if(strcmp(c,"13245")==0){
             bt_cmd = 1;
-            break;
-        default:
-            break;
+            fprintf(bt, "%s\n", c); /* 文字列を送信*/
         }
-        fputc(c, bt); /* �G�R�[�o�b�N */
     }
 }
