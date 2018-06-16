@@ -43,16 +43,18 @@ void RunManager::run(){
     // }
 
     //Todo if 走行区画が変わったら or シナリオが変わったら
-    lineTrace->updateParams(lotManager->getCurrentLotPID(), 100, 10); //(P,I,D,最大PWM, 目標輝度値)
-    //----------
-    if (courceMonitor->getColorNumber() == RED){
-        ev3_speaker_play_tone(480,100);
-        flag = 1;
-    }else if (flag == 0){
-        runCommander->steer(lotManager->getCurrentLotSpeed(), lineTrace->getTurnValue());//(forward値,PID制御の操作量)
-    }
-    else {
-        runCommander->steerStop();
-    }
+    // lineTrace->updateParams(lotManager->getCurrentLotPID(), 100, 10); //(P,I,D,最大PWM, 目標輝度値)
+    // //----------
+    // if (courceMonitor->getColorNumber() == RED){
+    //     ev3_speaker_play_tone(480,100);
+    //     flag = 1;
+    // }else if (flag == 0){
+    //     runCommander->steer(lotManager->getCurrentLotSpeed(), lineTrace->getTurnValue());//(forward値,PID制御の操作量)
+    // }
+    // else {
+    //     runCommander->steerStop();
+    // }
+
+    runCommander->gridRun(100,100,0,0,20);
 
 }
