@@ -26,6 +26,7 @@ APPL_CXXOBJS += \
     Lot.o \
     LotManager.o \
     SpeedCal.o \
+    Grid.o \
 
 SRCLANG := c++
 

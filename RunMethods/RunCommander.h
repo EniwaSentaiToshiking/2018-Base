@@ -1,5 +1,8 @@
 #include "WheelMotorDriver.h"
 #include "Steering.h"
+#include "Grid.h"
+#include "Logger.h"
+
 using namespace ev3api;
 
 class RunCommander {
@@ -8,6 +11,8 @@ private:
     WheelMotorDriver *leftMotor;
     WheelMotorDriver *rightMotor;
     Steering *steering;
+    Grid *grid;
+    Logger *logger;
 
 public:
     RunCommander();
@@ -36,5 +41,14 @@ public:
      * @return {void}
      */
     void run(int pwmL, int pwmR);
+
+    /**
+     * gridRun -  目標の座標まで移動する
+     *
+     * @param  aX,aY(目標座標), bX,bY(現在座標)
+     * @return {void}
+     */
+    void gridRun(int aX, int aY, int bX, int bY, int pwm, float direction, float distance);
+
     virtual ~RunCommander();
 };

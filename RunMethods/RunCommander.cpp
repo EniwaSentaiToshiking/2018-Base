@@ -4,6 +4,8 @@ RunCommander::RunCommander(){
     leftMotor   = new WheelMotorDriver(PORT_C);
     rightMotor  = new WheelMotorDriver(PORT_B);
     steering = new Steering(*leftMotor->motor, *rightMotor->motor);
+    grid = new Grid();
+    logger = new Logger("grid_direction");
 }
 
 RunCommander::~RunCommander(){
@@ -22,4 +24,39 @@ void RunCommander::steerStop(){
 void RunCommander::run(int pwmL, int pwmR){
     leftMotor->controlMotor(pwmL);
     rightMotor->controlMotor(pwmR);
+}
+
+void RunCommander::gridRun(int aX, int aY, int bX, int bY, int pwm , float direction, float distance){
+	float grid_distance = grid->getDistance(aX, aY, bX, bY);
+	float grid_direction = grid->getDirection(aX, aY, bX, bY);
+	logger -> logging(grid_distance - distance);
+	switch (grid->state){
+		case TURN:
+			if(grid_direction - direction < -1.0){
+				leftMotor->controlMotor(pwm);
+				rightMotor->controlMotor(pwm * -1);
+			}else if(grid_direction - direction > 1.0){
+				leftMotor->controlMotor(pwm * -1);
+				rightMotor->controlMotor(pwm);
+			}else{
+				grid->state = MOVE;
+			}
+			break;
+		case MOVE:
+			ev3_speaker_play_tone (480,100);
+			if(grid_distance - distance < -1.0){
+				leftMotor->controlMotor(pwm * -1);
+				rightMotor->controlMotor(pwm * -1);
+			}else if(grid_distance - distance > 1.0){
+				leftMotor->controlMotor(pwm);
+				rightMotor->controlMotor(pwm);
+			}else{
+				grid->state = END;
+			}
+			break;
+		case END:
+			leftMotor->controlMotor(0);
+			rightMotor->controlMotor(0);
+			break;
+	}
 }
