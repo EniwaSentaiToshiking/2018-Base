@@ -1,5 +1,4 @@
 #include "math.h"
-#define GRID_SIZE 100.0 //座標のマス幅（100mm）
 
 typedef enum {
     TURN, // 目標座標の方位へ向くまで旋回

@@ -54,7 +54,7 @@ void RunManager::run(){
     // else {
     //     runCommander->steerStop();
     // }
-
-    runCommander->gridRun(100,100,0,0,20);
+    runCommander->gridRun(localization->point_x,localization->point_y,100,100,18,
+        localization->getCurrentDirection(), localization->getCurrentDistance());
 
 }
