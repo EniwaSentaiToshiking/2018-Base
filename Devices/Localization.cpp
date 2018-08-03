@@ -24,7 +24,7 @@ void Localization::update()
 
     D = (TR + TL) / 2; //車体の進んだ距離
 
-    w = (TR - TL) /d; //旋回角度計算
+    w = (TR - TL) / (2 * d); //旋回角度計算
 
     x1 = x0 + (D * cos(z0 + (w / 2)));
     y1 = y0 + (D * sin(z0 + (w / 2))); //現在の座標を求める
