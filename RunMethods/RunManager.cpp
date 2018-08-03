@@ -18,6 +18,8 @@ RunManager::RunManager(){
     localization = new Localization();
     lotManager = new LotManager(0);
     courceMonitor = new CourceMonitor();
+    logger1 = new Logger("xx.txt");
+    logger2 = new Logger("yy.txt");
 }
 
 RunManager::~RunManager(){
@@ -37,13 +39,24 @@ void RunManager::run(){
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
 
-    // float distance = localization->getCurrentDistance();
-    // if (distance > 100) {
-    //     ev3_speaker_play_tone (480,100);
-    // }
+    logger1 -> logging(localization->point_x);
+    logger2 -> logging(localization->point_y);
 
+    //ev3_speaker_play_tone (480,100);
+
+    //float distance = localization->getCurrentDistance();
+    //if (distance > 100) {
+        //ev3_speaker_play_tone (480,100);
+    //}
     //Todo if 走行区画が変わったら or シナリオが変わったら
-    // lineTrace->updateParams(lotManager->getCurrentLotPID(), 100, 10); //(P,I,D,最大PWM, 目標輝度値)
+
+    if(lotManager->isChangeCurrentLot()){
+        lotManager->changeCurrentLot();
+    }
+
+    lineTrace->updateParams(lotManager->getCurrentLotPID(), 100, 10); //(P,I,D,最大PWM, 目標輝度値)
+    runCommander->steer(lotManager->getCurrentLotSpeed(), lineTrace->getTurnValue());//(forward値,PID制御の操作量)
+
     // //----------
     // if (courceMonitor->getColorNumber() == RED){
     //     ev3_speaker_play_tone(480,100);
@@ -54,7 +67,6 @@ void RunManager::run(){
     // else {
     //     runCommander->steerStop();
     // }
-    runCommander->gridRun(localization->point_x,localization->point_y,50,50,40,
-        localization->getCurrentDirection(), localization->getCurrentDistance());
+    //runCommander->gridRun(localization->point_x,localization->point_y,50,50,40,localization->getCurrentDirection(), localization->getCurrentDistance());
 
 }
