@@ -20,7 +20,14 @@ class CourceMonitor
      * @param  {void}
      * @return {colorid_t}      
      */
-    colorid_t getColorNumber(); 
+    colorid_t getColorNumber();
+
+    void getRawColor();
+
+    int getColorRed();
+    int getColorGreen();
+    int getColorBlue();
+
     virtual ~CourceMonitor();
 };
 

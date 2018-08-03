@@ -31,7 +31,16 @@ public:
      * @param  {void}
      * @return {colorid_t}      
      */
-    colorid_t getColorNumber(); 
+    colorid_t getColorNumber();
+
+    void getRawColor();
+    int red = 0;
+    int green = 0;
+    int blue = 0;
+
+    int getColorRed();
+    int getColorGreen();
+    int getColorBlue();
 
 virtual ~ColorSensorDriver();
 };
