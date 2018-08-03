@@ -18,8 +18,8 @@ RunManager::RunManager(){
     localization = new Localization();
     lotManager = new LotManager(0);
     courceMonitor = new CourceMonitor();
-    logger1 = new Logger("xx.txt");
-    logger2 = new Logger("yy.txt");
+    //logger1 = new Logger("xx.txt");
+    //logger2 = new Logger("yy.txt");
 }
 
 RunManager::~RunManager(){
@@ -39,8 +39,8 @@ void RunManager::run(){
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
 
-    logger1 -> logging(localization->point_x);
-    logger2 -> logging(localization->point_y);
+    //logger1 -> logging(localization->point_x);
+    //logger2 -> logging(localization->point_y);
 
     //ev3_speaker_play_tone (480,100);
 
