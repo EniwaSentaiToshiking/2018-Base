@@ -5,8 +5,8 @@
 #include "Localization.h"
 #include "LotManager.h"
 #include "CourceMonitor.h"
-
 #include "Logger.h"
+#include "ColorDetecter.h"
 
 class RunManager {
 
@@ -18,10 +18,9 @@ private:
     Localization *localization;
     LotManager *lotManager;
     CourceMonitor *courceMonitor;
-
+    ColorDetecter *colorDetecter;
     //Logger *logger_x;
     //Logger *logger_y;
-
     Logger *logger_r;
     Logger *logger_g;
     Logger *logger_b;

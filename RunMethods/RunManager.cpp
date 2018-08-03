@@ -18,11 +18,17 @@ RunManager::RunManager(){
     localization = new Localization();
     lotManager = new LotManager(0);
     courceMonitor = new CourceMonitor();
+
+    
+    colorDetecter = new ColorDetecter();
+
+
     //logger_x = new Logger("PosX.txt");
     //logger_y = new Logger("PosY.txt");
     logger_r = new Logger("ColorRed.txt");
     logger_g = new Logger("ColorGreen.txt");
     logger_b = new Logger("ColorBlue.txt");
+
 }
 
 RunManager::~RunManager(){
@@ -42,7 +48,7 @@ void RunManager::run(){
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
 
-    courceMonitor->getRawColor();
+
     logger_r -> logging(courceMonitor->getColorRed());
     logger_g -> logging(courceMonitor->getColorGreen());
     logger_b -> logging(courceMonitor->getColorBlue());
