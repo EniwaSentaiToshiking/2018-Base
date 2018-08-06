@@ -48,10 +48,12 @@ void RunManager::run(){
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
 
-
     logger_r -> logging(courceMonitor->getColorRed());
     logger_g -> logging(courceMonitor->getColorGreen());
     logger_b -> logging(courceMonitor->getColorBlue());
+
+    colorDetecter -> color_num = 1;
+    colorDetecter -> detect();
 
     //logger_x -> logging(localization->point_x);
     //logger_y -> logging(localization->point_y);
