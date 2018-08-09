@@ -5,10 +5,10 @@ SpeedCal::SpeedCal(){
 }
 
 SpeedCal::~SpeedCal(){
-
+    delete localization;
 }
 
-void SpeedCal::Init(){
+void SpeedCal::init(){
 	//各変数値を初期化
     localization -> distance_reset();
     speed = 0.0;
@@ -17,7 +17,7 @@ void SpeedCal::Init(){
 
 }
 
-void SpeedCal::Update(){
+void SpeedCal::update(){
 	/* SAMPLING_INTERVAL[ms]が経過した毎にサンプリングを行う */
     if(++intervalTimer >= (int)(SAMPLING_INTERVAL / TASK_INTERVAL)) {
         intervalTimer = 0;   // 時間計測用変数初期化
@@ -28,6 +28,6 @@ void SpeedCal::Update(){
     }
 }
 
-float SpeedCal::GetSpeed(){
+float SpeedCal::getSpeed(){
 	return speed;
 }

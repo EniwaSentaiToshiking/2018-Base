@@ -27,17 +27,12 @@ LotManager::~LotManager()
 
 void LotManager::courseR()
 {
-    lot_list[0] = new Lot(0, 180, -30, 30, 10, 5.0, 0.1, 0.0);
-    lot_list[1] = new Lot(250, 285, -30, 30, 15, 5.0, 0.1, 0.0);
-    lot_list[2] = new Lot(0, 2000, 0, 200, 15, 5.0, 0.1, 0.0);
+    lot_list[0] = new Lot(0, 180, -30, 30, 20, 5.0, 0.1, 0.0);
 }
 
 void LotManager::courseL()
 {
-    lot_list[0] = new Lot(0, 180, -30, 30, 15, 5.0, 0.1, 0.0);
-    lot_list[1] = new Lot(250, 285, -30, 30, 15, 5.0, 0.1, 0.0);
-    lot_list[2] = new Lot(0, 2000, 0, 200, 15, 5.0, 0.1, 0.0);
-    //lot_list[3] = new Lot(280, 295, -30, 30, 15, 5.0, 0.1, 0.0);
+    lot_list[0] = new Lot(0, 180, -30, 30, 20, 5.0, 0.1, 0.0);
 }
 
 
