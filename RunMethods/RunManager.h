@@ -6,8 +6,6 @@
 #include "LotManager.h"
 #include "CourceMonitor.h"
 
-//#include "Logger.h"
-
 class RunManager {
 
 private:
@@ -18,9 +16,6 @@ private:
     Localization *localization;
     LotManager *lotManager;
     CourceMonitor *courceMonitor;
-
-    //Logger *logger1;
-    //Logger *logger2;
 
 public:
     RunManager();

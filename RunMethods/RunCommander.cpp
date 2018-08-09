@@ -5,13 +5,12 @@ RunCommander::RunCommander(){
     rightMotor  = new WheelMotorDriver(PORT_B);
     steering = new Steering(*leftMotor->motor, *rightMotor->motor);
     grid = new Grid();
-    //logger1 = new Logger("grid_direction.txt");
-    //logger2 = new Logger("direction.txt");
 }
 
 RunCommander::~RunCommander(){
     delete leftMotor;
     delete rightMotor;
+    delete grid;
 }
 
 void RunCommander::steer(int power, int turn){
@@ -33,8 +32,6 @@ void RunCommander::gridRun(int aX, int aY, int bX, int bY, int pwm , float direc
 		grid_distance = grid->getDistance(aX, aY, bX, bY);
 		grid_flag = 1;
 	}
-	//logger1 -> logging(grid_direction);
-	//logger2 -> logging(direction);
 	switch (grid->state){
 		case TURN:
 			if(grid_direction - direction < -0.1){
