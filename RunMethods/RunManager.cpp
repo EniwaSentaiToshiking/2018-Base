@@ -52,18 +52,17 @@ void RunManager::run(){
     logger_g -> logging(courceMonitor->getColorGreen());
     logger_b -> logging(courceMonitor->getColorBlue());
 
-    colorDetecter -> color_num = 1;
-    colorDetecter -> detect();
+    //colorDetecter -> color_num = 1;
+    //colorDetecter -> detect();
 
     //logger_x -> logging(localization->point_x);
     //logger_y -> logging(localization->point_y);
-
-    //ev3_speaker_play_tone (480,100);
 
     //float distance = localization->getCurrentDistance();
     //if (distance > 100) {
         //ev3_speaker_play_tone (480,100);
     //}
+    
     //Todo if 走行区画が変わったら or シナリオが変わったら
 
     if(lotManager->isChangeCurrentLot()){

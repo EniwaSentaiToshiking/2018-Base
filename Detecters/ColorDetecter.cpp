@@ -41,26 +41,26 @@ int ColorDetecter::checkRGB(){
 		min = green;
 	}
 
-	if(blue <= green && blue <= green){
+	if(blue <= red && blue <= green){
 		min = blue;
 	}
 
 	//色合いを計算
 
-	if(max_flag == 1){
-		H = 60 * ((green - blue)/(max - min));
-	}
+	switch(max_flag) {
+        case 1:
+        	H = 60 * ((green - blue)/(max - min));
+        	break;
+        case 2:
+        	H = 60 * ((blue - red)/(max - min)) + 120;
+        	break;
+        case 3:
+        	H = 60 * ((red - green)/(max - min)) + 240;
+        	break;
+    }
 
-	if(max_flag == 1){
-		H = 60 * ((blue - red)/(max - min)) + 120;
-	}
-
-	if(max_flag == 1){
-		H = 60 * ((red - green)/(max - min)) + 240;
-	}
-
-	if (red == green && green == blue){
-		 H = 0;
+	if(red == green && green == blue){
+		H = 0;
 	}
 
 	//閾値で色判定
