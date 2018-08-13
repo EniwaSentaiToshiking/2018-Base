@@ -6,6 +6,7 @@ APPL_CXXOBJS += \
     SonarSensorDriver.o \
     ObjectDetecter.o \
     GrayLineDetecter.o \
+    PointDetecter.o \
     TouchSensorDriver.o \
     UI.o \
     ColorSensorDriver.o \
@@ -27,6 +28,7 @@ APPL_CXXOBJS += \
     LotManager.o \
     SpeedCal.o \
     Grid.o \
+    CourseRun.o \
 
 SRCLANG := c++
 
@@ -44,6 +46,8 @@ APPL_DIR += \
     $(mkfile_path)/Utils \
     $(mkfile_path)/RunStyles \
     $(mkfile_path)/RunMethods \
+    $(mkfile_path)/RunMethods/Commanders \
+    $(mkfile_path)/RunMethods/Status \
 
 INCLUDES += \
     -I$(mkfile_path)/Detecters \
@@ -52,3 +56,5 @@ INCLUDES += \
     -I$(mkfile_path)/Utils \
     -I$(mkfile_path)/RunStyles \
     -I$(mkfile_path)/RunMethods \
+    -I$(mkfile_path)/RunMethods/Commanders \
+    -I$(mkfile_path)/RunMethods/Status \

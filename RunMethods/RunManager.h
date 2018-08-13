@@ -1,21 +1,16 @@
-#include "RunCommander.h"
-#include "ArmCommander.h"
-#include "TailCommander.h"
-#include "LineTrace.h"
-#include "Localization.h"
-#include "LotManager.h"
-#include "CourceMonitor.h"
+#include "CourseRun.h"
+
+//走行状態
+enum RunState {
+    COURSE_RUN
+};
 
 class RunManager {
 
 private:
-    RunCommander *runCommander;
-    ArmCommander *armCommander;
-    TailCommander *tailCommander;
-    LineTrace *lineTrace;
-    Localization *localization;
-    LotManager *lotManager;
-    CourceMonitor *courceMonitor;
+    Course course = L;
+    RunState state = COURSE_RUN;
+    CourseRun *courseRun;
 
 public:
     RunManager();
@@ -36,6 +31,4 @@ public:
      */
     void run();
     virtual ~RunManager();
-
-
 };
