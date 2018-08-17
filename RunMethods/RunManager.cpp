@@ -3,8 +3,6 @@
 RunManager::RunManager()
 {
     courseRun = new CourseRun(course);
-
-    init();
 }
 
 RunManager::~RunManager()
@@ -14,6 +12,7 @@ RunManager::~RunManager()
 
 void RunManager::init()
 {
+    courseRun->init();
 }
 
 void RunManager::run()
