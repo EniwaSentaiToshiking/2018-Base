@@ -6,9 +6,8 @@ CourseRun::CourseRun(Course course){
     armCommander = new ArmCommander();
     runCommander = new RunCommander();
     lineTrace = new LineTrace();
-    pointDetecter = new PointDetecter();
     lotManager = new LotManager(R);
-    pointDetecter->update(lotManager->getNextLotInfo());
+    pointDetecter = new PointDetecter(lotManager->getNextLotInfo());
 }
 
 CourseRun::~CourseRun(){
@@ -42,4 +41,10 @@ bool CourseRun::isFinish(){
         return true;
     }
     return false;
+}
+
+void CourseRun::stop(){
+    tailCommander->rotateDefault();
+    armCommander->rotateDefault();
+    runCommander->steerStop();
 }

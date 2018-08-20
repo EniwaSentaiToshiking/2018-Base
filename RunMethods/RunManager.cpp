@@ -23,8 +23,11 @@ void RunManager::run()
         courseRun->run();
         if (courseRun->isFinish())
         {
-            //Todo next run status
+            state = STOP;
         }
+        break;
+    case STOP:
+        courseRun->stop();
         break;
     }
 }

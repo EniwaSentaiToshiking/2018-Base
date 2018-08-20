@@ -10,7 +10,7 @@ class PointDetecter : public Detecter
     Lot *threshold;
 
   public:
-    PointDetecter();
+    PointDetecter(Lot *threshold);
 
     /**
      * detect - 座標の条件検知

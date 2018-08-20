@@ -2,7 +2,8 @@
 
 //走行状態
 enum RunState {
-    COURSE_RUN
+    COURSE_RUN,
+    STOP,
 };
 
 class RunManager {

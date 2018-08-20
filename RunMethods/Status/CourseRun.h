@@ -16,6 +16,7 @@ class CourseRun : public RunStatus
      * @return {void}
      */
     void run();
+    void stop();
     bool isFinish();
     virtual ~CourseRun();
 };

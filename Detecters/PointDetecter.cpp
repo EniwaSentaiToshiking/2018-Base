@@ -1,9 +1,9 @@
 #include "PointDetecter.h"
 
-PointDetecter::PointDetecter()
+PointDetecter::PointDetecter(Lot *threshold)
 {
     local = new Localization();
-    this->threshold = new Lot(0, 0, 0, 0, 0, 0, 0, 0);
+    this->threshold = threshold;
 }
 
 PointDetecter::~PointDetecter()
