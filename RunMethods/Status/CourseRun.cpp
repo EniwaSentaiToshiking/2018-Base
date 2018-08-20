@@ -7,11 +7,8 @@ CourseRun::CourseRun(Course course){
     runCommander = new RunCommander();
     lineTrace = new LineTrace();
     pointDetecter = new PointDetecter();
-
-    Lot *lot_list[2];
-    lot_list[0] = new Lot(0, 180, -30, 30, 20, 5.0, 0.1, 0.0);
-    lot_list[1] = new Lot(0, 180, -30, 30, 20, 5.0, 0.1, 0.0);
-    lotManager = new LotManager(lot_list);
+    lotManager = new LotManager(R);
+    pointDetecter->update(lotManager->getNextLotInfo());
 }
 
 CourseRun::~CourseRun(){
@@ -23,13 +20,6 @@ CourseRun::~CourseRun(){
 }
 
 void CourseRun::init(){
-    switch(this->course){
-        case L:
-        break;
-        case R:
-        break;
-    }
-
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
 }
@@ -43,7 +33,7 @@ void CourseRun::run(){
 
     if(pointDetecter->detect()){
         lotManager->changeCurrentLot();
-        pointDetecter->update(lotManager->getLotInfo());
+        pointDetecter->update(lotManager->getNextLotInfo());
     }
 }
 
