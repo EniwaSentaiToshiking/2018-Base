@@ -1,40 +1,41 @@
 #include "LotManager.h"
 
-LotManager::LotManager(int flag)
+LotManager::LotManager(Course course)
 {
     current_lot = 0;
-
     /**
      *  Lot
      *  @arg (x0, x1, y0, y1, speed, p, i, d)
      *  @con x0 < x1, y0 < y1
      */
-
-    if(flag==0){
-        courseR();
-    }else{
+    switch (course)
+    {
+    case L:
         courseL();
+        break;
+    case R:
+        courseR();
+        break;
     }
-
-    local = new Localization();
-
 }
 
 LotManager::~LotManager()
 {
-    delete local;
 }
 
 void LotManager::courseR()
 {
-    lot_list[0] = new Lot(0, 180, -30, 30, 20, 5.0, 0.1, 0.0);
+    lot_list[0] = new Lot(0, 180, -30, 30, 20, 0.0, 0.0, 0.0);
+    lot_list[1] = new Lot(30, 50, -30, 30, 30, 0.0, 0.0, 0.0);
+    lot_list[2] = new Lot(50, 80, -30, 30, 40, 0.0, 0.0, 0.0);
 }
 
 void LotManager::courseL()
 {
     lot_list[0] = new Lot(0, 180, -30, 30, 20, 5.0, 0.1, 0.0);
+    lot_list[1] = new Lot(30, 50, -30, 30, 30, 0.0, 0.0, 0.0);
+    lot_list[2] = new Lot(50, 80, -30, 30, 40, 0.0, 0.0, 0.0);
 }
-
 
 int LotManager::getCurrentLot()
 {
@@ -43,35 +44,36 @@ int LotManager::getCurrentLot()
 
 int LotManager::getCurrentLotSpeed()
 {
-    return lot_list[current_lot]->speed;
+    return this->lot_list[current_lot]->speed;
 }
 
 PID *LotManager::getCurrentLotPID()
 {
-    return lot_list[current_lot]->pid;
+    return this->lot_list[current_lot]->pid;
+}
+
+Lot *LotManager::getNextLotInfo()
+{
+    if (current_lot < ARRAY_LEN(this->lot_list))
+    {
+        return this->lot_list[current_lot + 1];
+    }
+    else
+    {
+        return this->defaultLot;
+    }
 }
 
 void LotManager::changeCurrentLot()
 {
     current_lot++;
-    ev3_speaker_play_tone(880, 100);
 }
 
-bool LotManager::isChangeCurrentLot()
+bool LotManager::isFinish()
 {
-    local->update();
-
-    if (current_lot < int((sizeof(lot_list) / sizeof(lot_list[0]) - 1)))
+    if (current_lot >= ARRAY_LEN(this->lot_list) - 1)
     {
-        int next_lot = current_lot + 1;
-
-        if (local->point_x > lot_list[next_lot]->x0 && local->point_x < lot_list[next_lot]->x1){
-            if (local->point_y > lot_list[next_lot]->y0 && local->point_y < lot_list[next_lot]->y1){
-                ev3_speaker_play_tone (480,100);
-                return true;
-            }
-        }
+        return true;
     }
-
     return false;
 }

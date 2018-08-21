@@ -1,3 +1,5 @@
+#include "Lot.h"
+
 class Detecter {
 
 public:

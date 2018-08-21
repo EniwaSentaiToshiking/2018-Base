@@ -18,7 +18,8 @@ void RunCommander::steer(int power, int turn){
 }
 
 void RunCommander::steerStop(){
-    steering->setPower(0, 0);
+    leftMotor->controlMotor(0);
+    rightMotor->controlMotor(0);
 }
 
 void RunCommander::run(int pwmL, int pwmR){
