@@ -14,6 +14,7 @@ ColorNum ColorDetecter::checkRGB(){
 	int green = courceMonitor -> getColorGreen();
 	int blue = courceMonitor -> getColorBlue();
 	int H = 0;
+  int S = 0;
 	int max = 0;
 	int min = 0;
 	ColorNum max_rgb = NONE;
@@ -39,12 +40,12 @@ ColorNum ColorDetecter::checkRGB(){
 
 	if(green >= red && green >= blue){
 		max = green;
-		max_rgb = BLUE;
+		max_rgb = GREEN;
 	}
 
-	if(blue >= green && blue >= green){
+	if(blue >= green && blue >= red){
 		max = blue;
-		max_rgb = GREEN;
+		max_rgb = BLUE;
 	}
 
 	if(red == green && green == blue){
@@ -55,13 +56,13 @@ ColorNum ColorDetecter::checkRGB(){
 	//色相を計算
 	switch(max_rgb) {
         case RED:
-        	H = 60 * ((green - blue)/(max - min));
+        	H = ((int)(60 * ((green-blue)/(double)(max-min)))+360)%360;
         	break;
         case GREEN:
-        	H = 60 * ((blue - red)/(max - min)) + 120;
+        	H = ((int)(60 * ((blue-red)/(double)(max-min)))+120)%360;
         	break;
         case BLUE:
-        	H = 60 * ((red - green)/(max - min)) + 240;
+        	H = ((int)(60 * ((red-green)/(double)(max-min)))+240)%360;
         	break;
         case NONE:
         	H = 0;
@@ -69,14 +70,19 @@ ColorNum ColorDetecter::checkRGB(){
         	break;
     }
 
+	// 彩度を計算
+	S = max - min;
+
 	//閾値で色判定
-	if (H > 0 && H <= 10){
+  if(S < 20) {
+    return BLACK;
+  } else if (H >= 0 && H < 30){
 		return RED;
-	}else if(H >= 50 && H <= 75){
+	}else if(H >= 60 && H < 76){
 		return YELLOW;
-	}else if(H >= 100 && H <= 120){
+	}else if(H >= 100 && H < 117){
 		return GREEN;
-	}else if(H >= 180 && H <= 210){
+	}else if(H >= 155 && H < 197 ){
 		return BLUE;
 	}
 
