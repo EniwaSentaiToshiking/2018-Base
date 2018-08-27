@@ -5,6 +5,9 @@ class ColorSensorDriver {
 
 private:
     ColorSensor *colorSensor;
+    int red = 0;
+    int green = 0;
+    int blue = 0;
 
 public:
 	ColorSensorDriver();
@@ -31,7 +34,12 @@ public:
      * @param  {void}
      * @return {colorid_t}      
      */
-    colorid_t getColorNumber(); 
+    colorid_t getColorNumber();
+
+    void getRawColor();
+    int getColorRed();
+    int getColorGreen();
+    int getColorBlue();
 
 virtual ~ColorSensorDriver();
 };
