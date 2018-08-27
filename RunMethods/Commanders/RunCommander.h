@@ -1,6 +1,8 @@
 #include "WheelMotorDriver.h"
 #include "Steering.h"
 #include "Grid.h"
+#include "PID.h"
+#include "PIDController.h"
 
 using namespace ev3api;
 
@@ -11,7 +13,12 @@ private:
     WheelMotorDriver *rightMotor;
     Steering *steering;
     Grid *grid;
-
+    PID* pid;
+    PIDController* pidController;
+    float P = 0.0;
+    float I = 0.0;
+    float D = 0.0;
+    void adjustPWM(int32_t &leftPWM, int32_t &rightPWM);
 public:
     RunCommander();
 
@@ -39,6 +46,14 @@ public:
      * @return {void}
      */
     void run(int pwmL, int pwmR);
+
+    /**
+     * goAhead - 直進する．
+     *
+     * @param  {int} pwm モータのPWM
+     * @return {void}
+     */
+    void goStraight(int pwm);
 
     /**
      * gridRun -  目標の座標まで移動する

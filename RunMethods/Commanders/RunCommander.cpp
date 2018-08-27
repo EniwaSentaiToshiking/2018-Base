@@ -5,6 +5,7 @@ RunCommander::RunCommander(){
     rightMotor  = new WheelMotorDriver(PORT_B);
     steering = new Steering(*leftMotor->motor, *rightMotor->motor);
     grid = new Grid();
+	pid = new PID(this->P, this->I, this->D);
 }
 
 RunCommander::~RunCommander(){
@@ -25,6 +26,13 @@ void RunCommander::steerStop(){
 void RunCommander::run(int pwmL, int pwmR){
     leftMotor->controlMotor(pwmL);
     rightMotor->controlMotor(pwmR);
+}
+
+void RunCommander::goStraight(int pwm){
+	int32_t pwmL  = pwm;
+	int32_t pwmR  = pwm;
+	adjustPWM(pwmL, pwmR);
+	run(pwmL, pwmR);
 }
 
 void RunCommander::gridRun(int aX, int aY, int bX, int bY, int pwm , float direction, float distance){
@@ -63,4 +71,14 @@ void RunCommander::gridRun(int aX, int aY, int bX, int bY, int pwm , float direc
 			grid_flag = 0;
 			break;
 	}
+}
+
+void RunCommander::adjustPWM(int32_t &leftPWM, int32_t &rightPWM)
+{
+    int diff = leftMotor->getCount()
+                     - rightMotor->getCount();
+    int adjustedVal = 
+         pidController->getTurn(this->pid, diff, 0, 127);
+
+    leftPWM  += (int32_t)adjustedVal;
 }
