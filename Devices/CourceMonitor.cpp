@@ -3,6 +3,7 @@
 CourceMonitor::CourceMonitor()
 {
     colorSensor = new ColorSensorDriver();
+    filter = new Filter();
 }
 
 CourceMonitor::~CourceMonitor()
@@ -13,6 +14,10 @@ CourceMonitor::~CourceMonitor()
 int CourceMonitor::getCurrentBrightness()
 {
     return colorSensor->getBrightness();
+}
+
+int CourceMonitor::getFilterBrightness(){
+    return filter->lowpass(colorSensor->getBrightness());
 }
 
 colorid_t CourceMonitor::getColorNumber(){
