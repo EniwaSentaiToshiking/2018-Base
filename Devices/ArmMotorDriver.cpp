@@ -2,6 +2,7 @@
 
 ArmMotorDriver::ArmMotorDriver(){
     motor = new Motor(PORT_D);
+    clock = new Clock();
     reset();
 }
 
@@ -16,6 +17,23 @@ void ArmMotorDriver::reset(){
 
 int32_t ArmMotorDriver::getCount(){
     return motor->getCount();
+}
+
+void ArmMotorDriver::setPWM(int pwm){
+    motor->setPWM(pwm);
+}
+
+void ArmMotorDriver::calibration()
+{
+    int prevArmMotorCount = -10;
+    while (motor->getCount() - prevArmMotorCount != 0)
+    {
+        motor->setPWM(-10);
+        prevArmMotorCount = motor->getCount();
+        clock->sleep(100);
+    }
+
+    motor->reset();
 }
 
 void ArmMotorDriver::rotate(int32_t angle)
