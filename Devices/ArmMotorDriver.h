@@ -1,11 +1,13 @@
 #include "Motor.h"
+#include "Clock.h"
 using namespace ev3api;
 
 class ArmMotorDriver {
 
 private:
     Motor *motor;
-    const int DEFAULT_ANGLE = 25;
+    Clock *clock;
+    const int DEFAULT_ANGLE = 30;
 
     const int KP = 2.5F;
     const int PWM_ABS_MAX = 60;
@@ -20,6 +22,7 @@ public:
      * @return {void}
      */
     void reset();
+    void calibration();
 
     /**
      * getCount - オフセット付き角位置取得 
@@ -28,6 +31,8 @@ public:
      * @return {int32_t} モータ角位置 [deg] 
      */
     int32_t getCount();
+
+    void setPWM(int pwm);
 
     /**
      * rotate - 腕を動かす

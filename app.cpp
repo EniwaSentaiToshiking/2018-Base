@@ -15,28 +15,30 @@ using namespace ev3api;
 #endif
 
 /* Bluetooth */
-static int32_t   bt_cmd = 0;      /* Bluetooth�R�}���h 1:�����[�g�X�^�[�g */
-static FILE     *bt = NULL;      /* Bluetooth�t�@�C���n���h�� */
+static int32_t bt_cmd = 0; /* Bluetooth�R�}���h 1:�����[�g�X�^�[�g */
+static FILE *bt = NULL;    /* Bluetooth�t�@�C���n���h�� */
 
 /* ���L�̃}�N���͌�/���ɍ��킹�ĕύX����K�v������܂� */
 //#define DEVICE_NAME     "ET0"  /* Bluetooth�� hrp2/target/ev3.h BLUETOOTH_LOCAL_NAME�Őݒ� */
 //#define PASS_KEY        "1234" /* �p�X�L�[    hrp2/target/ev3.h BLUETOOTH_PIN_CODE�Őݒ� */
-#define CMD_START         '1'    /* �����[�g�X�^�[�g�R�}���h */
+#define CMD_START '1' /* �����[�g�X�^�[�g�R�}���h */
 
 /* �I�u�W�F�N�g�ւ̃|�C���^��` */
-Clock*          clock;
-UI* ui;
-RunManager* runManager;
+Clock *clock;
+UI *ui;
+RunManager *runManager;
+ArmMotorDriver *armMotor;
 
 /* ���C���^�X�N */
 void main_task(intptr_t unused)
 {
 
     /* �e�I�u�W�F�N�g�𐶐��E���������� */
-    clock       = new Clock();
+    clock = new Clock();
     ui = new UI();
     runManager = new RunManager();
-    
+    armMotor = new ArmMotorDriver();
+
     /* Open Bluetooth file */
     bt = ev3_serial_open_file(EV3_SERIAL_BT);
     assert(bt != NULL);
@@ -44,10 +46,12 @@ void main_task(intptr_t unused)
     /* Bluetooth�ʐM�^�X�N�̋N�� */
     act_tsk(BT_TASK);
 
+    armMotor->calibration();
+
     ev3_led_set_color(LED_ORANGE); /* �����������ʒm */
 
     /* �X�^�[�g�ҋ@ */
-    while(1)
+    while (1)
     {
 
         runManager->init();
@@ -70,10 +74,11 @@ void main_task(intptr_t unused)
     /**
     * Main loop
     */
-    while(1)
+    while (1)
     {
 
-        if (ev3_button_is_pressed(BACK_BUTTON)) break;
+        if (ev3_button_is_pressed(BACK_BUTTON))
+            break;
 
         runManager->run();
 
@@ -95,10 +100,10 @@ void main_task(intptr_t unused)
 //*****************************************************************************
 void bt_task(intptr_t unused)
 {
-    while(1)
+    while (1)
     {
         uint8_t c = fgetc(bt); /* ��M */
-        switch(c)
+        switch (c)
         {
         case '1':
             bt_cmd = 1;
