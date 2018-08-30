@@ -13,6 +13,7 @@ APPL_CXXOBJS += \
     WheelMotorDriver.o \
     ArmMotorDriver.o \
     TailMotorDriver.o \
+    WheelInfo.o \
     PID.o \
     PIDController.o \
     Filter.o \
@@ -29,6 +30,7 @@ APPL_CXXOBJS += \
     SpeedCal.o \
     Grid.o \
     CourseRun.o \
+    Straight.o \
 
 SRCLANG := c++
 
