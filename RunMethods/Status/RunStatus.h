@@ -39,4 +39,5 @@ class RunStatus
      * @return {bool}
      */
     virtual bool isFinish() = 0;
+    virtual ~RunStatus(){};
 };
