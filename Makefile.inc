@@ -3,34 +3,34 @@ mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 APPL_COBJS += 
 
 APPL_CXXOBJS += \
-    SonarSensorDriver.o \
     ObjectDetecter.o \
     GrayLineDetecter.o \
     PointDetecter.o \
+    SonarSensorDriver.o \
     TouchSensorDriver.o \
-    UI.o \
     ColorSensorDriver.o \
     WheelMotorDriver.o \
     ArmMotorDriver.o \
     TailMotorDriver.o \
-    WheelInfo.o \
-    PID.o \
-    PIDController.o \
-    Filter.o \
-    Localization.o \
     RunCommander.o \
     ArmCommander.o \
     TailCommander.o \
-    LineTrace.o \
-    RunManager.o \
-    Logger.o \
+    WheelInfo.o \
+    Localization.o \
     CourceMonitor.o \
     Lot.o \
     LotManager.o \
     SpeedCal.o \
+    UI.o \
+    PID.o \
+    PIDController.o \
+    Filter.o \
+    Logger.o \
+    LineTrace.o \
     Grid.o \
     CourseRun.o \
     Straight.o \
+    RunManager.o \
 
 SRCLANG := c++
 
