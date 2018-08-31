@@ -44,6 +44,7 @@ endif
 APPL_DIR += \
     $(mkfile_path)/Detecters \
     $(mkfile_path)/Devices \
+    $(mkfile_path)/Observer \
     $(mkfile_path)/UI \
     $(mkfile_path)/Utils \
     $(mkfile_path)/RunStyles \
@@ -54,6 +55,7 @@ APPL_DIR += \
 INCLUDES += \
     -I$(mkfile_path)/Detecters \
     -I$(mkfile_path)/Devices \
+    -I$(mkfile_path)/Observer \
     -I$(mkfile_path)/UI \
     -I$(mkfile_path)/Utils \
     -I$(mkfile_path)/RunStyles \
