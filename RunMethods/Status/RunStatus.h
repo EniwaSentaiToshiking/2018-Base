@@ -5,6 +5,9 @@
 #include "PointDetecter.h"
 #include "LotManager.h"
 
+#ifndef RUNSTATUS_H
+#define RUNSTATUS_H
+
 class RunStatus
 {
   protected:
@@ -41,3 +44,5 @@ class RunStatus
     virtual bool isFinish() = 0;
     virtual ~RunStatus(){};
 };
+
+#endif
