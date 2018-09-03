@@ -19,6 +19,6 @@ class PointDetecter : public Detecter
      * @return {bool}         true 検出した, false 検出しなかった 
      */
     bool detect();
-    void update(Lot *threshold);
+    void init();
     virtual ~PointDetecter();
 };

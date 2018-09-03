@@ -13,6 +13,8 @@ private:
 public:
 	ObjectDetecter();
 
+    void init();
+
     /**
      * detect - 障害物を検出
      *

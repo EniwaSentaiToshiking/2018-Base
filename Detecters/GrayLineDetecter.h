@@ -24,5 +24,6 @@ public:
      * @return {bool}         true 検出した, false 検出しなかった 
      */
 	bool detect();
+    void init();
     virtual ~GrayLineDetecter();
 };

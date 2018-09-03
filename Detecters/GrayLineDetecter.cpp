@@ -8,6 +8,8 @@ GrayLineDetecter::~GrayLineDetecter(){
     
 }
 
+void GrayLineDetecter::init(){}
+
 bool GrayLineDetecter::detect(){
    
     int current_color = courceMonitor->getCurrentBrightness();
