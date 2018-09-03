@@ -2,6 +2,7 @@
 
 Straight::Straight(){
     pid = new PID(0,0,0);
+    pidController = new PIDController();
     wheelInfo = new WheelInfo();
 }
 
