@@ -1,9 +1,10 @@
 #include "Straight.h"
 
-Straight::Straight(){
-    pid = new PID(0,0,0);
+Straight::Straight(int speed){
     pidController = new PIDController();
     wheelInfo = new WheelInfo();
+    this->speed = speed;
+    pid = new PID(0,0,0);
 }
 
 Straight::~Straight(){

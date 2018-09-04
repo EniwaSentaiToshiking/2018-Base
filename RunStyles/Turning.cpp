@@ -1,9 +1,11 @@
 #include "Turning.h"
 
-Turning::Turning(){
+Turning::Turning(int direction, int speed){
     pid = new PID(0,0,0);
     pidController = new PIDController();
     wheelInfo = new WheelInfo();
+    this->direction = direction;
+    this->speed = speed;
     init();
 }
 
@@ -13,11 +15,6 @@ Turning::~Turning(){
 
 void Turning::init(){
     beginCount = wheelInfo->getCount();
-}
-
-void Turning::updateParams(int direction, int speed) {
-    this->direction = direction;
-    this->speed = speed;
 }
 
 int Turning::getTurnValue(){

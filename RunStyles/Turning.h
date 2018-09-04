@@ -11,9 +11,8 @@ private:
     int direction = 0;
 
 public:
-    Turning();
+    Turning(int direction, int speed);
     void init();
-    void updateParams(int direction, int speed);
     int getTurnValue();
     virtual ~Turning();
 };

@@ -7,18 +7,10 @@ private:
     CourceMonitor *courceMonitor;
     PID *pid;
     int targetBrightness = 20;
-    int absMaxSpeed = 30;
+    int speed = 0;
 
 public:
-    LineTrace();
-
-    /**
-     * updateParams - パラメータ設定
-     *
-     * @param  {PID, int, int} pid PID係数, absMaxSpeed 絶対値（最大PWM）, targetBrightness 目標輝度
-     * @return {void}
-     */
-    void updateParams(PID *pid, int absMaxSpeed, int targetBrightness);
+    LineTrace(PID *pid, int targetBrightness);
 
     /**
      * getTurnValue - ライントレース時(PID制御)の操作量を取得

@@ -6,11 +6,10 @@ class Straight : public RunStyle {
 private:
     PID *pid;
     WheelInfo *wheelInfo;
-    int absMaxSpeed;
+    int speed;
 
 public:
-    Straight();
-    void updateParams();
+    Straight(int speed);
     int getTurnValue();
     virtual ~Straight();
 
