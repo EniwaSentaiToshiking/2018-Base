@@ -32,6 +32,7 @@ APPL_CXXOBJS += \
     Grid.o \
     CourseRun.o \
     Straight.o \
+    Turning.o \
     RunManager.o \
 
 SRCLANG := c++
