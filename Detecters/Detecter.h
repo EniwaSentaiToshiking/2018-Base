@@ -5,7 +5,7 @@
 
 
 enum DetectType {
-    POINT, GRAYLINE, DISTANCE,
+    POINT, GRAYLINE, DISTANCE, DIRECTION,
 };
 
 class Detecter {
