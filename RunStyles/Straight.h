@@ -4,7 +4,6 @@
 class Straight : public RunStyle {
 
 private:
-    PID *pid;
     WheelInfo *wheelInfo;
     int speed;
 

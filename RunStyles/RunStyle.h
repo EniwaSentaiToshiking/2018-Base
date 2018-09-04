@@ -11,8 +11,9 @@ protected:
     PID *pid;
 
 public:
+    RunStyle();
     virtual int getTurnValue() = 0;
-    virtual ~RunStyle(){}
+    virtual ~RunStyle();
 };
 
 #endif

@@ -1,14 +1,12 @@
 #include "LineTrace.h"
 
 LineTrace::LineTrace(PID *pid, int targetBrightness){
-    pidController = new PIDController();
     courceMonitor = new CourceMonitor();
     this->pid = pid;
     this->targetBrightness = targetBrightness;
 }
 
 LineTrace::~LineTrace(){
-    delete pidController;
     delete courceMonitor;
 }
 

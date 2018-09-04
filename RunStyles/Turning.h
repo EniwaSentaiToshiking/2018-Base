@@ -4,7 +4,6 @@
 class Turning : public RunStyle {
 
 private:
-    PID *pid;
     WheelInfo *wheelInfo;
     int speed;
     int32_t *beginCount;

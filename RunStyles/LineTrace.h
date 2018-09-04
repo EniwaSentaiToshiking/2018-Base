@@ -5,7 +5,6 @@ class LineTrace : public RunStyle {
 
 private:
     CourceMonitor *courceMonitor;
-    PID *pid;
     int targetBrightness = 20;
     int speed = 0;
 

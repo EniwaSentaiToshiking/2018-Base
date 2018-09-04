@@ -27,6 +27,7 @@ APPL_CXXOBJS += \
     PIDController.o \
     Filter.o \
     Logger.o \
+    RunStatus.o \
     LineTrace.o \
     Grid.o \
     CourseRun.o \

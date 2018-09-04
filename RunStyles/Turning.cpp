@@ -2,7 +2,6 @@
 
 Turning::Turning(int direction, int speed){
     pid = new PID(0,0,0);
-    pidController = new PIDController();
     wheelInfo = new WheelInfo();
     this->direction = direction;
     this->speed = speed;
@@ -10,7 +9,6 @@ Turning::Turning(int direction, int speed){
 }
 
 Turning::~Turning(){
-    delete pidController;
 }
 
 void Turning::init(){
