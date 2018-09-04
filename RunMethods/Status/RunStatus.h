@@ -3,7 +3,6 @@
 #include "TailCommander.h"
 #include "LineTrace.h"
 #include "PointDetecter.h"
-#include "LotManager.h"
 
 #ifndef RUNSTATUS_H
 #define RUNSTATUS_H
@@ -16,7 +15,6 @@ class RunStatus
     TailCommander *tailCommander;
     LineTrace *lineTrace;
     PointDetecter *pointDetecter;
-    LotManager *lotManager;
 
   public:
     /**

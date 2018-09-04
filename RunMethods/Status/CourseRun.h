@@ -1,5 +1,11 @@
 #include "RunStatus.h"
 
+enum Course
+{
+    L,
+    R
+};
+
 class CourseRun : public RunStatus
 {
   private:

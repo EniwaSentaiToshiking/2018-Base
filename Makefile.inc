@@ -21,7 +21,6 @@ APPL_CXXOBJS += \
     Localization.o \
     CourceMonitor.o \
     Lot.o \
-    LotManager.o \
     SpeedCal.o \
     UI.o \
     PID.o \
