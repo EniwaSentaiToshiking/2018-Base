@@ -19,6 +19,10 @@ void DirectionDetecter::init(){
 bool DirectionDetecter::detect()
 {
     local->update();
-    if(local->getCurrentDirection() - prev_direction >= threshold) return true;
+    if(this->threshold >= 0){
+        if(local->getCurrentDirection() - prev_direction >= threshold) return true;
+    }else {
+        if(local->getCurrentDirection() - prev_direction <= threshold) return true;
+    }
     return false;
 }
