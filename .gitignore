@@ -87,3 +87,12 @@ Temporary Items
 .apdisk
 
 
+### https://raw.github.com/github/gitignore/ef033de91f04e2f9df8dbbd2d459c4be59bae507/Global/VisualStudioCode.gitignore
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
