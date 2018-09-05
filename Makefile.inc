@@ -28,9 +28,10 @@ APPL_CXXOBJS += \
     Filter.o \
     Logger.o \
     RunStatus.o \
+    CourseRun.o \
+    RunStyle.o \
     LineTrace.o \
     Grid.o \
-    CourseRun.o \
     Straight.o \
     Turning.o \
     RunPattern.o \

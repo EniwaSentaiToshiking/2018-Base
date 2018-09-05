@@ -11,7 +11,7 @@ class RunManager {
 private:
     Course course = L;
     RunState state = COURSE_RUN;
-    CourseRun *courseRun;
+    RunStatus *status;
 
 public:
     RunManager();
@@ -31,5 +31,6 @@ public:
      * @return {void}
      */
     void run();
+    void changeStatus();
     virtual ~RunManager();
 };

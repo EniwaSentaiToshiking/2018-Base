@@ -2,32 +2,33 @@
 
 RunManager::RunManager()
 {
-    courseRun = new CourseRun(course);
+    status = new CourseRun(course);
 }
 
 RunManager::~RunManager()
 {
-    delete courseRun;
+    delete status;
 }
 
 void RunManager::init()
 {
-    courseRun->init();
+    status->init();
 }
 
 void RunManager::run()
 {
     switch (state)
     {
-    case COURSE_RUN:
-        courseRun->run();
-        if (courseRun->isFinish())
-        {
-            state = STOP;
-        }
-        break;
-    case STOP:
-        courseRun->stop();
+    case COURSE_RUN: {
+        bool isFinish = status->run();
+        if(isFinish) state = STOP;
         break;
     }
+    case STOP:
+        ev3_speaker_play_tone(480, 100);
+        break;
+    }
+}
+
+void RunManager::changeStatus(){
 }
