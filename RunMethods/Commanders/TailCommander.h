@@ -1,5 +1,8 @@
 #include "TailMotorDriver.h"
 
+#ifndef TAILCOMMANDER_H
+#define TAILCOMMANDER_H
+
 class TailCommander {
 
 private:
@@ -41,3 +44,5 @@ public:
     void reset();
     virtual ~TailCommander();
 };
+
+#endif

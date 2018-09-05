@@ -4,6 +4,9 @@
 
 using namespace ev3api;
 
+#ifndef RUNCOMMANDER_H
+#define RUNCOMMANDER_H
+
 class RunCommander {
 
 private:
@@ -54,3 +57,5 @@ public:
 
     virtual ~RunCommander();
 };
+
+#endif

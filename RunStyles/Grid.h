@@ -1,5 +1,8 @@
 #include "math.h"
 
+#ifndef GRID_H
+#define GRID_H
+
 typedef enum {
     TURN, // 目標座標の方位へ向くまで旋回
     MOVE, // 目標座標に到達するまで前進
@@ -26,3 +29,5 @@ public:
 
 	virtual ~Grid();
 };
+
+#endif

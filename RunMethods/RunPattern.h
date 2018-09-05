@@ -10,6 +10,9 @@
 #include "ArmCommander.h"
 #include "TailCommander.h"
 
+#ifndef RUNPATTERN_H
+#define RUNPATTERN_H
+
 enum Pattern {
     LINE_TRACE, STRAIGHT, TURNING, SPIN,
 };
@@ -50,3 +53,5 @@ public:
     bool run();
     virtual ~RunPattern();
 };
+
+#endif

@@ -1,6 +1,9 @@
 #include "RunStyle.h"
 #include "WheelInfo.h"
 
+#ifndef STRAIGHT_H
+#define STRAIGHT_H
+
 class Straight : public RunStyle {
 
 private:
@@ -13,3 +16,5 @@ public:
     virtual ~Straight();
 
 };
+
+#endif

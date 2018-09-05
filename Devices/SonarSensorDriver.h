@@ -1,6 +1,9 @@
 #include "SonarSensor.h"
 using namespace ev3api;
 
+#ifndef SONARSENSORDRIVER_H
+#define SONARSENSORDRIVER_H
+
 class SonarSensorDriver {
 
 private:
@@ -27,3 +30,5 @@ public:
 
 virtual ~SonarSensorDriver();
 };
+
+#endif

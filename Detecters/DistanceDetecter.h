@@ -4,6 +4,9 @@
 #include "ev3api.h"
 #include <cstdlib>
 
+#ifndef DISTANCEDETECTER_H
+#define DISTANCEDETECTER_H
+
 class DistanceDetecter : public Detecter
 {
   private:
@@ -24,3 +27,5 @@ class DistanceDetecter : public Detecter
     bool detect();
     virtual ~DistanceDetecter();
 };
+
+#endif

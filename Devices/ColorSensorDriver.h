@@ -1,6 +1,9 @@
 #include "ColorSensor.h"
 using namespace ev3api;
 
+#ifndef COLORSENSORDRIVER_H
+#define COLORSENSORDRIVER_H
+
 class ColorSensorDriver {
 
 private:
@@ -35,3 +38,5 @@ public:
 
 virtual ~ColorSensorDriver();
 };
+
+#endif

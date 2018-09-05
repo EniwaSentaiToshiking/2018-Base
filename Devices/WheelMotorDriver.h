@@ -2,6 +2,9 @@
 #include "Motor.h"
 using namespace ev3api;
 
+#ifndef WHEELMOTORDRIVER_H
+#define WHEELMOTORDRIVER_H
+
 class WheelMotorDriver {
 
 private:
@@ -46,3 +49,5 @@ public:
     virtual ~WheelMotorDriver();
 
 };
+
+#endif

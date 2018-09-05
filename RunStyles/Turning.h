@@ -1,6 +1,9 @@
 #include "RunStyle.h"
 #include "WheelInfo.h"
 
+#ifndef TURNING_H
+#define TURNING_H
+
 class Turning : public RunStyle {
 
 private:
@@ -15,3 +18,5 @@ public:
     int getTurnValue();
     virtual ~Turning();
 };
+
+#endif

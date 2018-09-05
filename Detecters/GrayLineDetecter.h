@@ -5,6 +5,9 @@
 #define gray_buffer_max 1000
 #define gray_limit 4
 
+#ifndef GRAYLINEDETECTER_H
+#define GRAYLINEDETECTER_H
+
 class GrayLineDetecter : public Detecter {
 
 private:
@@ -27,3 +30,5 @@ public:
     void init();
     virtual ~GrayLineDetecter();
 };
+
+#endif

@@ -1,6 +1,9 @@
 #include "TouchSensor.h"
 using namespace ev3api;
 
+#ifndef TOUCHSENSORDRIVER_H
+#define TOUCHSENSORDRIVER_H
+
 class TouchSensorDriver {
 
 private:
@@ -19,3 +22,5 @@ public:
 
 virtual ~TouchSensorDriver();
 };
+
+#endif

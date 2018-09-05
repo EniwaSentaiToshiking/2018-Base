@@ -3,6 +3,9 @@
 #include "Lot.h"
 #include "ev3api.h"
 
+#ifndef POINTDETECTER_H
+#define POINTDETECTER_H
+
 class PointDetecter : public Detecter
 {
   private:
@@ -22,3 +25,5 @@ class PointDetecter : public Detecter
     void init();
     virtual ~PointDetecter();
 };
+
+#endif

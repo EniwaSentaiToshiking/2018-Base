@@ -1,5 +1,8 @@
 #include "ArmMotorDriver.h"
 
+#ifndef ARMCOMMANDER_H
+#define ARMCOMMANDER_H
+
 class ArmCommander {
 
 private:
@@ -33,3 +36,5 @@ public:
     void reset();
     virtual ~ArmCommander();
 };
+
+#endif

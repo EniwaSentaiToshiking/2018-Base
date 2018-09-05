@@ -1,6 +1,9 @@
 #include "RunStyle.h"
 #include "CourceMonitor.h"
 
+#ifndef LINETRACE_H
+#define LINETRACE_H
+
 class LineTrace : public RunStyle {
 
 private:
@@ -29,3 +32,5 @@ public:
     virtual ~LineTrace();
 
 };
+
+#endif

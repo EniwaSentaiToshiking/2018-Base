@@ -3,6 +3,9 @@
 #include "Lot.h"
 #include "ev3api.h"
 
+#ifndef DIRECTIONDETECTER_H
+#define DIRECTIONDETECTER_H
+
 class DirectionDetecter : public Detecter
 {
   private:
@@ -23,3 +26,5 @@ class DirectionDetecter : public Detecter
     bool detect();
     virtual ~DirectionDetecter();
 };
+
+#endif
