@@ -16,11 +16,20 @@ struct DeleteObject
     }
 };
 
+//走行状態
+enum RunState {
+    COURSE_RUN,
+    STOP,
+};
+
+class RunManager;
+
 class RunStatus
 {
   protected:
     vector<RunPattern *> patterns;
     unsigned int currentPattern = 0;
+    RunState nextState;
 
   public:
     /**
@@ -39,6 +48,7 @@ class RunStatus
      */
     virtual bool run();
     virtual bool changeNextPattern();
+    virtual void changeNextStatus(RunManager *manager);
     virtual ~RunStatus();
 };
 

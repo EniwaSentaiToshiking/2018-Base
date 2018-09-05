@@ -1,4 +1,5 @@
 #include "RunStatus.h"
+#include "RunManager.h"
 
 RunStatus::~RunStatus(){
     for_each(patterns.begin(), patterns.end(), DeleteObject());
@@ -22,4 +23,8 @@ bool RunStatus::changeNextPattern(){
         return true;
     }
     return false;
+}
+
+void RunStatus::changeNextStatus(RunManager *manager){
+    manager->changeStatus(this->nextState);
 }
