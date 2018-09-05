@@ -47,6 +47,7 @@ class RunStatus
      * @return {bool}
      */
     virtual bool run();
+    virtual void setNextState() = 0;
     virtual bool changeNextPattern();
     virtual void changeNextStatus(RunManager *manager);
     virtual ~RunStatus();

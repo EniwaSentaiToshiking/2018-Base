@@ -18,5 +18,6 @@ class CourseRun : public RunStatus
   public:
     CourseRun(Course course);
     void init();
+    void setNextState();
     virtual ~CourseRun();
 };

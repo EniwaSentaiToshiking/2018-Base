@@ -8,6 +8,8 @@ CourseRun::CourseRun(Course course){
     }else if(this->course == R){
         createCourseR();
     }
+
+    setNextState();
 }
 
 CourseRun::~CourseRun(){
@@ -16,6 +18,10 @@ CourseRun::~CourseRun(){
 }
 
 void CourseRun::init(){
+}
+
+void CourseRun::setNextState(){
+    nextState = STOP;
 }
 
 void CourseRun::createCourseL(){
