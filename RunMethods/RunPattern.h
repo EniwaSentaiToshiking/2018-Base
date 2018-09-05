@@ -14,7 +14,7 @@
 #define RUNPATTERN_H
 
 enum Pattern {
-    LINE_TRACE, STRAIGHT, TURNING, SPIN,
+    LINE_TRACE, STRAIGHT, TURNING, SPIN, BRAKE,
 };
 
 class RunPattern {

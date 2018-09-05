@@ -27,7 +27,7 @@ void RunManager::changeStatus(RunState state){
             status = new CourseRun(course);
             break;
         case STOP:
-            ev3_speaker_play_tone(480, 100);
+            status = new Stop();
             break;
     }
 }

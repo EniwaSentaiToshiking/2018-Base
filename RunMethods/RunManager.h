@@ -1,4 +1,5 @@
 #include "CourseRun.h"
+#include "Stop.h"
 
 #ifndef RUNMANAGER_H
 #define RUNMANAGER_H

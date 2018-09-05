@@ -54,6 +54,9 @@ void RunPattern::createRunStyle()
         break;
     case SPIN:
         break;
+    case BRAKE:
+        runStyle = new Straight(this->speed);
+        break;
     }
 }
 
@@ -87,8 +90,13 @@ bool RunPattern::run()
     int turn = runStyle->getTurnValue();
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
-    runCommander->steer(this->speed, turn);
-    
+
+    if(this->pattern == BRAKE) {
+        runCommander->steerStop();
+    }else {
+        runCommander->steer(this->speed, turn);
+    }
+
     if(detecter->detect()) return true;
     
     return false;
