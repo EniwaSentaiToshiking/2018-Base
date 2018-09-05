@@ -4,6 +4,8 @@ PointDetecter::PointDetecter(Lot *threshold)
 {
     local = new Localization();
     this->threshold = threshold;
+    loggerX = new Logger("x.txt");
+    loggerY = new Logger("y.txt");
 }
 
 PointDetecter::~PointDetecter()
@@ -14,6 +16,8 @@ PointDetecter::~PointDetecter()
 bool PointDetecter::detect()
 {
     local->update();
+    //loggerX -> logging(local->point_x);
+    //loggerY -> logging(local->point_y);
 
     if (local->point_x > threshold->x0 && local->point_x < threshold->x1)
     {

@@ -9,7 +9,7 @@ enum RunState {
 class RunManager {
 
 private:
-    Course course = L;
+    Course course = R;
     RunState state = COURSE_RUN;
     CourseRun *courseRun;
 

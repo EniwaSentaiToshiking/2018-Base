@@ -17,7 +17,7 @@ class LotManager
 
 private:
   unsigned int current_lot;
-  Lot *lot_list[3]; /* 末尾にダミーの区画が必要 */
+  Lot *lot_list[11]; /* 末尾にダミーの区画が必要 */
   Lot *defaultLot = new Lot(0, 0, 0, 0, 0, 0, 0, 0);
 
   void courseR();
