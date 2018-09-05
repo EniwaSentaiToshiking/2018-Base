@@ -33,6 +33,7 @@ APPL_CXXOBJS += \
     CourseRun.o \
     Straight.o \
     Turning.o \
+    RunPattern.o \
     RunManager.o \
 
 SRCLANG := c++
