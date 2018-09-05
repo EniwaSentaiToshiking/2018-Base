@@ -18,11 +18,12 @@ void Turning::init(){
 int Turning::getTurnValue(){
     int32_t *info = wheelInfo->getCount();
     int32_t error = (info[0] - beginCount[0]) - (info[1] - beginCount[1]);
-    int turn = speed;
+    int turn = this->speed * 2;
     if(this->direction >= 0){
+        turn = turn * -1;
         turn += pidController->getTurn(this->pid, error, (info[0] - beginCount[0]) * -1, 100);
     }else {
         turn += pidController->getTurn(this->pid, error, (info[0] - beginCount[0]) / 2, 100);
     }
-    return speed + turn;
+    return turn;
 }
