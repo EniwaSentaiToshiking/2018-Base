@@ -12,6 +12,7 @@ DirectionDetecter::~DirectionDetecter()
 }
 
 void DirectionDetecter::init(){
+    local->update();
     prev_direction = local->getCurrentDirection();
 }
 

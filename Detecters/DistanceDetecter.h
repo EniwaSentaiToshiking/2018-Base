@@ -2,6 +2,7 @@
 #include "Localization.h"
 #include "Lot.h"
 #include "ev3api.h"
+#include <cstdlib>
 
 class DistanceDetecter : public Detecter
 {

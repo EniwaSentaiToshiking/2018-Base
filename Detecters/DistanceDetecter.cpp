@@ -12,12 +12,13 @@ DistanceDetecter::~DistanceDetecter()
 }
 
 void DistanceDetecter::init(){
+    local->update();
     prev_distance = local->getCurrentDistance();
 }
 
 bool DistanceDetecter::detect()
 {
     local->update();
-    if(local->getCurrentDistance() - prev_distance >= threshold) return true;
+    if(abs(local->getCurrentDistance() - prev_distance) >= threshold) return true;
     return false;
 }
