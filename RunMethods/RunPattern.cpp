@@ -2,16 +2,29 @@
 
 RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p, float i, float d, int brightness)
 {
-    runCommander = new RunCommander();
-    armCommander = new ArmCommander();
-    tailCommander = new TailCommander();
-
     this->pattern = pattern;
     this->speed = speed;
     this->detectType = type;
     this->threshold = threshold;
     this->brightness = brightness;
     pid = new PID(p, i, d);
+    init();
+}
+
+RunPattern::RunPattern(Pattern pattern, int speed, Lot *threshold, float p, float i, float d, int brightness){
+    this->pattern = pattern;
+    this->speed = speed;
+    this->detectType = POINT;
+    this->nextLot = threshold;
+    this->brightness = brightness;
+    pid = new PID(p, i, d);
+    init();
+}
+
+void RunPattern::init(){
+    runCommander = new RunCommander();
+    armCommander = new ArmCommander();
+    tailCommander = new TailCommander();
     createRunStyle();
     createDetecter();
 }
@@ -23,6 +36,7 @@ RunPattern::~RunPattern()
     delete tailCommander;
     delete runStyle;
     delete detecter;
+    delete nextLot;
 }
 
 void RunPattern::createRunStyle()
@@ -49,7 +63,7 @@ void RunPattern::createDetecter()
     switch (this->detectType)
     {
     case POINT:
-        //detecter = new PointDetecter();
+        this->detecter = new PointDetecter(this->nextLot);
         break;
     case GRAYLINE:
         this->detecter = new GrayLineDetecter();

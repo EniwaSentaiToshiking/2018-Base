@@ -10,6 +10,10 @@ class CourseRun : public RunStatus
 {
   private:
     Course course;
+    vector<Lot *> lots;
+
+    void createCourseL();
+    void createCourseR();
 
   public:
     CourseRun(Course course);
