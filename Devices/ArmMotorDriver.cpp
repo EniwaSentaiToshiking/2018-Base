@@ -3,11 +3,9 @@
 ArmMotorDriver::ArmMotorDriver(){
     motor = new Motor(PORT_D);
     clock = new Clock();
-    reset();
 }
 
 ArmMotorDriver::~ArmMotorDriver(){
-    reset();
     delete motor;
 }
 
