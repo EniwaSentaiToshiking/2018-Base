@@ -36,6 +36,7 @@ APPL_CXXOBJS += \
     Grid.o \
     Straight.o \
     Turning.o \
+    Spin.o \
     RunPattern.o \
     RunManager.o \
 

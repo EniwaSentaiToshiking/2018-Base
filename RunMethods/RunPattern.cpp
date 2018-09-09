@@ -53,6 +53,7 @@ void RunPattern::createRunStyle()
         runStyle = new Turning(this->threshold, this->speed);
         break;
     case SPIN:
+        runStyle = new Spin(this->speed);
         break;
     case BRAKE:
         runStyle = new Straight(this->speed);
@@ -95,6 +96,12 @@ bool RunPattern::run()
 
     if(this->pattern == BRAKE) {
         runCommander->steerStop();
+    }else if(this->pattern == SPIN){
+        if(this->threshold < 0){
+            runCommander->run(speed, (speed + turn) * -1);
+        }else {
+            runCommander->run(speed * -1, speed + turn);
+        }
     }else {
         runCommander->steer(this->speed, turn);
     }
