@@ -20,3 +20,22 @@ uint8_t ColorSensorDriver::getAmbient() {
 colorid_t ColorSensorDriver::getColorNumber(){
 	return colorSensor->getColorNumber();
 }
+
+void ColorSensorDriver::getRawColor(){
+ 	rgb_raw_t rgb;
+	colorSensor->getRawColor(rgb);
+	red = rgb.r;
+	green = rgb.g;
+	blue = rgb.b;
+}
+
+int ColorSensorDriver::getColorRed(){
+	return red;
+}
+
+int ColorSensorDriver::getColorGreen(){
+	return green;
+}
+int ColorSensorDriver::getColorBlue(){
+	return blue;
+}
