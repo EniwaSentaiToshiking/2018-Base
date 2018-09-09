@@ -12,7 +12,11 @@ CourceMonitor::~CourceMonitor()
 
 int CourceMonitor::getCurrentBrightness()
 {
-    return colorSensor->getBrightness();
+    getRawColor();
+    int red = getColorRed();
+    int green = getColorGreen();
+    int blue = getColorBlue();
+    return (0.299 * red) + (0.587 * green) + (0.114 * blue);
 }
 
 void CourceMonitor::getRawColor(){
