@@ -69,7 +69,7 @@ void RunPattern::createDetecter()
         this->detecter = new PointDetecter(this->nextLot);
         break;
     case GRAYLINE:
-        this->detecter = new GrayLineDetecter();
+        this->detecter = new GrayLineDetecter(this->threshold);
         break;
     case DISTANCE:
         this->detecter = new DistanceDetecter(this->threshold);
