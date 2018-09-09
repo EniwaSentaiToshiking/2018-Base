@@ -2,6 +2,7 @@
 #include "LineTrace.h"
 #include "Straight.h"
 #include "Turning.h"
+#include "Spin.h"
 #include "GrayLineDetecter.h"
 #include "PointDetecter.h"
 #include "DistanceDetecter.h"
