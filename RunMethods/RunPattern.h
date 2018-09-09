@@ -6,6 +6,7 @@
 #include "PointDetecter.h"
 #include "DistanceDetecter.h"
 #include "DirectionDetecter.h"
+#include "ColorDetecter.h"
 #include "RunCommander.h"
 #include "ArmCommander.h"
 #include "TailCommander.h"

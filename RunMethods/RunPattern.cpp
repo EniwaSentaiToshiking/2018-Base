@@ -77,6 +77,8 @@ void RunPattern::createDetecter()
     case DIRECTION:
         this->detecter = new DirectionDetecter(this->threshold);
         break;
+    case COLOR:
+        this->detecter = new ColorDetecter(this->threshold);
     }
 }
 
