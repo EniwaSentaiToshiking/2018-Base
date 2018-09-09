@@ -1,17 +1,15 @@
 #include "CourseRun.h"
+#include "Stop.h"
 
-//走行状態
-enum RunState {
-    COURSE_RUN,
-    STOP,
-};
+#ifndef RUNMANAGER_H
+#define RUNMANAGER_H
 
 class RunManager {
 
 private:
     Course course = L;
     RunState state = COURSE_RUN;
-    CourseRun *courseRun;
+    RunStatus *status;
 
 public:
     RunManager();
@@ -31,5 +29,8 @@ public:
      * @return {void}
      */
     void run();
+    void changeStatus(RunState state);
     virtual ~RunManager();
 };
+
+#endif

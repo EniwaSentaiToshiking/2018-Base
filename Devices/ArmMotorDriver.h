@@ -2,6 +2,9 @@
 #include "Clock.h"
 using namespace ev3api;
 
+#ifndef ARMMOTORDRIVER_H
+#define ARMMOTORDRIVER_H
+
 class ArmMotorDriver {
 
 private:
@@ -54,3 +57,5 @@ public:
     virtual ~ArmMotorDriver();
 
 };
+
+#endif

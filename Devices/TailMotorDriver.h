@@ -1,6 +1,9 @@
 #include "Motor.h"
 using namespace ev3api;
 
+#ifndef TAILMOTORDRIVER_H
+#define TAILMOTORDRIVER_H
+
 class TailMotorDriver {
 
 private:
@@ -57,3 +60,5 @@ public:
     virtual ~TailMotorDriver();
 
 };
+
+#endif

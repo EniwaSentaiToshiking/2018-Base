@@ -3,32 +3,40 @@ mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 APPL_COBJS += 
 
 APPL_CXXOBJS += \
-    SonarSensorDriver.o \
     ObjectDetecter.o \
     GrayLineDetecter.o \
     PointDetecter.o \
+    DistanceDetecter.o \
+    DirectionDetecter.o \
+    SonarSensorDriver.o \
     TouchSensorDriver.o \
-    UI.o \
     ColorSensorDriver.o \
     WheelMotorDriver.o \
     ArmMotorDriver.o \
     TailMotorDriver.o \
-    PID.o \
-    PIDController.o \
-    Filter.o \
-    Localization.o \
     RunCommander.o \
     ArmCommander.o \
     TailCommander.o \
-    LineTrace.o \
-    RunManager.o \
-    Logger.o \
+    WheelInfo.o \
+    Localization.o \
     CourceMonitor.o \
     Lot.o \
-    LotManager.o \
     SpeedCal.o \
-    Grid.o \
+    UI.o \
+    PID.o \
+    PIDController.o \
+    Filter.o \
+    Logger.o \
+    RunStatus.o \
     CourseRun.o \
+    Stop.o \
+    RunStyle.o \
+    LineTrace.o \
+    Grid.o \
+    Straight.o \
+    Turning.o \
+    RunPattern.o \
+    RunManager.o \
 
 SRCLANG := c++
 
@@ -42,6 +50,7 @@ endif
 APPL_DIR += \
     $(mkfile_path)/Detecters \
     $(mkfile_path)/Devices \
+    $(mkfile_path)/Observer \
     $(mkfile_path)/UI \
     $(mkfile_path)/Utils \
     $(mkfile_path)/RunStyles \
@@ -52,6 +61,7 @@ APPL_DIR += \
 INCLUDES += \
     -I$(mkfile_path)/Detecters \
     -I$(mkfile_path)/Devices \
+    -I$(mkfile_path)/Observer \
     -I$(mkfile_path)/UI \
     -I$(mkfile_path)/Utils \
     -I$(mkfile_path)/RunStyles \

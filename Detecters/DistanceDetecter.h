@@ -2,19 +2,22 @@
 #include "Localization.h"
 #include "Lot.h"
 #include "ev3api.h"
+#include <cstdlib>
 
-#ifndef POINTDETECTER_H
-#define POINTDETECTER_H
+#ifndef DISTANCEDETECTER_H
+#define DISTANCEDETECTER_H
 
-class PointDetecter : public Detecter
+class DistanceDetecter : public Detecter
 {
   private:
     Localization *local;
-    Lot *threshold;
+    int threshold;
+    int prev_distance;
 
   public:
-    PointDetecter(Lot *threshold);
+    DistanceDetecter(int threshold);
 
+    void init();
     /**
      * detect - 座標の条件検知
      *
@@ -22,8 +25,7 @@ class PointDetecter : public Detecter
      * @return {bool}         true 検出した, false 検出しなかった 
      */
     bool detect();
-    void init();
-    virtual ~PointDetecter();
+    virtual ~DistanceDetecter();
 };
 
 #endif

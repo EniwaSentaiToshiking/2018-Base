@@ -1,24 +1,17 @@
 #include "LineTrace.h"
 
-LineTrace::LineTrace(){
-    pidController = new PIDController();
-    pid = new PID(0,0,0);
+LineTrace::LineTrace(PID *pid, int targetBrightness){
     courceMonitor = new CourceMonitor();
+    this->pid = pid;
+    this->targetBrightness = targetBrightness;
 }
 
 LineTrace::~LineTrace(){
-    delete pidController;
     delete courceMonitor;
 }
 
-void LineTrace::updateParams(PID *pid, int absMaxSpeed, int targetBrightness) {
-    this->pid = pid;
-    this->targetBrightness = targetBrightness;
-    this->absMaxSpeed = absMaxSpeed;
-}
-
 int LineTrace::getTurnValue(){
-    return pidController->getTurn(this->pid, this->courceMonitor->getCurrentBrightness(), this->targetBrightness, this->absMaxSpeed);
+    return pidController->getTurn(this->pid, this->courceMonitor->getCurrentBrightness(), this->targetBrightness, 100);
 }
 
 int LineTrace::getTurnValueByOnOFF(){

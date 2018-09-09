@@ -10,6 +10,8 @@ ObjectDetecter::~ObjectDetecter()
     delete sonarSensor;
 }
 
+void ObjectDetecter::init(){}
+
 bool ObjectDetecter::detect()
 {
     static uint32_t counter = 0;

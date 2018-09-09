@@ -3,18 +3,20 @@
 #include "Lot.h"
 #include "ev3api.h"
 
-#ifndef POINTDETECTER_H
-#define POINTDETECTER_H
+#ifndef DIRECTIONDETECTER_H
+#define DIRECTIONDETECTER_H
 
-class PointDetecter : public Detecter
+class DirectionDetecter : public Detecter
 {
   private:
     Localization *local;
-    Lot *threshold;
+    int threshold;
+    int prev_direction;
 
   public:
-    PointDetecter(Lot *threshold);
+    DirectionDetecter(int threshold);
 
+    void init();
     /**
      * detect - 座標の条件検知
      *
@@ -22,8 +24,7 @@ class PointDetecter : public Detecter
      * @return {bool}         true 検出した, false 検出しなかった 
      */
     bool detect();
-    void init();
-    virtual ~PointDetecter();
+    virtual ~DirectionDetecter();
 };
 
 #endif

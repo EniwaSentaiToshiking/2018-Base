@@ -2,49 +2,38 @@
 
 CourseRun::CourseRun(Course course){
     this->course = course;
-    tailCommander = new TailCommander();
-    armCommander = new ArmCommander();
-    runCommander = new RunCommander();
-    lineTrace = new LineTrace();
-    lotManager = new LotManager(R);
-    pointDetecter = new PointDetecter(lotManager->getNextLotInfo());
+
+    if(this->course == L) {
+        createCourseL();
+    }else if(this->course == R){
+        createCourseR();
+    }
+
+    setNextState();
 }
 
 CourseRun::~CourseRun(){
-    delete tailCommander;
-    delete armCommander;
-    delete runCommander;
-    delete lineTrace;
-    delete pointDetecter;
+    for_each(lots.begin(), lots.end(), DeleteObject());
+    lots.clear();
 }
 
 void CourseRun::init(){
-    tailCommander->rotateDefault();
-    armCommander->rotateDefault();
 }
 
-void CourseRun::run(){
-    tailCommander->rotateDefault();
-    armCommander->rotateDefault();
-
-    lineTrace->updateParams(lotManager->getCurrentLotPID(), 100, 10); //(P,I,D,最大PWM, 目標輝度値)
-    runCommander->steer(lotManager->getCurrentLotSpeed(), lineTrace->getTurnValue());//(forward値,PID制御の操作量)
-
-    if(pointDetecter->detect()){
-        lotManager->changeCurrentLot();
-        pointDetecter->update(lotManager->getNextLotInfo());
-    }
+void CourseRun::setNextState(){
+    nextState = STOP;
 }
 
-bool CourseRun::isFinish(){
-    if(lotManager->isFinish()){
-        return true;
-    }
-    return false;
+void CourseRun::createCourseL(){
+    lots.push_back(new Lot(30, 45, -100, 100));
+    lots.push_back(new Lot(60, 75, -100, 100));
+    lots.push_back(new Lot(90, 105, -100, 100));
+
+    patterns.push_back(new RunPattern(LINE_TRACE, 20, lots[0]));
+    patterns.push_back(new RunPattern(LINE_TRACE, 20, lots[1]));
+    patterns.push_back(new RunPattern(LINE_TRACE, 20, lots[2]));
 }
 
-void CourseRun::stop(){
-    tailCommander->rotateDefault();
-    armCommander->rotateDefault();
-    runCommander->steerStop();
+void CourseRun::createCourseR(){
+
 }

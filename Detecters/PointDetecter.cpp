@@ -11,6 +11,8 @@ PointDetecter::~PointDetecter()
     delete local;
 }
 
+void PointDetecter::init(){}
+
 bool PointDetecter::detect()
 {
     local->update();
@@ -24,9 +26,4 @@ bool PointDetecter::detect()
         }
     }
     return false;
-}
-
-void PointDetecter::update(Lot *threshold)
-{
-    this->threshold = threshold;
 }
