@@ -1,7 +1,8 @@
 #include "GrayLineDetecter.h"
 
-GrayLineDetecter::GrayLineDetecter(){
+GrayLineDetecter::GrayLineDetecter(int threshold){
     courceMonitor = new CourceMonitor();
+    this->threshold = threshold;
 }
 
 GrayLineDetecter::~GrayLineDetecter(){
@@ -41,7 +42,7 @@ bool GrayLineDetecter::detect(){
 
       float average = ((float)sum / (float)(gray_buffer_max + 1));
 
-      if (-((float)current_color - average) > gray_limit){  //取得した輝度値（黒）-平均値（灰色）>閾値,color<灰色,count>灰色をとる時間
+      if (-((float)current_color - average) > this->threshold){  //取得した輝度値（黒）-平均値（灰色）>閾値,color<灰色,count>灰色をとる時間
         return true;
       }
     }

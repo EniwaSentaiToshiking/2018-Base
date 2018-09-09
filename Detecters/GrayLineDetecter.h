@@ -3,7 +3,6 @@
 #include "ev3api.h"
 
 #define gray_buffer_max 1000
-#define gray_limit 4
 
 #ifndef GRAYLINEDETECTER_H
 #define GRAYLINEDETECTER_H
@@ -16,9 +15,10 @@ private:
     int gray_buffer[gray_buffer_max] = {};
     int gray_buffer_num = 0;
     int gray_count = 0;
+    int threshold = 4;
 
 public:
-	GrayLineDetecter();
+	GrayLineDetecter(int threshold = 4);
 
     /**
      * detect - 灰色検出
