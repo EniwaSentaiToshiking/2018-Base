@@ -25,17 +25,13 @@ void CourseRun::setNextState(){
 }
 
 void CourseRun::createCourseL(){
-    lots.push_back(new Lot(0, 0, 0, 0));
-    lots.push_back(new Lot(0, 0, 0, 0));
-    lots.push_back(new Lot(0, 0, 0, 0));
-    lots.push_back(new Lot(0, 0, 0, 0));
-    lots.push_back(new Lot(0, 0, 0, 0));
+    lots.push_back(new Lot(30, 45, -100, 100));
+    lots.push_back(new Lot(60, 75, -100, 100));
+    lots.push_back(new Lot(90, 105, -100, 100));
 
     patterns.push_back(new RunPattern(LINE_TRACE, 20, lots[0]));
     patterns.push_back(new RunPattern(LINE_TRACE, 20, lots[1]));
     patterns.push_back(new RunPattern(LINE_TRACE, 20, lots[2]));
-    patterns.push_back(new RunPattern(LINE_TRACE, 20, lots[3]));
-    patterns.push_back(new RunPattern(LINE_TRACE, 0, lots[4]));
 }
 
 void CourseRun::createCourseR(){
