@@ -53,7 +53,7 @@ void main_task(intptr_t unused)
     /* �X�^�[�g�ҋ@ */
     while (1)
     {
-
+        armMotor->rotateDefault();
         runManager->init();
 
         if (bt_cmd == 1)
