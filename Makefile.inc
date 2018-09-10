@@ -30,6 +30,7 @@ APPL_CXXOBJS += \
     Logger.o \
     RunStatus.o \
     CourseRun.o \
+    Parking.o \
     Stop.o \
     RunStyle.o \
     LineTrace.o \
