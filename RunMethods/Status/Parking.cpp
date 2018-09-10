@@ -24,11 +24,10 @@ void Parking::setNextState(){
 
 void Parking::createCourseL(){
     /*斜め駐車*/
-    patterns.push_back(new RunPattern(LINE_TRACE, 20, GRAYLINE, 4, 0.9, 0.01));
-    patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 10, 0.9, 0.01, 0.0, 70));
-    patterns.push_back(new RunPattern(SPIN, 50, DIRECTION, 30));
-    patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 55));
-    patterns.push_back(new RunPattern(SPIN, 50, DIRECTION, 90));
+    patterns.push_back(new RunPattern(LINE_TRACE, 20, GRAYLINE, 55, 1.0, 0.01, 0.0, 40));
+    patterns.push_back(new RunPattern(SPIN, 40, DIRECTION, 17));
+    patterns.push_back(new RunPattern(STRAIGHT, 30, DISTANCE, 62));
+    patterns.push_back(new RunPattern(SPIN, 50, DIRECTION, -57));
 }
 
 void Parking::createCourseR(){
