@@ -11,6 +11,7 @@ APPL_CXXOBJS += \
     ColorDetecter.o \
     BlackLineDetecter.o \
     BrightnessDetecter.o \
+    ClockDetecter.o \
     SonarSensorDriver.o \
     TouchSensorDriver.o \
     ColorSensorDriver.o \
