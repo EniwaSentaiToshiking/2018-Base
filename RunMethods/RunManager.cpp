@@ -2,7 +2,7 @@
 
 RunManager::RunManager()
 {
-    status = new CourseRun(course);
+    status = new Parking(course);
 }
 
 RunManager::~RunManager()
