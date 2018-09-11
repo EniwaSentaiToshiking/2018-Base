@@ -1,22 +1,24 @@
 #include "GrayLineDetecter.h"
 
-GrayLineDetecter::GrayLineDetecter(int threshold){
+GrayLineDetecter::GrayLineDetecter(int threshold)
+{
     courceMonitor = new CourceMonitor();
     this->threshold = threshold;
 }
 
-GrayLineDetecter::~GrayLineDetecter(){
-    
+GrayLineDetecter::~GrayLineDetecter()
+{
 }
 
-void GrayLineDetecter::init(){}
+void GrayLineDetecter::init() {}
 
-bool GrayLineDetecter::detect(){
-   
+bool GrayLineDetecter::detect()
+{
+
     int current_color = courceMonitor->getCurrentBrightness();
     gray_buffer[gray_buffer_num] = current_color;
 
-    if (gray_buffer_num == gray_buffer_max-1)
+    if (gray_buffer_num == gray_buffer_max - 1)
     {
         gray_buffer_num = 0;
     }
@@ -27,19 +29,20 @@ bool GrayLineDetecter::detect(){
 
     gray_count++;
 
-    if(gray_count > 10){
-      int sum = 0;
+    if (gray_count > gray_buffer_max)
+    {
+        int count = 0;
 
-      for (int i = 0; i < gray_buffer_max; i++){
-        sum = sum + gray_buffer[i];
-      }
+        for (int i = 0; i < gray_buffer_max; i++)
+        {
+            if (gray_buffer[i] >= this->threshold && gray_buffer[i] < 75) count++;
+        }
 
-      float average = ((float)sum / (float)(gray_buffer_max + 1));
-
-      if (average > this->threshold){  //取得した輝度値（黒）-平均値（灰色）>閾値,color<灰色,count>灰色をとる時間
+    if (count == gray_buffer_max)
+    { //取得した輝度値（黒）-平均値（灰色）>閾値,color<灰色,count>灰色をとる時間
         ev3_speaker_play_tone(480, 100);
         return true;
-      }
     }
-    return false;
+}
+return false;
 }

@@ -2,7 +2,7 @@
 #include "CourceMonitor.h"
 #include "ev3api.h"
 
-#define gray_buffer_max 10
+#define gray_buffer_max 40
 
 #ifndef GRAYLINEDETECTER_H
 #define GRAYLINEDETECTER_H
