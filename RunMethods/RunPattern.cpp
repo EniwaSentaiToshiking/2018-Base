@@ -80,6 +80,10 @@ void RunPattern::createDetecter()
         break;
     case COLOR:
         this->detecter = new ColorDetecter(this->threshold);
+        break;
+    case BLACKLINE:
+        this->detecter = new BlackLineDetecter(this->threshold);
+        break;
     }
 }
 

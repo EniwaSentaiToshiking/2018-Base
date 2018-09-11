@@ -8,6 +8,7 @@
 #include "DistanceDetecter.h"
 #include "DirectionDetecter.h"
 #include "ColorDetecter.h"
+#include "BlackLineDetecter.h"
 #include "RunCommander.h"
 #include "ArmCommander.h"
 #include "TailCommander.h"

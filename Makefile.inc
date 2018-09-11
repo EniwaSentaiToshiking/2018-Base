@@ -9,6 +9,7 @@ APPL_CXXOBJS += \
     DistanceDetecter.o \
     DirectionDetecter.o \
     ColorDetecter.o \
+    BlackLineDetecter.o \
     SonarSensorDriver.o \
     TouchSensorDriver.o \
     ColorSensorDriver.o \
