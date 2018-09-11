@@ -9,6 +9,7 @@
 #include "DirectionDetecter.h"
 #include "ColorDetecter.h"
 #include "BlackLineDetecter.h"
+#include "BrightnessDetecter.h"
 #include "RunCommander.h"
 #include "ArmCommander.h"
 #include "TailCommander.h"

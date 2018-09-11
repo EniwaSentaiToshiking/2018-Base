@@ -85,6 +85,8 @@ void RunPattern::createDetecter()
     case BLACKLINE:
         this->detecter = new BlackLineDetecter(this->threshold);
         break;
+    case BRIGHTNESS:
+        this->detecter = new BrightnessDetecter(this->threshold);
     }
 }
 
