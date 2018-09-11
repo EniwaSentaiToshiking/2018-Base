@@ -41,6 +41,7 @@ APPL_CXXOBJS += \
     Spin.o \
     RunPattern.o \
     RunManager.o \
+    Dijkstra.o \
 
 SRCLANG := c++
 
