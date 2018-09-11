@@ -2,7 +2,7 @@
 
 RunManager::RunManager()
 {
-    status = new CourseRun(course);
+    changeStatus(this->state);
 }
 
 RunManager::~RunManager()
