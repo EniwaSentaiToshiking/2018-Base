@@ -2,7 +2,7 @@
 
 RunManager::RunManager()
 {
-    status = new CourseRun(course);
+    status = new Parking(course);
 }
 
 RunManager::~RunManager()
@@ -25,6 +25,9 @@ void RunManager::changeStatus(RunState state){
     switch(state){
         case COURSE_RUN:
             status = new CourseRun(course);
+            break;
+        case PARKING:
+            status = new Parking(course);
             break;
         case STOP:
             status = new Stop();

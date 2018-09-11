@@ -8,6 +8,7 @@
 #include "DistanceDetecter.h"
 #include "DirectionDetecter.h"
 #include "ColorDetecter.h"
+#include "BlackLineDetecter.h"
 #include "RunCommander.h"
 #include "ArmCommander.h"
 #include "TailCommander.h"
@@ -34,6 +35,7 @@ private:
     float threshold = 0;
     Lot *nextLot;
     int brightness = 20;
+    Edge edge = LEFT;
 
     bool isInitializeDetecter = false;
 
@@ -41,7 +43,7 @@ private:
     void createDetecter();
 
 public:
-    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60);
+    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60, Edge edge = LEFT);
     RunPattern(Pattern pattern, int speed, Lot *threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60);
 
     void init();

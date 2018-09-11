@@ -1,12 +1,13 @@
 #include "RunPattern.h"
 
-RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p, float i, float d, int brightness)
+RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p, float i, float d, int brightness, Edge edge)
 {
     this->pattern = pattern;
     this->speed = speed;
     this->detectType = type;
     this->threshold = threshold;
     this->brightness = brightness;
+    this->edge = edge;
     pid = new PID(p, i, d);
     init();
 }
@@ -44,7 +45,7 @@ void RunPattern::createRunStyle()
     switch (this->pattern)
     {
     case LINE_TRACE:
-        runStyle = new LineTrace(this->pid, this->brightness);
+        runStyle = new LineTrace(this->pid, this->brightness, this->edge);
         break;
     case STRAIGHT:
         runStyle = new Straight(this->speed);
@@ -80,6 +81,10 @@ void RunPattern::createDetecter()
         break;
     case COLOR:
         this->detecter = new ColorDetecter(this->threshold);
+        break;
+    case BLACKLINE:
+        this->detecter = new BlackLineDetecter(this->threshold);
+        break;
     }
 }
 

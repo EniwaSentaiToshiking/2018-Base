@@ -1,18 +1,17 @@
 #include "RunStatus.h"
 #include "Course.h"
 
-class CourseRun : public RunStatus
+class Parking : public RunStatus
 {
   private:
     Course course;
-    vector<Lot *> lots;
 
     void createCourseL();
     void createCourseR();
 
   public:
-    CourseRun(Course course);
+    Parking(Course course);
     void init();
     void setNextState();
-    virtual ~CourseRun();
+    virtual ~Parking();
 };

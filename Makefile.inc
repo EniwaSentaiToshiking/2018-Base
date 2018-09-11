@@ -9,6 +9,7 @@ APPL_CXXOBJS += \
     DistanceDetecter.o \
     DirectionDetecter.o \
     ColorDetecter.o \
+    BlackLineDetecter.o \
     SonarSensorDriver.o \
     TouchSensorDriver.o \
     ColorSensorDriver.o \
@@ -30,6 +31,7 @@ APPL_CXXOBJS += \
     Logger.o \
     RunStatus.o \
     CourseRun.o \
+    Parking.o \
     Stop.o \
     RunStyle.o \
     LineTrace.o \
