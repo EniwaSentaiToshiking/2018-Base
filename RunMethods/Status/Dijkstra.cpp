@@ -1,18 +1,17 @@
 #include "Dijkstra.h"
 
 Dijkstra::Dijkstra(){
-	settled_block[0]=0;
-	settled_block[1]=0;
-	settled_block[2]=0;
-	settled_block[3]=0;
-	start_area=8;
-	now_state = RIGHT;
+	// settled_block[0]=0;
+	// settled_block[1]=0;
+	// settled_block[2]=0;
+	// settled_block[3]=0;
+	// start_area=8;
+	// now_state = RIG;
 }
 
 Dijkstra::~Dijkstra(){
 }
 
-/* 初期化 */
 void Dijkstra::initNode(){
 	for(int i = 0; i < SIZE; i++) {
     	COST[i] = INF;
@@ -96,8 +95,6 @@ int Dijkstra::calCost(int start, int goal){
 
   	COST[start] = 0;
   	while(1){
-
-    /* 未確定の中から距離が最も小さい地点(a)を選んで、その距離を その地点の最小距離として確定します */
     	min = INF;
     	for(int i = 0; i < N; i++){
       		if(!USED[i] && min > COST[i]) {
@@ -105,13 +102,8 @@ int Dijkstra::calCost(int start, int goal){
         	target = i;
       		}
     	}
-
-    /* 全ての地点の最短経路が確定 */
     	if(target == goal)
     		return COST[goal];
-
-    /* 今確定した場所から「直接つながっている」かつ「未確定の」地点に関して、
-    今確定した場所を経由した場合の距離を計算し、今までの距離よりも小さければ書き直します。 */
     	for(int neighboring = 0; neighboring < N; neighboring++){
     		if(COST[neighboring] > DIST[target][neighboring] + COST[target]) {
         		COST[neighboring] = DIST[target][neighboring] + COST[target];
@@ -287,7 +279,7 @@ int Dijkstra::stateCheck(int now, int next){
 		case 0:
 			switch(next){
 				case 1:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 4:
 					state = DOWN;
@@ -297,10 +289,10 @@ int Dijkstra::stateCheck(int now, int next){
 		case 1:
 			switch(next){
 				case 0:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 2:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 5:
 					state = DOWN;
@@ -310,10 +302,10 @@ int Dijkstra::stateCheck(int now, int next){
 		case 2:
 			switch(next){
 				case 1:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 3:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 6:
 					state = DOWN;
@@ -323,7 +315,7 @@ int Dijkstra::stateCheck(int now, int next){
 		case 3:
 			switch(next){
 				case 2:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 7:
 					state = DOWN;
@@ -336,7 +328,7 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 5:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 8:
 					state = DOWN;
@@ -349,10 +341,10 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 4:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 6:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 9:
 					state = DOWN;
@@ -365,10 +357,10 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 5:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 7:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 10:
 					state = DOWN;
@@ -381,7 +373,7 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 6:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 11:
 					state = DOWN;
@@ -394,7 +386,7 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 9:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 12:
 					state = DOWN;
@@ -407,10 +399,10 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 8:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 10:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 13:
 					state = DOWN;
@@ -423,10 +415,10 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 9:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 11:
-					state = RIGHT;
+					state = RIG;
 					break;
 				case 14:
 					state = DOWN;
@@ -439,7 +431,7 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 10:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 15:
 					state = DOWN;
@@ -452,7 +444,7 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 13:
-					state = RIGHT;
+					state = RIG;
 					break;
 			}
 			break;
@@ -462,10 +454,10 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 12:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 14:
-					state = RIGHT;
+					state = RIG;
 					break;
 			}
 			break;
@@ -475,10 +467,10 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 13:
-					state = LEFT;
+					state = LEF;
 					break;
 				case 15:
-					state = RIGHT;
+					state = RIG;
 					break;
 			}
 			break;
@@ -488,7 +480,7 @@ int Dijkstra::stateCheck(int now, int next){
 					state = UP;
 					break;
 				case 14:
-					state = LEFT;
+					state = LEF;
 					break;
 			}
 			break;
@@ -547,10 +539,10 @@ int Dijkstra::checkTurn(int next_state){
 				case UP:
 					direction = 0;
 					break;
-				case LEFT:
+				case LEF:
 					direction = TL;
 					break;
-				case RIGHT:
+				case RIG:
 					direction = TR;
 					break;
 				case DOWN:
@@ -558,15 +550,15 @@ int Dijkstra::checkTurn(int next_state){
 					break;
 			}
 			break;
-		case LEFT:
+		case LEF:
 			switch(next_state){
 				case UP:
 					direction = TR;
 					break;
-				case LEFT:
+				case LEF:
 					direction = 0;
 					break;
-				case RIGHT:
+				case RIG:
 					direction = TB;
 					break;
 				case DOWN:
@@ -574,15 +566,15 @@ int Dijkstra::checkTurn(int next_state){
 					break;
 			}
 			break;
-		case RIGHT:
+		case RIG:
 			switch(next_state){
 				case UP:
 					direction = TL;
 					break;
-				case LEFT:
+				case LEF:
 					direction = TB;
 					break;
-				case RIGHT:
+				case RIG:
 					direction = 0;
 					break;
 				case DOWN:
@@ -595,10 +587,10 @@ int Dijkstra::checkTurn(int next_state){
 				case UP:
 					direction = TB;
 					break;
-				case LEFT:
+				case LEF:
 					direction = TR;
 					break;
-				case RIGHT:
+				case RIG:
 					direction = TL;
 					break;
 				case DOWN:

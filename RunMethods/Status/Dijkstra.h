@@ -1,5 +1,6 @@
-#define INF 10000000
-#define SIZE 1000
+#include <stdio.h>
+#define INF 1000
+#define SIZE 100
 #define TRUE 1
 #define FALSE 0
 
@@ -14,8 +15,8 @@ enum Color
 enum Direction
 {
     UP = 1,
-    LEFT = 2,
-    RIGHT = 3,
+    LEF = 2,
+    RIG = 3,
     DOWN = 4,
 };
 

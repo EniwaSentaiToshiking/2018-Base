@@ -2,7 +2,7 @@
 
 RunManager::RunManager()
 {
-    status = new CourseRun(course);
+    status = new Game();
 }
 
 RunManager::~RunManager()
@@ -31,6 +31,9 @@ void RunManager::changeStatus(RunState state){
             break;
         case STOP:
             status = new Stop();
+            break;
+        case GAME: 
+            status = new Game();
             break;
     }
 }
