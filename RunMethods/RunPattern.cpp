@@ -87,6 +87,10 @@ void RunPattern::createDetecter()
         break;
     case BRIGHTNESS:
         this->detecter = new BrightnessDetecter(this->threshold);
+        break;
+    case CLOCK:
+        this->detecter = new ClockDetecter(this->threshold);
+        break;
     }
 }
 
