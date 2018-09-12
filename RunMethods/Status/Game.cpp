@@ -100,14 +100,15 @@ void Game::jump(){
 }
 
 void Game::startGame(){
-    int block[4]={5,14,10,9};
+    int block[4]={7,1,3,8};
     dijkstra->setBlock(block);
     dijkstra->run();
     dijkstra->createPat();
+    patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_RED, 1.5, 0.0, 0.1, 40));
     for(int j=0;j<4;j++){
         int color_num=0;
         for(int i=0;i<60;i++){
-            if(dijkstra->pat[j][i]!=-1){
+            if(dijkstra->pat[j][i]==-1){
                 break;
             }
             switch(dijkstra->pat[j][i]){

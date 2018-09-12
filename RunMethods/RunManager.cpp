@@ -2,7 +2,7 @@
 
 RunManager::RunManager()
 {
-    status = new Game();
+    changeStatus(this->state);
 }
 
 RunManager::~RunManager()
