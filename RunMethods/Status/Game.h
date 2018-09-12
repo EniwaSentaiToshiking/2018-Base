@@ -16,6 +16,7 @@ class Game : public RunStatus
     void turnBack();
     void jump();
     void release(int direction);
+    void blockcatch();
 
     int edge_line;
 
