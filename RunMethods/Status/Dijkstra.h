@@ -22,6 +22,7 @@ enum Direction
 
 enum Pat
 {
+    JUMP = 0,
     ST = 1,
     TL = 2,
     TR = 3,
@@ -71,10 +72,13 @@ class Dijkstra
     int stateCheck(int x, int y);
     void setPat(int i, int now, int next);
     int checkTurn(int next_state);
+    void directColor();
+    int colorArea(int area);
 
   public:
     Dijkstra();
     int pat[4][60];
+    int direct_color[4][60];
     
     void setBlock(int x[4]);//ブロックの位置を決める
     void run();

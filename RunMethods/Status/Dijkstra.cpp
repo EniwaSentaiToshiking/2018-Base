@@ -1,12 +1,12 @@
 #include "Dijkstra.h"
 
 Dijkstra::Dijkstra(){
-	// settled_block[0]=0;
-	// settled_block[1]=0;
-	// settled_block[2]=0;
-	// settled_block[3]=0;
-	// start_area=8;
-	// now_state = RIG;
+	settled_block[0]=0;
+	settled_block[1]=0;
+	settled_block[2]=0;
+	settled_block[3]=0;
+	start_area=8;
+	now_state = RIG;
 }
 
 Dijkstra::~Dijkstra(){
@@ -490,10 +490,8 @@ int Dijkstra::stateCheck(int now, int next){
 
 void Dijkstra::setPat(int i, int now, int next){
 	int next_state = stateCheck(now,next);
-	if(checkTurn(next_state)!=0){
-		pat[i][pat_num]=checkTurn(next_state);
-		pat_num++;
-	}
+	pat[i][pat_num]=checkTurn(next_state);
+	pat_num++;
 	pat[i][pat_num]=ST;
 	pat_num++;
 	now_state = next_state;
@@ -529,6 +527,7 @@ void Dijkstra::createPat(){
 		}
 		pat[i][pat_num]=REL;
 	}
+	directColor();
 }	
 
 int Dijkstra::checkTurn(int next_state){
@@ -537,7 +536,7 @@ int Dijkstra::checkTurn(int next_state){
 		case UP:
 			switch(next_state){
 				case UP:
-					direction = 0;
+					direction = JUMP;
 					break;
 				case LEF:
 					direction = TL;
@@ -556,7 +555,7 @@ int Dijkstra::checkTurn(int next_state){
 					direction = TR;
 					break;
 				case LEF:
-					direction = 0;
+					direction = JUMP;
 					break;
 				case RIG:
 					direction = TB;
@@ -575,7 +574,7 @@ int Dijkstra::checkTurn(int next_state){
 					direction = TB;
 					break;
 				case RIG:
-					direction = 0;
+					direction = JUMP;
 					break;
 				case DOWN:
 					direction = TR;
@@ -594,12 +593,66 @@ int Dijkstra::checkTurn(int next_state){
 					direction = TL;
 					break;
 				case DOWN:
-					direction = 0;
+					direction = JUMP;
 					break;
 			}
 			break;
 	}
 	return direction;
+}
+
+void Dijkstra::directColor(){
+	for(int i=0;i<4;i++){
+		for(int j=0;j<60;j++){
+			direct_color[i][j]=-1;
+		}
+	}
+	for(int i=0;i<4;i++){
+		int x=0;
+		for(int j=0;j<30;j++){
+			if(to_block_route[i][j]!=-1){
+				direct_color[i][x]=colorArea(to_block_route[i][j]);
+				x++;	
+			}
+		}
+		x--;
+		for(int j=0;j<30;j++){
+			if(to_area_route[i][j]!=-1){
+				direct_color[i][x]=colorArea(to_area_route[i][j]);
+				x++;
+			}
+		}
+		if(i!=3){
+			x--;
+			direct_color[i][x]=-1;
+		}
+	}
+}
+
+int Dijkstra::colorArea(int area){
+	switch(area){
+		case 0:
+		case 6:
+		case 8:
+		case 14:
+			return RED;
+		case 1:
+		case 7:
+		case 9:
+		case 15:
+			return YELLOW;
+		case 3:
+		case 5:
+		case 11:
+		case 13:
+			return GREEN;
+		case 2:
+		case 4:
+		case 10:
+		case 12:
+			return BLUE;
+	}
+	return 0;
 }
 
 void Dijkstra::run(){
