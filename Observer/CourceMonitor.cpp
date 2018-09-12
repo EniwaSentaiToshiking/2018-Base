@@ -121,11 +121,11 @@ colorid_t CourceMonitor::getColorNumber()
     {
         return COLOR_YELLOW;
     }
-    else if (H >= 100 && H < 117)
+    else if (H >= 100 && H < 130)
     {
         return COLOR_GREEN;
     }
-    else if (H >= 155 && H < 197)
+    else if (H >= 155 && H < 210)
     {
         return COLOR_BLUE;
     }
