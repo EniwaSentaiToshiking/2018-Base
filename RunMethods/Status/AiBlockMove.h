@@ -4,15 +4,11 @@
 class AiBlockMove : public RunStatus
 {
   private:
-    Course course;
-
-    void createCourseL();
-    void createCourseR();
-    int ana_ansnum = 1;
-    int deg_ansnum = 1;
+    int ana_ansnum = 0;
+    int deg_ansnum = 0;
 
   public:
-    AiBlockMove(Course course);
+    AiBlockMove();
     void init();
     void setNextState();
     void aians_Input(int Predict_Ana_Num , int Predict_Deg_Num);

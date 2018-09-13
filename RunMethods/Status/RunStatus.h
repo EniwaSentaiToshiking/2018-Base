@@ -21,6 +21,7 @@ enum RunState {
     COURSE_RUN,
     PARKING,
     STOP,
+    AIBLOCKMOVE,
 };
 
 class RunManager;
