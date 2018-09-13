@@ -47,7 +47,7 @@ AiBlockMove::AiBlockMove(){
   //1.青まで走る
   patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR ,2, 1.0, 0.0, 0.05, 30, LEFT));
   //2.ちょっとでる
-  patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,5));
+  patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,3));
   //3.解答方向へ回転(if文の中)
   //ちょっと押す
   //バックする
@@ -67,7 +67,7 @@ AiBlockMove::AiBlockMove(){
   }//leftラインへ復帰
   patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 5,2.0, 0.0, 0.05, 100, LEFT));
   patterns.push_back(new RunPattern(LINE_TRACE, 20, BRIGHTNESS,40, 2.0, 0.0, 0.05, 100, LEFT));
-  patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE,10,2.0, 0.0, 0.05, 70, LEFT));
+  patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,10,2.0, 0.0, 0.05, 100, LEFT));
   patterns.push_back(new RunPattern(SPIN, 20, DIRECTION,90));//90度回転　LINEはレフトを見たまま,交差点に入るまで
   //デジタル青解答終了
 
@@ -81,7 +81,7 @@ AiBlockMove::AiBlockMove(){
   //アナログ緑色の解答
   //1.緑まで走る
   patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE ,5, 2.0, 0.0, 0.05, 100, RIGHT));//応急処置
-  patterns.push_back(new RunPattern(LINE_TRACE, 15, COLOR ,COLOR_GREEN, 2.0, 0.0, 0.05, 100, RIGHT));
+  patterns.push_back(new RunPattern(LINE_TRACE, 15, COLOR ,COLOR_GREEN, 2.0, 0.0, 0.05, 30, RIGHT));
   //2.ちょっとでる
   patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,5));
   //3.解答方向へ回転(if文の中)
@@ -102,18 +102,18 @@ AiBlockMove::AiBlockMove(){
     patterns.push_back(new RunPattern(STRAIGHT, -10, DISTANCE,5));
     patterns.push_back(new RunPattern(SPIN, 20, BLACKLINE,20,2.0, 0.0, 0.05, 30, LEFT));
   }//leftラインへ復帰
-  patterns.push_back(new RunPattern(LINE_TRACE, 20, DISTANCE, 5,2.0, 0.0, 0.05, 100, LEFT));
+  patterns.push_back(new RunPattern(LINE_TRACE, 20, DISTANCE, 5,1.0, 0.0, 0.05, 100, LEFT));//修正
   patterns.push_back(new RunPattern(LINE_TRACE, 20, BRIGHTNESS,40, 2.0, 0.0, 0.05, 100, LEFT));
   patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE,5,2.0, 0.0, 0.05, 100, LEFT));
   //LINEはレフトを見たまま,交差点に入るまで
   //アナログ緑解答終了
-
   //デジタル黄色の解答
 
   //1.黄まで走る
-  patterns.push_back(new RunPattern(LINE_TRACE, 10, COLOR ,4, 2.0, 0.0, 0.05, 100, LEFT));
+  patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE ,5, 2.0, 0.0, 0.05, 40,LEFT));//応急処置
+  patterns.push_back(new RunPattern(LINE_TRACE, 10, COLOR ,4, 2.0, 0.0, 0.05, 40, LEFT));
   //2.ちょっとでる
-  patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,5,2.0, 0.0, 0.05, 100, LEFT));
+  patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,5,2.0, 0.0, 0.05, 40, LEFT));
   //3.解答方向へ回転(if文の中)
   //ちょっと押す
   //バックする
@@ -131,22 +131,22 @@ AiBlockMove::AiBlockMove(){
     patterns.push_back(new RunPattern(STRAIGHT, -10, DISTANCE,5));
     patterns.push_back(new RunPattern(SPIN, -20, COLOR,1,2.0, 0.0, 0.05, 30, LEFT));
   }//leftラインへ復帰
-  patterns.push_back(new RunPattern(LINE_TRACE, 20, DISTANCE, 5,2.0, 0.0, 0.05, 100, LEFT));
+  patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 5,2.0, 0.0, 0.05, 100, LEFT));
   patterns.push_back(new RunPattern(LINE_TRACE, 20, BRIGHTNESS,40, 2.0, 0.0, 0.05, 100, LEFT));
-  patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE,10));
+  patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,10,2.0, 0.0, 0.05, 100, LEFT));
   patterns.push_back(new RunPattern(SPIN, 20, DIRECTION,90));//90度回転　LINEはレフトを見たまま,交差点に入るまで
   //デジタル黄解答終了
 
-  //3レーン目
+  //3レーン目入る
   patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 5,2.0, 0.0, 0.05, 100, RIGHT));
   patterns.push_back(new RunPattern(LINE_TRACE, 15, BRIGHTNESS,40, 2.0, 0.0, 0.05, 100, RIGHT));
   patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,5));
   patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, -90));
-  //3レーン目終了
+  //3レーン目到着
 
   //アナログ赤色の解答
   //1.赤まで走る
-  patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR ,5, 2.0, 0.0, 0.05, 100, RIGHT));
+  patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR ,5, 2.0, 0.0, 0.05, 70, RIGHT));
   //2.ちょっとでる
   patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,5));
   //3.解答方向へ回転(if文の中)
@@ -158,7 +158,7 @@ AiBlockMove::AiBlockMove(){
     patterns.push_back(new RunPattern(SPIN, 20, DIRECTION,-30));
     patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,5));
     patterns.push_back(new RunPattern(STRAIGHT, -10, DISTANCE,5));
-    patterns.push_back(new RunPattern(SPIN, -20, COLOR, 1,2.0, 0.0, 0.05, 30, LEFT));
+    patterns.push_back(new RunPattern(SPIN, -20, COLOR, 1,2.0, 0.0, 0.05, 70, LEFT));
     //patterns.push_back(new RunPattern(STRAIGHT, -10, COLOR, 5,2.0, 0.0, 0.05, 70, RIGHT));//こっちは赤色見つかるまでバック
   }else{
     patterns.push_back(new RunPattern(SPIN, 20, DIRECTION,30));
@@ -174,7 +174,7 @@ AiBlockMove::AiBlockMove(){
 
   //デジタル赤色の解答
   //1.赤まで走る
-  patterns.push_back(new RunPattern(LINE_TRACE, 10, COLOR ,5, 2.0, 0.0, 0.05, 100, LEFT));
+  patterns.push_back(new RunPattern(LINE_TRACE, 10, COLOR ,5, 2.0, 0.0, 0.05, 70, LEFT));
   //2.ちょっとでる
   patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE,5));
   //3.解答方向へ回転(if文の中)
@@ -194,12 +194,12 @@ AiBlockMove::AiBlockMove(){
     patterns.push_back(new RunPattern(STRAIGHT, -10, DISTANCE,5));
     patterns.push_back(new RunPattern(SPIN, -20, COLOR,1,2.0, 0.0, 0.05, 30, LEFT));
   }//leftラインへ復帰
-  patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 5,2.0, 0.0, 0.05, 100, LEFT));
-  patterns.push_back(new RunPattern(LINE_TRACE, 10, BRIGHTNESS,40, 2.0, 0.0, 0.05, 100, LEFT));
-  patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE,5));
+  patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 5,2.0, 0.0, 0.05, 90, LEFT));
+  patterns.push_back(new RunPattern(LINE_TRACE, 10, BRIGHTNESS,40, 2.0, 0.0, 0.05, 90, LEFT));
+  patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE,10));
   patterns.push_back(new RunPattern(SPIN, 20, DIRECTION,90));//90度回転　LINEはレフトを見たまま,交差点に入るまで
   //デジタル赤解答終了
-  patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 5, 2.0, 0.0, 0.01, 100, RIGHT));
+  patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE, 10, 2.0, 0.0, 0.01, 40, RIGHT));
   //patterns.push_back(new RunPattern(LINE_TRACE, 15, GRAYLINE, 55, 1.0, 0.0, 0.01, 40, RIGHT));
   //灰色到着
   //AIアンサー解答終了

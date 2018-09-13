@@ -4,8 +4,8 @@
 class AiBlockMove : public RunStatus
 {
   private:
-    int ana_ansnum = 0;
-    int deg_ansnum = 0;
+    int ana_ansnum = 7;
+    int deg_ansnum = 7;
 
   public:
     AiBlockMove();
