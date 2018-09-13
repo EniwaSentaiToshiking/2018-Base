@@ -32,6 +32,9 @@ void RunManager::changeStatus(RunState state){
         case STOP:
             status = new Stop();
             break;
+        case GAME: 
+            status = new Game();
+            break;
         case AIBLOCKMOVE:
             status = new AiBlockMove();
             break;
