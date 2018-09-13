@@ -22,6 +22,7 @@ enum RunState {
     PARKING,
     STOP,
     GAME,
+    AIBLOCKMOVE,
 };
 
 class RunManager;
