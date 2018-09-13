@@ -609,7 +609,7 @@ void Dijkstra::directColor(){
 	}
 	for(int i=0;i<4;i++){
 		int x=0;
-		for(int j=0;j<30;j++){
+		for(int j=1;j<30;j++){
 			if(to_block_route[i][j]!=-1){
 				direct_color[i][x]=colorArea(to_block_route[i][j]);
 				x++;	
@@ -621,10 +621,6 @@ void Dijkstra::directColor(){
 				direct_color[i][x]=colorArea(to_area_route[i][j]);
 				x++;
 			}
-		}
-		if(i!=3){
-			x--;
-			direct_color[i][x]=-1;
 		}
 	}
 }
