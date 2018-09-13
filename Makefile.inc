@@ -45,6 +45,7 @@ APPL_CXXOBJS += \
     RunManager.o \
     Dijkstra.o \
     Game.o \
+    AiBlockMove.o \
 
 SRCLANG := c++
 
