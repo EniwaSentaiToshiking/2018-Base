@@ -5,7 +5,7 @@
 #ifndef COLORDETECTER_H
 #define COLORDETECTER_H
 
-#define color_buffer_max 40
+#define color_buffer_max 150
 
 class ColorDetecter : public Detecter
 {
