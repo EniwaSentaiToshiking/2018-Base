@@ -9,7 +9,8 @@ private:
 public:
     Motor *left;
     Motor *right;
-    int32_t count[2] = {0, 0};
+    int32_t currentCount[2] = {0, 0};
+    int32_t initCount[2] = {0, 0};
 
     WheelInfo();
 
@@ -20,6 +21,8 @@ public:
      * @return {void}
      */
     void reset();
+
+    int32_t *getInitCount();
 
     /**
      * getCount - オフセット付き角位置取得 
