@@ -18,6 +18,7 @@ private:
 
 public:
     LineTrace(PID *pid, int targetBrightness, Edge edge);
+    void init(){};
 
     /**
      * getTurnValue - ライントレース時(PID制御)の操作量を取得
