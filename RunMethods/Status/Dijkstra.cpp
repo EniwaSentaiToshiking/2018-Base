@@ -94,6 +94,7 @@ int Dijkstra::calCost(int start, int goal){
   	int target=0;
 
   	COST[start] = 0;
+  	int cost_num = 0;
   	while(1){
     	min = INF;
     	for(int i = 0; i < N; i++){
@@ -111,6 +112,10 @@ int Dijkstra::calCost(int start, int goal){
       		}
     	}
     	USED[target] = TRUE;
+    	cost_num++;
+    	if(cost_num>150){
+    		return INF;
+    	}
   	}
 }
 
@@ -605,12 +610,14 @@ void Dijkstra::directColor(){
 	for(int i=0;i<4;i++){
 		for(int j=0;j<60;j++){
 			direct_color[i][j]=-1;
+			now_point[i][j]=-1;
 		}
 	}
 	for(int i=0;i<4;i++){
 		int x=0;
 		for(int j=1;j<30;j++){
 			if(to_block_route[i][j]!=-1){
+				now_point[i][x]=to_block_route[i][j];
 				direct_color[i][x]=colorArea(to_block_route[i][j]);
 				x++;	
 			}
@@ -618,6 +625,7 @@ void Dijkstra::directColor(){
 		x--;
 		for(int j=0;j<30;j++){
 			if(to_area_route[i][j]!=-1){
+				now_point[i][x]=to_area_route[i][j];
 				direct_color[i][x]=colorArea(to_area_route[i][j]);
 				x++;
 			}
@@ -702,13 +710,14 @@ void Dijkstra::run(){
 				if(block_area[i]==block[j]){
 					cost[i] = INF;
 					flag = false;
-					createRoute(i,flag);
 					break;
 				}
 			}
 			if(flag == true){
 				cost[i] = calCost(start, distination);
-				createRoute(i,flag);
+				if(cost[i]!=INF){
+					createRoute(i,flag);
+				}
 			}
 		}
 		int carry_area = searchMinBlockArea(u);
