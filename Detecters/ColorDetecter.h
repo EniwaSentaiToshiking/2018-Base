@@ -5,7 +5,8 @@
 #ifndef COLORDETECTER_H
 #define COLORDETECTER_H
 
-#define color_buffer_max 150
+
+#define color_buffer_max 100
 
 class ColorDetecter : public Detecter
 {
@@ -23,8 +24,8 @@ class ColorDetecter : public Detecter
     /**
      * detect - 色の条件検知
      *
-     * @param  {void}      
-     * @return {bool}         true 検出した, false 検出しなかった 
+     * @param  {void}
+     * @return {bool}         true 検出した, false 検出しなかった
      */
     bool detect();
     virtual ~ColorDetecter();

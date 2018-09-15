@@ -3,6 +3,7 @@
 #include "Clock.h"
 #include "UI.h"
 #include "RunManager.h"
+#include "Block.h"
 
 using namespace ev3api;
 
@@ -28,6 +29,10 @@ Clock *clock;
 UI *ui;
 RunManager *runManager;
 ArmMotorDriver *armMotor;
+
+int color[4];
+int black[2];
+
 
 /* ���C���^�X�N */
 void main_task(intptr_t unused)
@@ -56,13 +61,9 @@ void main_task(intptr_t unused)
         armMotor->rotateDefault();
         runManager->init();
 
-        if (bt_cmd == 1)
-        {
-            break; /* �����[�g�X�^�[�g */
-        }
-
         if (ui->isTouched())
         {
+            fprintf(bt, "%d\n", 5);
             break; /* �^�b�`�Z���T�������ꂽ */
         }
 
@@ -80,6 +81,17 @@ void main_task(intptr_t unused)
         if (ev3_button_is_pressed(BACK_BUTTON))
             break;
 
+        if(bt_cmd == 1){
+            Block &block = Block::singleton();
+            block.red = color[0];
+            block.blue = color[1];
+            block.green = color[2];
+            block.yellow = color[3];
+            block.black1 = black[0];
+            block.black2 = black[1];
+            bt_cmd = -1;
+        }
+
         runManager->run();
 
         clock->sleep(4); /* 4msec�����N�� */
@@ -91,6 +103,22 @@ void main_task(intptr_t unused)
     ext_tsk();
 }
 
+void get_color(int color_pos[4], char all_pos[256]){
+    for (int i = 0; i < 4; i++ ){
+        if (all_pos[2 * i] == '0'){
+            color_pos[i] = all_pos[(2 * i) + 1] - 48;
+        }else{
+            color_pos[i] = 10 + all_pos[(2 * i) + 1] - 48;
+        }
+    }
+}
+
+void get_black(int black_pos[2], char all_pos[256]){
+    for (int i = 0; i < 2; i++ ){
+        black_pos[i] = all_pos[i + 8] - 48;
+    }
+}
+
 //*****************************************************************************
 // �֐��� : bt_task
 // ���� : unused
@@ -100,17 +128,27 @@ void main_task(intptr_t unused)
 //*****************************************************************************
 void bt_task(intptr_t unused)
 {
-    while (1)
+    char tmp[256];
+    char hoge[256];
+    int count = 0;
+    while(1)
     {
-        uint8_t c = fgetc(bt); /* ��M */
-        switch (c)
-        {
-        case '1':
+        uint8_t c = fgetc(bt); /* 受信 */
+        if (c - 48 >= 0 && c - 48 <= 9 && count <= 9){
+            if(count == 0){
+                snprintf(tmp, 255, "%d", c - 48);
+            }else{
+                snprintf(tmp, 255, "%s%d", tmp, c - 48);
+            }
+            count ++;
+        } else  if (count == 10){
+            get_color(color, tmp);
+            get_black(black, tmp);
+            //snprintf(hoge, 255, "%d %d %d %d %d %d", color[0],color[1],color[2],color[3],black[0],black[1]);
+            //ev3_lcd_draw_string(hoge, 0, 8);
             bt_cmd = 1;
             break;
-        default:
-            break;
         }
-        fputc(c, bt); /* �G�R�[�o�b�N */
+        fputc(c, bt); /* エコーバック */
     }
 }
