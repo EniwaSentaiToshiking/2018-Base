@@ -10,12 +10,12 @@ class Spin : public RunStyle {
 private:
     WheelInfo *wheelInfo;
     int speed;
-    int threshold;
+    TurningDirection direction;
     Logger *logger;
     int32_t *beginCount;
 
 public:
-    Spin(int threshold, int speed);
+    Spin(TurningDirection direction, int speed);
     void init();
     int getTurnValue();
     virtual ~Spin();

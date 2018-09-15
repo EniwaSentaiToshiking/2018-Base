@@ -22,6 +22,14 @@ RunPattern::RunPattern(Pattern pattern, int speed, Lot *threshold, float p, floa
     init();
 }
 
+RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, TurningDirection direction){
+    this->pattern = pattern;
+    this->speed = speed;
+    this->detectType = type;
+    this->threshold = threshold;
+    this->direction = direction;
+}
+
 void RunPattern::init(){
     runCommander = new RunCommander();
     armCommander = new ArmCommander();
@@ -51,10 +59,10 @@ void RunPattern::createRunStyle()
         runStyle = new Straight(this->speed);
         break;
     case TURNING:
-        runStyle = new Turning(this->threshold, this->speed);
+        runStyle = new Turning(this->direction, this->speed);
         break;
     case SPIN:
-        runStyle = new Spin(this->threshold, this->speed);
+        runStyle = new Spin(this->direction, this->speed);
         break;
     case BRAKE:
         runStyle = new Straight(this->speed);

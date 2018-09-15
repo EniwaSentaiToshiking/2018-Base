@@ -10,10 +10,10 @@ private:
     WheelInfo *wheelInfo;
     int speed;
     int32_t *beginCount;
-    int direction = 0;
+    TurningDirection direction = DIRECTION_LEFT;
 
 public:
-    Turning(int direction, int speed);
+    Turning(TurningDirection direction, int speed);
     void init();
     int getTurnValue();
     virtual ~Turning();

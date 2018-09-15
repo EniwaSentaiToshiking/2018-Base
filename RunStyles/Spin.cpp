@@ -1,9 +1,9 @@
 #include "Spin.h"
 
-Spin::Spin(int threshold, int speed){
+Spin::Spin(TurningDirection direction, int speed){
     wheelInfo = new WheelInfo();
     this->speed = speed;
-    this->threshold = threshold;
+    this->direction = direction;
     if(speed == 10){
         pid = new PID(0.0, 0.0, 0.0);
     }else {
@@ -28,7 +28,7 @@ int Spin::getTurnValue(){
 
     int turn = 100 + pidController->getTurn(this->pid, sa, 0, 100);
 
-    if(this->threshold >= 0) {
+    if(this->direction >= 0) {
         turn *= -1;
     }
 
