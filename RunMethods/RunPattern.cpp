@@ -62,7 +62,7 @@ void RunPattern::createRunStyle()
         runStyle = new Turning(this->direction, this->speed);
         break;
     case SPIN:
-        runStyle = new Spin(this->direction, this->speed);
+        runStyle = new Spin(this->direction, abs(this->speed));
         break;
     case BRAKE:
         runStyle = new Straight(this->speed);

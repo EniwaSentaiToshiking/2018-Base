@@ -8,6 +8,9 @@
 #include "ArmCommander.h"
 #include "TailCommander.h"
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #ifndef RUNPATTERN_H
 #define RUNPATTERN_H
 
