@@ -21,7 +21,7 @@ void Spin::init(){
 int Spin::getTurnValue(){
     int32_t *info = wheelInfo->getCount();
     
-    int diff = (info[0]) + (info[1]);
+    int diff = (info[0] - beginCount[0]) + (info[1] - beginCount[1]);
 
     int turn = 100 + pidController->getTurn(this->pid, diff, 0, 100);
 
