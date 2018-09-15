@@ -10,8 +10,8 @@
 class RunManager {
 
 private:
-    Course course = L;
-    RunState state = GAME;
+    Course course = R;
+    RunState state = COURSE_RUN;
     RunStatus *status;
 
 public:

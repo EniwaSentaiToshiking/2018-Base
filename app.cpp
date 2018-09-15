@@ -84,9 +84,9 @@ void main_task(intptr_t unused)
         if(bt_cmd == 1){
             Block &block = Block::singleton();
             block.red = color[0];
-            block.blue = color[1];
+            block.yellow = color[1];
             block.green = color[2];
-            block.yellow = color[3];
+            block.blue = color[3];
             block.black1 = black[0];
             block.black2 = black[1];
             bt_cmd = -1;
@@ -129,7 +129,6 @@ void get_black(int black_pos[2], char all_pos[256]){
 void bt_task(intptr_t unused)
 {
     char tmp[256];
-    char hoge[256];
     int count = 0;
     while(1)
     {
@@ -144,9 +143,7 @@ void bt_task(intptr_t unused)
         } else  if (count == 10){
             get_color(color, tmp);
             get_black(black, tmp);
-            //snprintf(hoge, 255, "%d %d %d %d %d %d", color[0],color[1],color[2],color[3],black[0],black[1]);
-            //ev3_lcd_draw_string(hoge, 0, 8);
-            bt_cmd = 1;
+            //bt_cmd = 1;
             break;
         }
         fputc(c, bt); /* エコーバック */

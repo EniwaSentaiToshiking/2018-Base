@@ -1,5 +1,6 @@
 #include "RunStatus.h"
 #include "Dijkstra.h"
+#include "Block.h"
 
 enum TraceLine{
   Line_R = 0,

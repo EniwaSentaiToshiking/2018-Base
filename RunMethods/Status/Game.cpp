@@ -250,11 +250,11 @@ void Game::startGame(){
 
     // patterns.push_back(new RunPattern(LINE_TRACE, 20, DISTANCE, 20, 1.5, 0.0, 0.1, 25));
 
-    // //patterns.push_back(new RunPattern(LINE_TRACE, 80, DISTANCE, 2000, 0.25, 0.00, 0.03, 60));
-
-    patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_RED, 1.5, 0.0, 0.1, 25));
-    int block[4]={13,10,4,8};
-    dijkstra->setBlock(block);
+    patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 120, 0.6, 0.00, 0.03, 70));
+    patterns.push_back(new RunPattern(LINE_TRACE, 40, COLOR, COLOR_RED, 0.6, 0.0, 0.03, 25));
+    Block &block = Block::singleton();
+    int blocks[4]={block.red, block.yellow, block.green, block.blue};
+    dijkstra->setBlock(blocks);
     dijkstra->run();
     dijkstra->createPat();
     for(int j=0;j<4;j++){
