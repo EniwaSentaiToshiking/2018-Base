@@ -12,6 +12,7 @@ protected:
 
 public:
     RunStyle();
+    virtual void init() = 0;
     virtual int getTurnValue() = 0;
     virtual ~RunStyle();
 };

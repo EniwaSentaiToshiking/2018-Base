@@ -98,6 +98,7 @@ bool RunPattern::run()
 {
     if(!isInitializeDetecter) {
         detecter->init();
+        runStyle->init();
         isInitializeDetecter = true;
     }
 

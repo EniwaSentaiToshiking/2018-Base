@@ -6,7 +6,6 @@ WheelInfo::WheelInfo(){
 }
 
 WheelInfo::~WheelInfo(){
-    reset();
     delete left;
     delete right;
 }
@@ -16,8 +15,14 @@ void WheelInfo::reset(){
     right->reset();
 }
 
+int32_t *WheelInfo::getInitCount(){
+    initCount[0] = left->getCount();
+    initCount[1] = right->getCount();
+    return initCount;
+}
+
 int32_t *WheelInfo::getCount(){
-    count[0] = left->getCount();
-    count[1] = right->getCount();
-    return count;
+    currentCount[0] = left->getCount();
+    currentCount[1] = right->getCount();
+    return currentCount;
 }

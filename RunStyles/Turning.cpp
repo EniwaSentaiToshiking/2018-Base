@@ -12,7 +12,7 @@ Turning::~Turning(){
 }
 
 void Turning::init(){
-    beginCount = wheelInfo->getCount();
+    beginCount = wheelInfo->getInitCount();
 }
 
 int Turning::getTurnValue(){
