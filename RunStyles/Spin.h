@@ -1,6 +1,5 @@
 #include "RunStyle.h"
 #include "WheelInfo.h"
-#include "Logger.h"
 
 #ifndef SPIN_H
 #define SPIN_H
@@ -11,7 +10,6 @@ private:
     WheelInfo *wheelInfo;
     int speed;
     TurningDirection direction;
-    Logger *logger;
     int32_t *beginCount;
 
 public:

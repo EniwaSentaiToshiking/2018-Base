@@ -9,7 +9,6 @@ Spin::Spin(TurningDirection direction, int speed){
     }else {
         pid = new PID(0,0,0);
     }
-    logger = new Logger("wheelinfo.log");
 }
 
 Spin::~Spin(){
@@ -23,8 +22,6 @@ int Spin::getTurnValue(){
     int32_t *info = wheelInfo->getCount();
     
     int sa = (info[0]) + (info[1]);
-
-    logger->logging(sa);
 
     int turn = 100 + pidController->getTurn(this->pid, sa, 0, 100);
 
