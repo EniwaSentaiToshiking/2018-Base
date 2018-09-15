@@ -1,11 +1,15 @@
 #include "Singleton.h"
 
+#ifndef BLOCK_H
+#define BLOCK_H
+
 class Block : public Singleton<Block>
 {
-private :
+private:
   friend class Singleton<Block>;
   Block();
 
+public:
   int red = 0;
   int blue = 0;
   int green = 0;
@@ -22,3 +26,5 @@ private :
   }
   */
 };
+
+#endif
