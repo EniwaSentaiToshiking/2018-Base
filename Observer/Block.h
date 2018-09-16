@@ -10,12 +10,12 @@ private:
   Block();
 
 public:
-  int red = 0;
-  int blue = 0;
-  int green = 0;
-  int yellow = 0;
+  int red = 2;
+  int blue = 8;
+  int green = 6;
+  int yellow = 13;
   int black1 = 0;
-  int black2 = 0;
+  int black2 = 1;
 
   // デフォルトコンストラクタ以外でインスタンスを構築したい場合、createInstance()を上書きする
   /*

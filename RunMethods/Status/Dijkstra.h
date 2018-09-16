@@ -79,6 +79,7 @@ class Dijkstra
     Dijkstra();
     int pat[4][60];
     int direct_color[4][60];
+    int now_point[4][60];
     
     void setBlock(int x[4]);//ブロックの位置を決める
     void run();
