@@ -20,7 +20,10 @@ struct DeleteObject
 enum RunState {
     COURSE_RUN,
     AI_RUN,
+    PARKING,
     STOP,
+    GAME,
+    AIBLOCKMOVE,
 };
 
 class RunManager;

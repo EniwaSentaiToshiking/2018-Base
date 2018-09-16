@@ -19,6 +19,7 @@ bool RunStatus::run(){
 bool RunStatus::changeNextPattern(){
     if(currentPattern < patterns.size() - 1){
         currentPattern++;
+        ev3_speaker_play_tone (480,100);
     }else {
         return true;
     }

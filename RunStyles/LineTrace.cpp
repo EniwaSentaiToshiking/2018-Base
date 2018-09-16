@@ -1,9 +1,10 @@
 #include "LineTrace.h"
 
-LineTrace::LineTrace(PID *pid, int targetBrightness){
+LineTrace::LineTrace(PID *pid, int targetBrightness, Edge edge){
     courceMonitor = new CourceMonitor();
     this->pid = pid;
     this->targetBrightness = targetBrightness;
+    this->edge = edge;
 }
 
 LineTrace::~LineTrace(){
@@ -11,7 +12,11 @@ LineTrace::~LineTrace(){
 }
 
 int LineTrace::getTurnValue(){
-    return pidController->getTurn(this->pid, this->courceMonitor->getCurrentBrightness(), this->targetBrightness, 100);
+    int turn = pidController->getTurn(this->pid, this->courceMonitor->getCurrentBrightness(), this->targetBrightness, 100);
+
+    if(this->edge == RIGHT) turn = turn * -1;
+
+    return turn;
 }
 
 int LineTrace::getTurnValueByOnOFF(){

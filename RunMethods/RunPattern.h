@@ -7,11 +7,14 @@
 #include "PointDetecter.h"
 #include "DistanceDetecter.h"
 #include "DirectionDetecter.h"
-#include "TimeDetecter.h"
 #include "ColorDetecter.h"
+#include "DetectType.h"
 #include "RunCommander.h"
 #include "ArmCommander.h"
 #include "TailCommander.h"
+
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 #ifndef RUNPATTERN_H
 #define RUNPATTERN_H
@@ -35,6 +38,8 @@ private:
     float threshold = 0;
     Lot *nextLot;
     int brightness = 20;
+    Edge edge = LEFT;
+    TurningDirection direction = DIRECTION_LEFT;
 
     bool isInitializeDetecter = false;
 
@@ -42,8 +47,12 @@ private:
     void createDetecter();
 
 public:
-    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60);
+    //ライントレース or 直進走行
+    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60, Edge edge = LEFT);
+    //コース走行
     RunPattern(Pattern pattern, int speed, Lot *threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60);
+    //旋回走行
+    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, TurningDirection direction);
 
     void init();
 

@@ -30,8 +30,17 @@ void RunManager::changeStatus(RunState state){
         case AI_RUN:
             status = new AIRun();
             break;
+        case PARKING:
+            status = new Parking(course);
+            break;
         case STOP:
             status = new Stop();
+            break;
+        case GAME: 
+            status = new Game();
+            break;
+        case AIBLOCKMOVE:
+            status = new AiBlockMove();
             break;
     }
 }

@@ -2,6 +2,7 @@
 #include "Localization.h"
 #include "Lot.h"
 #include "ev3api.h"
+#include "Logger.h"
 
 #ifndef POINTDETECTER_H
 #define POINTDETECTER_H
@@ -11,6 +12,9 @@ class PointDetecter : public Detecter
   private:
     Localization *local;
     Lot *threshold;
+
+    //Logger *loggerX;
+    //Logger *loggerY;
 
   public:
     PointDetecter(Lot *threshold);

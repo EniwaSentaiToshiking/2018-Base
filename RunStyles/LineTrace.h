@@ -4,15 +4,21 @@
 #ifndef LINETRACE_H
 #define LINETRACE_H
 
+enum Edge {
+    LEFT, RIGHT,
+};
+
 class LineTrace : public RunStyle {
 
 private:
     CourceMonitor *courceMonitor;
     int targetBrightness = 20;
     int speed = 0;
+    Edge edge = LEFT;
 
 public:
-    LineTrace(PID *pid, int targetBrightness);
+    LineTrace(PID *pid, int targetBrightness, Edge edge);
+    void init(){};
 
     /**
      * getTurnValue - ライントレース時(PID制御)の操作量を取得

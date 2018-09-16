@@ -9,9 +9,12 @@ class Spin : public RunStyle {
 private:
     WheelInfo *wheelInfo;
     int speed;
+    TurningDirection direction;
+    int32_t *beginCount;
 
 public:
-    Spin(int speed);
+    Spin(TurningDirection direction, int speed);
+    void init();
     int getTurnValue();
     virtual ~Spin();
 };

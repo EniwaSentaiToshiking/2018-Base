@@ -8,8 +8,10 @@ APPL_CXXOBJS += \
     PointDetecter.o \
     DistanceDetecter.o \
     DirectionDetecter.o \
-    TimeDetecter.o \
     ColorDetecter.o \
+    BlackLineDetecter.o \
+    BrightnessDetecter.o \
+    ClockDetecter.o \
     SonarSensorDriver.o \
     TouchSensorDriver.o \
     ColorSensorDriver.o \
@@ -31,6 +33,7 @@ APPL_CXXOBJS += \
     Logger.o \
     RunStatus.o \
     CourseRun.o \
+    Parking.o \
     Stop.o \
     RunStyle.o \
     LineTrace.o \
@@ -44,6 +47,10 @@ APPL_CXXOBJS += \
     AnalogLog.o \
     DigitalLog.o \
     AIAnswer.o \
+    Dijkstra.o \
+    Game.o \
+    AiBlockMove.o \
+    Block.o \
 
 SRCLANG := c++
 

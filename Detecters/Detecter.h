@@ -3,11 +3,6 @@
 #ifndef DETECTER_H
 #define DETECTER_H
 
-
-enum DetectType {
-    POINT, GRAYLINE, DISTANCE, DIRECTION, COLOR, TIME
-};
-
 class Detecter {
 
 public:

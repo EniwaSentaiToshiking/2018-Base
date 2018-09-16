@@ -1,6 +1,9 @@
 #include "CourseRun.h"
 #include "AIRun.h"
+#include "Parking.h"
 #include "Stop.h"
+#include "Game.h"
+#include "AiBlockMove.h"
 
 #ifndef RUNMANAGER_H
 #define RUNMANAGER_H
