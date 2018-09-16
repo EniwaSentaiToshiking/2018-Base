@@ -12,7 +12,8 @@ RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float thresh
     init();
 }
 
-RunPattern::RunPattern(Pattern pattern, int speed, Lot *threshold, float p, float i, float d, int brightness){
+RunPattern::RunPattern(Pattern pattern, int speed, Lot *threshold, float p, float i, float d, int brightness)
+{
     this->pattern = pattern;
     this->speed = speed;
     this->detectType = POINT;
@@ -22,15 +23,26 @@ RunPattern::RunPattern(Pattern pattern, int speed, Lot *threshold, float p, floa
     init();
 }
 
-RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, TurningDirection direction){
+RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, TurningDirection direction)
+{
     this->pattern = pattern;
-    this->speed = speed;
+
+    if (this->pattern == SPIN)
+    {
+        this->speed = abs(speed);
+    }
+    else
+    {
+        this->speed = speed;
+    }
     this->detectType = type;
     this->threshold = threshold;
     this->direction = direction;
+    init();
 }
 
-void RunPattern::init(){
+void RunPattern::init()
+{
     runCommander = new RunCommander();
     armCommander = new ArmCommander();
     tailCommander = new TailCommander();
@@ -62,7 +74,7 @@ void RunPattern::createRunStyle()
         runStyle = new Turning(this->direction, this->speed);
         break;
     case SPIN:
-        runStyle = new Spin(this->direction, abs(this->speed));
+        runStyle = new Spin(this->direction, this->speed);
         break;
     case BRAKE:
         runStyle = new Straight(this->speed);
@@ -104,7 +116,8 @@ void RunPattern::createDetecter()
 
 bool RunPattern::run()
 {
-    if(!isInitializeDetecter) {
+    if (!isInitializeDetecter)
+    {
         detecter->init();
         runStyle->init();
         isInitializeDetecter = true;
@@ -114,13 +127,17 @@ bool RunPattern::run()
     tailCommander->rotateDefault();
     armCommander->rotateDefault();
 
-    if(this->pattern == BRAKE) {
+    if (this->pattern == BRAKE)
+    {
         runCommander->steerStop();
-    }else {
+    }
+    else
+    {
         runCommander->steer(this->speed, turn);
     }
 
-    if(detecter->detect()) return true;
-    
+    if (detecter->detect())
+        return true;
+
     return false;
 }
