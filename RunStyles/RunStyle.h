@@ -5,7 +5,7 @@
 #define RUNSTYLE_H
 
 enum TurningDirection{
-    DIRECTION_LEFT, DERECTION_RIGHT,
+    DIRECTION_LEFT, DIRECTION_RIGHT,
 };
 
 class RunStyle {
