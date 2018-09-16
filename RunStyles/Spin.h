@@ -1,6 +1,5 @@
 #include "RunStyle.h"
 #include "WheelInfo.h"
-#include "Logger.h"
 
 #ifndef SPIN_H
 #define SPIN_H
@@ -10,12 +9,11 @@ class Spin : public RunStyle {
 private:
     WheelInfo *wheelInfo;
     int speed;
-    int threshold;
-    Logger *logger;
+    TurningDirection direction;
     int32_t *beginCount;
 
 public:
-    Spin(int threshold, int speed);
+    Spin(TurningDirection direction, int speed);
     void init();
     int getTurnValue();
     virtual ~Spin();

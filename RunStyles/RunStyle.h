@@ -4,6 +4,10 @@
 #ifndef RUNSTYLE_H
 #define RUNSTYLE_H
 
+enum TurningDirection{
+    DIRECTION_LEFT, DIRECTION_RIGHT,
+};
+
 class RunStyle {
 
 protected:
