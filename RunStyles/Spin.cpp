@@ -25,7 +25,7 @@ int Spin::getTurnValue(){
 
     int turn = 100 + pidController->getTurn(this->pid, diff, 0, 100);
 
-    if(this->direction >= 0) {
+    if(this->direction == DIRECTION_LEFT) {
         turn *= -1;
     }
 

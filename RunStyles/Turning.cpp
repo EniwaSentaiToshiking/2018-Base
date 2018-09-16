@@ -19,7 +19,7 @@ int Turning::getTurnValue(){
     int32_t *info = wheelInfo->getCount();
     int32_t error = (info[0] - beginCount[0]) - (info[1] - beginCount[1]);
     int turn = 50;
-    if(this->direction >= DIRECTION_LEFT){
+    if(this->direction == DIRECTION_LEFT){
         turn += pidController->getTurn(this->pid, error, (info[0] - beginCount[0]) * -1, 100);
         turn = turn * -1;
     }else {
