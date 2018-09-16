@@ -80,6 +80,10 @@ void RunPattern::createDetecter()
         break;
     case COLOR:
         this->detecter = new ColorDetecter(this->threshold);
+        break;
+    case TIME:
+        this->detecter = new TimeDetecter(this->threshold);
+        break;
     }
 }
 
@@ -98,9 +102,9 @@ bool RunPattern::run()
         runCommander->steerStop();
     }else if(this->pattern == SPIN){
         if(this->threshold < 0){
-            runCommander->run(speed, (speed + turn) * -1);
+            runCommander->run(speed+turn, speed * -1);
         }else {
-            runCommander->run(speed * -1, speed + turn);
+            runCommander->run((speed+turn) * -1, speed);
         }
     }else {
         runCommander->steer(this->speed, turn);

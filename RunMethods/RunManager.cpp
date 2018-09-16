@@ -2,7 +2,8 @@
 
 RunManager::RunManager()
 {
-    status = new CourseRun(course);
+    // status = new CourseRun(course);
+    status = new AIRun();
 }
 
 RunManager::~RunManager()
@@ -12,7 +13,7 @@ RunManager::~RunManager()
 
 void RunManager::init()
 {
-    status->init();
+    //status->init();
 }
 
 void RunManager::run()
@@ -25,6 +26,9 @@ void RunManager::changeStatus(RunState state){
     switch(state){
         case COURSE_RUN:
             status = new CourseRun(course);
+            break;
+        case AI_RUN:
+            status = new AIRun();
             break;
         case STOP:
             status = new Stop();

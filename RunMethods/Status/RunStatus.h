@@ -19,6 +19,7 @@ struct DeleteObject
 //走行状態
 enum RunState {
     COURSE_RUN,
+    AI_RUN,
     STOP,
 };
 

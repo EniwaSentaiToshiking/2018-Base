@@ -1,4 +1,5 @@
 #include "CourseRun.h"
+#include "AIRun.h"
 #include "Stop.h"
 
 #ifndef RUNMANAGER_H
@@ -8,7 +9,8 @@ class RunManager {
 
 private:
     Course course = L;
-    RunState state = COURSE_RUN;
+    // RunState state = COURSE_RUN;
+    RunState state = AI_RUN;
     RunStatus *status;
 
 public:

@@ -44,6 +44,8 @@ void Localization::update()
 
 void Localization::distance_reset()
 {
+    leftMotor->reset();
+    rightMotor->reset();
     x0 = 0.0;
     y0 = 0.0;
     z0 = 0.0;

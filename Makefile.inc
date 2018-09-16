@@ -8,6 +8,7 @@ APPL_CXXOBJS += \
     PointDetecter.o \
     DistanceDetecter.o \
     DirectionDetecter.o \
+    TimeDetecter.o \
     ColorDetecter.o \
     SonarSensorDriver.o \
     TouchSensorDriver.o \
@@ -39,6 +40,10 @@ APPL_CXXOBJS += \
     Spin.o \
     RunPattern.o \
     RunManager.o \
+    AIRun.o \
+    AnalogLog.o \
+    DigitalLog.o \
+    AIAnswer.o \
 
 SRCLANG := c++
 
@@ -59,6 +64,7 @@ APPL_DIR += \
     $(mkfile_path)/RunMethods \
     $(mkfile_path)/RunMethods/Commanders \
     $(mkfile_path)/RunMethods/Status \
+    $(mkfile_path)/AI \
 
 INCLUDES += \
     -I$(mkfile_path)/Detecters \
@@ -70,3 +76,4 @@ INCLUDES += \
     -I$(mkfile_path)/RunMethods \
     -I$(mkfile_path)/RunMethods/Commanders \
     -I$(mkfile_path)/RunMethods/Status \
+    -I$(mkfile_path)/AI \
