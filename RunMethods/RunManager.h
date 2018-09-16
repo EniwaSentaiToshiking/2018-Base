@@ -11,7 +11,7 @@ class RunManager {
 
 private:
     Course course = L;
-    RunState state = AIBLOCKMOVE;
+    RunState state = COURSE_RUN;
     RunStatus *status;
 
 public:
