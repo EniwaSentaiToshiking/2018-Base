@@ -109,7 +109,7 @@ colorid_t CourceMonitor::getColorNumber()
     S = max - min;
 
     //閾値で色判定
-    if (S < 40)
+    if (S < 18)
     {
         return COLOR_BLACK;
     }
@@ -129,6 +129,7 @@ colorid_t CourceMonitor::getColorNumber()
     {
         return COLOR_BLUE;
     }
+    else if (H)
 
     return COLOR_NONE;
 }

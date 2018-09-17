@@ -17,6 +17,6 @@ void BrightnessDetecter::init(){
 bool BrightnessDetecter::detect()
 {
     int currentBrightness = courceMonitor->getCurrentBrightness();
-    if(currentBrightness == threshold) return true;
+    if(currentBrightness <= threshold + 1 && currentBrightness >= threshold - 1) return true;
     return false;
 }

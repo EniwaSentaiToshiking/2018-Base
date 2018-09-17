@@ -3,10 +3,10 @@
 
 #include "CourceMonitor.h"
 #include "Logger.h"
-#include <list>
-#include <algorithm>
+#include <vector>
 
 #define NULL_NUMBER -100
+#define POOL_SIZE 1024
 
 using namespace std;
 
@@ -18,12 +18,12 @@ public:
   DigitalLog();
   ~DigitalLog();
   void logging();
-  void push(int);
   void saveLog(char* filename);
   void finishLogging();
-  int i; 
-  int j;
-  int brightnessLog[5][1024];
+  int* getSeries(int x);
+  int i = 0;
+  int j = 0;
+  int brightnessLog[5][POOL_SIZE];
 };
 
 #endif
