@@ -3,6 +3,7 @@
 #include "Straight.h"
 #include "Turning.h"
 #include "Spin.h"
+#include "Clothoid.h"
 #include "DetectType.h"
 #include "RunCommander.h"
 #include "ArmCommander.h"
@@ -15,7 +16,7 @@
 #define RUNPATTERN_H
 
 enum Pattern {
-    LINE_TRACE, STRAIGHT, TURNING, SPIN, BRAKE,
+    LINE_TRACE, STRAIGHT, TURNING, SPIN, BRAKE, CLOTHOID,
 };
 
 class RunPattern {
