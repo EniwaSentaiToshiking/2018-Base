@@ -20,7 +20,10 @@ int Clothoid::getTurnValue(){
     int32_t error = (info[0] - beginCount[0]) - (info[1] - beginCount[1]);
 
     //Todo params調整        周期      どのくらい旋回量を上昇させるか
-    //if(++count == (speed * ??) / 4) turn += ??; 
+    // if(++count == (speed * ??) / 4) {
+    //     turn += ??;
+    //     count = 0;
+    // } 
 
     if(turn >= 50){
         turn = 50;
