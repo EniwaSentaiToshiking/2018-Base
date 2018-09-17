@@ -34,7 +34,6 @@ void Localization::update()
     point_y = y1; //現在の座標を実際に取得する値
     current_distance += D;
     current_direction += w*(180/M_PI);
-    //current_direction = z1;
 
     x0 = x1;
     y0 = y1;
