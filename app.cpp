@@ -4,6 +4,7 @@
 #include "UI.h"
 #include "RunManager.h"
 #include "Block.h"
+#include "Answer.h"
 
 using namespace ev3api;
 
@@ -96,7 +97,9 @@ void main_task(intptr_t unused)
                 block.black1 = black[0];
                 block.black2 = black[1];
             }else if(course == L){
-
+                Answer &answer = Answer::singleton();
+                answer.analog = analogAnswer;
+                answer.hasAnswer = true;
             }
             bt_cmd = -1;
         }
