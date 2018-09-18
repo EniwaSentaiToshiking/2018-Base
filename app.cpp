@@ -32,6 +32,7 @@ ArmMotorDriver *armMotor;
 
 int color[4];
 int black[2];
+int analogAnswer = 8;
 
 const Course course = L;
 
@@ -152,6 +153,11 @@ void bt_task(intptr_t unused)
 
         if (course == L)
         {
+            if (c - 48 >= 0 && c - 48 <= 7){
+                analogAnswer = c - 48;
+                bt_cmd = 1;
+                break;
+            }
         }
         else if (course == R)
         {
