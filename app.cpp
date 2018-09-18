@@ -33,6 +33,7 @@ ArmMotorDriver *armMotor;
 int color[4];
 int black[2];
 
+const Course course = L;
 
 /* ���C���^�X�N */
 void main_task(intptr_t unused)
@@ -41,7 +42,7 @@ void main_task(intptr_t unused)
     /* �e�I�u�W�F�N�g�𐶐��E���������� */
     clock = new Clock();
     ui = new UI();
-    runManager = new RunManager();
+    runManager = new RunManager(course);
     armMotor = new ArmMotorDriver();
 
     /* Open Bluetooth file */

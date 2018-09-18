@@ -10,12 +10,12 @@
 class RunManager {
 
 private:
-    Course course = L;
+    Course course;
     RunState state = COURSE_RUN;
     RunStatus *status;
 
 public:
-    RunManager();
+    RunManager(Course course);
 
     /**
      * init - 走行前の初期設定
