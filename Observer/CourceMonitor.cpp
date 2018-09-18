@@ -109,7 +109,7 @@ colorid_t CourceMonitor::getColorNumber()
     S = max - min;
 
     //閾値で色判定
-    if (S < 40)
+    if (S < 20)
     {
         return COLOR_BLACK;
     }
@@ -117,7 +117,7 @@ colorid_t CourceMonitor::getColorNumber()
     {
         return COLOR_RED;
     }
-    else if (H >= 60 && H < 76)
+    else if (H >= 40 && H < 76)
     {
         return COLOR_YELLOW;
     }

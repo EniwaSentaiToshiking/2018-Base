@@ -614,20 +614,20 @@ void Dijkstra::directColor(){
 		}
 	}
 	for(int i=0;i<4;i++){
-		int x=0;
+		now_point_num=0;
 		for(int j=1;j<30;j++){
 			if(to_block_route[i][j]!=-1){
-				now_point[i][x]=to_block_route[i][j];
-				direct_color[i][x]=colorArea(to_block_route[i][j]);
-				x++;	
+				now_point[i][now_point_num]=to_block_route[i][j];
+				direct_color[i][now_point_num]=colorArea(to_block_route[i][j]);
+				now_point_num++;	
 			}
 		}
-		x--;
+		now_point_num--;
 		for(int j=0;j<30;j++){
 			if(to_area_route[i][j]!=-1){
-				now_point[i][x]=to_area_route[i][j];
-				direct_color[i][x]=colorArea(to_area_route[i][j]);
-				x++;
+				now_point[i][now_point_num]=to_area_route[i][j];
+				direct_color[i][now_point_num]=colorArea(to_area_route[i][j]);
+				now_point_num++;
 			}
 		}
 	}
@@ -657,6 +657,79 @@ int Dijkstra::colorArea(int area){
 			return BLUE;
 	}
 	return 0;
+}
+
+void Dijkstra::escape(){
+	int es_start = 0;
+	for(int i=0;i<30;i++){
+		if(to_area_route[3][i]!=-1){
+			es_start = to_area_route[3][i];
+		}
+	}
+	initNode();
+	setStart(es_start);
+	setDestination(11);
+	setNodeCount(16);
+	setEdgeCount(48);
+	setNode();
+	es_cost = calCost(start, distination);
+	int a[30];
+	for(int i=0;i<30;i++){
+		a[i]=-1;
+	}
+	int node = distination;
+	int num = 0;
+	a[num] = node;
+	while(1){
+		num++;
+    	node = VIA[node];
+    	a[num] = node;
+    	if (node == start) {
+    		break;
+    	}
+  	}
+
+  	for(int j=0;j<30;j++){
+		es_pat[j]=-1;
+		es_route[j]=-1;
+	}
+
+  	num = 0;
+  	for(int i=29;i>-1;i--){
+  		if(a[i]!=-1){
+  			es_route[num] = a[i];
+  			num++;
+  		}
+  	}
+	pat_num = 0;
+	for(int j=0;j<60;j++){
+		if(es_route[j+1]!=-1){
+			if(es_route[j]==block[0]||es_route[j]==block[1]||es_route[j]==block[2]||es_route[j]==block[3]){
+				es_pat[pat_num]=REL;
+				pat_num++;
+			}
+			int now = es_route[j];
+			int next = es_route[j+1];
+			int next_state = stateCheck(now,next);
+			es_pat[pat_num]=checkTurn(next_state);
+			pat_num++;
+			es_pat[pat_num]=ST;
+			pat_num++;
+			now_state = next_state;
+		}else{
+			break;
+		}
+	}
+
+	for(int j=0;j<30;j++){
+		es_direct_color[j]=-1;
+	}
+
+	for(int j=1;j<30;j++){
+		if(es_route[j]!=-1){
+			es_direct_color[j]=colorArea(es_route[j]);
+		}
+	}
 }
 
 void Dijkstra::run(){
