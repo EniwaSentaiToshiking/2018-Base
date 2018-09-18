@@ -64,7 +64,9 @@ void main_task(intptr_t unused)
 
         if (ui->isTouched())
         {
-            fprintf(bt, "%d\n", 5);
+            if(course == R){
+                fprintf(bt, "%d\n", 5);
+            }
             break; /* �^�b�`�Z���T�������ꂽ */
         }
 
