@@ -5,7 +5,7 @@
 #ifndef BRACKLINEDETECTER_H
 #define BRACKLINEDETECTER_H
 
-#define WHITE 80 //白値判断基準閾値
+#define WHITE 90 //白値判断基準閾値
 #define BLACK 25 //黒値判断基準閾値
 
 typedef enum {
