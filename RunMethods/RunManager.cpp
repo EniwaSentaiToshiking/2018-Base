@@ -39,5 +39,8 @@ void RunManager::changeStatus(RunState state){
         case AIBLOCKMOVE:
             status = new AiBlockMove();
             break;
+        case AI_RUN:
+            status = new AIRun();
+            break;
     }
 }

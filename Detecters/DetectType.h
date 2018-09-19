@@ -3,6 +3,7 @@
 #include "PointDetecter.h"
 #include "DistanceDetecter.h"
 #include "DirectionDetecter.h"
+#include "AdaptiveDirectionDetecter.h"
 #include "ColorDetecter.h"
 #include "BlackLineDetecter.h"
 #include "BrightnessDetecter.h"
@@ -12,7 +13,7 @@
 #define DETECTTYPE_H
 
 enum DetectType {
-    POINT, GRAYLINE, DISTANCE, DIRECTION, COLOR, BLACKLINE, BRIGHTNESS, CLOCK,
+    POINT, GRAYLINE, DISTANCE, DIRECTION, ADAPTIVEDIRECTION, COLOR, BLACKLINE, BRIGHTNESS, CLOCK,
 };
 
 #endif
