@@ -6,7 +6,7 @@ Straight::Straight(int speed){
     this->speed = speed;
 
     if(speed == 20 || speed == 17 || speed==10) {
-        pid = new PID(2.0, 0.0, 0.01);
+        pid = new PID(1.0, 0.0, 0.00);
     } else if(speed > 0){
         pid = new PID(1.0, 0.0, 0.01);
     } else {

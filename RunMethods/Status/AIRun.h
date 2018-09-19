@@ -10,10 +10,10 @@
 #define SLOW 10
 #define NORMAL 17
 #define HIGH 20
-#define AI_GREEN_WHITE  100
-#define AI_GREEN_WHITER 110
-#define AI_WHITE 120
-#define EDGE 50
+#define AI_GREEN_WHITE  80
+#define AI_GREEN_WHITER 90
+#define AI_WHITE 100
+#define EDGE 40
 
 
 enum LogType {
@@ -21,6 +21,7 @@ enum LogType {
   DIGITAL_LOG,
   DIGITAL_ANSWER,
   ANALOG_ANSWER,
+  LOCALIZATION_RESET,
   NONE_LOG,
 };
 
@@ -41,6 +42,7 @@ class AIRun : public RunStatus
     AnalogLog* analogLog;
     DigitalLog* digitalLog;
     AIAnswer *answer;
+    Localization *localization;
 
   public:
     AIRun();

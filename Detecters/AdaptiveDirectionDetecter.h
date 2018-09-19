@@ -16,6 +16,7 @@ class AdaptiveDirectionDetecter : public Detecter
     int prev_direction;
     int direction;
     int absDirection(int);
+    Logger* logger;
 
   public:
     AdaptiveDirectionDetecter(int direction);

@@ -4,6 +4,7 @@ AdaptiveDirectionDetecter::AdaptiveDirectionDetecter(int direction)
 {
     local = new Localization();
     this->direction= direction;
+    logger = new Logger("adaptive.log");
 }
 
 AdaptiveDirectionDetecter::~AdaptiveDirectionDetecter()
@@ -18,8 +19,10 @@ void AdaptiveDirectionDetecter::init(){
 bool AdaptiveDirectionDetecter::detect()
 {
     local->update();
-    int direction = absDirection(local->getCurrentDirection());
+    logger->logging(local->getCurrentDirection());
+    int direction = absDirection(local->getCurrentDirection()*45.0/44.0);
     return (direction-1 <= this->direction) && (this->direction <= direction+1);
+    // return direction == this->direction;
 }
 
 int AdaptiveDirectionDetecter::absDirection(int x) {
