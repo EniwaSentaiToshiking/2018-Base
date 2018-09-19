@@ -247,16 +247,7 @@ int Game::jumpDirection(int before_point, int now_point){
 }
 
 void Game::startGame(){
-
-    //edge_line = Line_R;
-    //straight(YELLOW);
-    //jump();
-    //straight(BLUE);
-    // release(JUMP,8,4);
-    // straight(GREEN);
-
     //ここからゲーム開始
-    
     patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 100, 0.6, 0.00, 0.03, 70));
     patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_RED, 0.6, 0.0, 0.03, 25));
     Block &block = Block::singleton();
