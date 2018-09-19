@@ -49,7 +49,6 @@ class Dijkstra
     int block_area[4];
     int settled_block[4];//RYGB
     int pat_num;
-    int now_state;
     int block[4];//RYGB
     int start_area;
     int to_block_route[4][30];
@@ -84,6 +83,13 @@ class Dijkstra
     void setBlock(int x[4]);//ブロックの位置を決める
     void run();
     void createPat();
+    void escape();
+    int es_cost;
+    int es_route[30];
+    int es_pat[30];
+    int es_direct_color[30];
+    int now_point_num;
+    int now_state;
 
     virtual ~Dijkstra();
 };
