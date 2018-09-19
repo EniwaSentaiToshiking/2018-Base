@@ -85,6 +85,7 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, COLOR, COLOR_GREEN));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_WHITE)); //白まで前
+    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     
     setNextState();
 }
@@ -111,28 +112,32 @@ bool AIRun::run() {
             ev3_speaker_play_tone(400,400);
             digitalLog->finishLogging();
         }
+        if(shouldLogging() == ANALOG_LOG) {
+            ev3_speaker_play_tone(400,400);
+            analogLog->finishLogging();
+        }
+        if(shouldLogging() == DIGITAL_ANSWER) {
+            int digiNum = answer->answerDigital(digitalLog);
+            Answer &ans = Answer::singleton();
+            ans.digital = digiNum;
+            char num[10];
+            sprintf(num, "%d", digiNum);
+            ev3_lcd_set_font(EV3_FONT_MEDIUM);
+            ev3_lcd_draw_string(num, 10, 60);
+        }
+        if(shouldLogging() == ANALOG_ANSWER) {
+            analogLog->sendToServer();
+        }
         bool isFinishStatus = changeNextPattern();
         if(isFinishStatus) return true;
     } 
 
     // Logging
-    if(shouldLogging() == ANALOG_LOG){
-        analogLog->logging();
-    }
     if(shouldLogging() == DIGITAL_LOG) {
         digitalLog->logging();
     }
-    if(shouldLogging() == DIGITAL_ANSWER) {
-        int digiNum = answer->answerDigital(digitalLog);
-        Answer &ans = Answer::singleton();
-        ans.digital = digiNum;
-        char num[10];
-        sprintf(num, "%d", digiNum);
-        ev3_lcd_set_font(EV3_FONT_MEDIUM);
-        ev3_lcd_draw_string(num, 10, 60);
-    }
-    if(shouldLogging() == ANALOG_ANSWER) {
-        analogLog->sendToServer();
+    if(shouldLogging() == ANALOG_LOG){
+        analogLog->logging();
     }
     if(shouldLogging() == LOCALIZATION_RESET) {
         this->localization->distance_reset();

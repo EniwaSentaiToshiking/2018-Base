@@ -41,6 +41,7 @@ void AnalogLog::sendToServer() {
   int writableLog;
   FILE* bt = ev3_serial_open_file(EV3_SERIAL_BT);
   assert(bt != NULL);
+  ev3_speaker_play_tone (480,100);
   for(int x=0; x<2; x++) {
     for(int y=0; y<POOL_SIZE; y++) {
       writableLog = brightnessLog[x][y];
