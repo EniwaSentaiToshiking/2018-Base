@@ -117,6 +117,9 @@ void RunPattern::createDetecter()
     case CLOCK:
         this->detecter = new ClockDetecter(this->threshold);
         break;
+    case GOT_ANSWER:
+        this->detecter = new GotAnswerDetecter();
+        break;
     }
 }
 

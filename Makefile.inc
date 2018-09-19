@@ -13,6 +13,7 @@ APPL_CXXOBJS += \
     BrightnessDetecter.o \
     ClockDetecter.o \
     AdaptiveDirectionDetecter.o \
+    GotAnswerDetecter.o \
     SonarSensorDriver.o \
     TouchSensorDriver.o \
     ColorSensorDriver.o \
@@ -36,6 +37,7 @@ APPL_CXXOBJS += \
     CourseRun.o \
     Parking.o \
     Stop.o \
+    Wait.o \
     RunStyle.o \
     LineTrace.o \
     Grid.o \

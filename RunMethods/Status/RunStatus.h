@@ -24,6 +24,7 @@ enum RunState {
     GAME,
     AIBLOCKMOVE,
     AI_RUN,
+    WAIT,
 };
 
 class RunManager;

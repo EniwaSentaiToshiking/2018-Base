@@ -48,5 +48,5 @@ void AIAnswer::printResult(bool a[]) {
 }
 
 int AIAnswer::answerAnalog(AnalogLog* log) {
-
+  return 0;
 }

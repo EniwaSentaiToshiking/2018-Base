@@ -1,5 +1,6 @@
 #include "RunStatus.h"
 #include "Course.h"
+#include "Answer.h"
 
 class AiBlockMove : public RunStatus
 {
@@ -27,6 +28,6 @@ class AiBlockMove : public RunStatus
     AiBlockMove();
     void init();
     void setNextState();
-    void aians_Input(int Predict_Ana_Num , int Predict_Deg_Num);
+    void aians_Input();
     virtual ~AiBlockMove();
 };

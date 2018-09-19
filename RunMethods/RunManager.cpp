@@ -42,5 +42,8 @@ void RunManager::changeStatus(RunState state){
         case AI_RUN:
             status = new AIRun();
             break;
+        case WAIT:
+            status = new Wait();
+            break;
     }
 }

@@ -49,7 +49,7 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 13)); //第五回
 
     patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, 0, DIRECTION_LEFT));
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 10));
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 15));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_WHITE));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 3));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
@@ -79,7 +79,7 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 26)); //アナログ数字第2回
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN_WHITE)); //緑まで前
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 15));
+    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 17));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, -90, DIRECTION_RIGHT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
@@ -101,7 +101,7 @@ void AIRun::init(){
 }
 
 void AIRun::setNextState(){
-    nextState = AIBLOCKMOVE;
+    nextState = WAIT;
 }
 
 bool AIRun::run() {
