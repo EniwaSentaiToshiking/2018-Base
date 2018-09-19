@@ -48,6 +48,7 @@ APPL_CXXOBJS += \
     Game.o \
     AiBlockMove.o \
     Block.o \
+    Answer.o \
 
 SRCLANG := c++
 
