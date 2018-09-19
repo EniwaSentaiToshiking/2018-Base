@@ -1,10 +1,9 @@
 #include "DirectionDetecter.h"
 
-DirectionDetecter::DirectionDetecter(int threshold, int shouldBeDirection)
+DirectionDetecter::DirectionDetecter(int threshold)
 {
     local = new Localization();
     this->threshold = threshold;
-    this->shouldBeDirection = shouldBeDirection;
 }
 
 DirectionDetecter::~DirectionDetecter()
@@ -14,11 +13,7 @@ DirectionDetecter::~DirectionDetecter()
 
 void DirectionDetecter::init(){
     local->update();
-    if(shouldBeDirection == 999) {
-        prev_direction = local->getCurrentDirection();
-    } else {
-        prev_direction = shouldBeDirection;
-    }
+    prev_direction = local->getCurrentDirection();
 }
 
 bool DirectionDetecter::detect()

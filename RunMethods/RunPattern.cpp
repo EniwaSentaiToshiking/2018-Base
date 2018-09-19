@@ -1,6 +1,6 @@
 #include "RunPattern.h"
 
-RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p, float i, float d, int brightness, Edge edge, Compare compare)
+RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p, float i, float d, int brightness, Edge edge)
 {
     this->pattern = pattern;
     this->speed = speed;
@@ -8,8 +8,6 @@ RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float thresh
     this->threshold = threshold;
     this->brightness = brightness;
     this->edge = edge;
-    this->compare = compare;
-    this->shouldBeDirection = shouldBeDirection;
     pid = new PID(p, i, d);
     init();
 }
@@ -25,7 +23,7 @@ RunPattern::RunPattern(Pattern pattern, int speed, Lot *threshold, float p, floa
     init();
 }
 
-RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, TurningDirection direction, int shouldBeDirection = 999)
+RunPattern::RunPattern(Pattern pattern, int speed, DetectType type, float threshold, TurningDirection direction)
 {
     this->pattern = pattern;
 
@@ -102,7 +100,10 @@ void RunPattern::createDetecter()
         this->detecter = new DistanceDetecter(this->threshold);
         break;
     case DIRECTION:
-        this->detecter = new DirectionDetecter(this->threshold, this->shouldBeDirection);
+        this->detecter = new DirectionDetecter(this->threshold);
+        break;
+    case ADAPTIVEDIRECTION:
+        this->detecter = new AdaptiveDirectionDetecter(this->threshold);
         break;
     case COLOR:
         this->detecter = new ColorDetecter(this->threshold);
@@ -111,7 +112,7 @@ void RunPattern::createDetecter()
         this->detecter = new BlackLineDetecter(this->threshold);
         break;
     case BRIGHTNESS:
-        this->detecter = new BrightnessDetecter(this->threshold, this->compare);
+        this->detecter = new BrightnessDetecter(this->threshold);
         break;
     case CLOCK:
         this->detecter = new ClockDetecter(this->threshold);

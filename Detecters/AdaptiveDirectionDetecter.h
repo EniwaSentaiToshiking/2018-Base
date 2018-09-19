@@ -2,19 +2,23 @@
 #include "Localization.h"
 #include "Lot.h"
 #include "ev3api.h"
+#include "Logger.h"
+#include <cmath>
 
-#ifndef DIRECTIONDETECTER_H
-#define DIRECTIONDETECTER_H
+#ifndef ADAPTIVEDIRECTIONDETECTER_H
+#define ADAPTIVEDIRECTIONDETECTER_H
 
-class DirectionDetecter : public Detecter
+class AdaptiveDirectionDetecter : public Detecter
 {
   private:
     Localization *local;
     int threshold;
     int prev_direction;
+    int direction;
+    int absDirection(int);
 
   public:
-    DirectionDetecter(int threshold);
+    AdaptiveDirectionDetecter(int direction);
 
     void init();
     /**
@@ -24,7 +28,7 @@ class DirectionDetecter : public Detecter
      * @return {bool}         true 検出した, false 検出しなかった 
      */
     bool detect();
-    virtual ~DirectionDetecter();
+    virtual ~AdaptiveDirectionDetecter();
 };
 
 #endif
