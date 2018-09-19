@@ -26,7 +26,7 @@ bool AIAnswer::answerDigitalSegment(int logSegment[]) {
 }
 
 int AIAnswer::detectDigitalNumber(bool a[]) {
-  // this->printResult(a);
+  this->printResult(a);
   if( a[0] &&  a[1] &&  a[2] && !a[3] &&  a[4]) return 0;
   if( a[0] && !a[1] && !a[2] && !a[3] && !a[4]) return 1;
   if( a[0] && !a[1] &&  a[2] &&  a[3] &&  a[4]) return 2;

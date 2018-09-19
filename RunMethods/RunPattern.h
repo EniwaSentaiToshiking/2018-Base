@@ -8,6 +8,8 @@
 #include "DistanceDetecter.h"
 #include "DirectionDetecter.h"
 #include "ColorDetecter.h"
+#include "BrightnessDetecter.h"
+#include "Clothoid.h"
 #include "DetectType.h"
 #include "RunCommander.h"
 #include "ArmCommander.h"
@@ -20,7 +22,7 @@
 #define RUNPATTERN_H
 
 enum Pattern {
-    LINE_TRACE, STRAIGHT, TURNING, SPIN, BRAKE,
+    LINE_TRACE, STRAIGHT, TURNING, SPIN, BRAKE, CLOTHOID,
 };
 
 class RunPattern {
@@ -40,6 +42,8 @@ private:
     int brightness = 20;
     Edge edge = LEFT;
     TurningDirection direction = DIRECTION_LEFT;
+    Compare compare = EQUAL;
+    int shouldBeDirection = 999;
 
     bool isInitializeDetecter = false;
 
@@ -48,11 +52,11 @@ private:
 
 public:
     //ライントレース or 直進走行
-    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60, Edge edge = LEFT);
+    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60, Edge edge = LEFT, Compare comp=EQUAL);
     //コース走行
     RunPattern(Pattern pattern, int speed, Lot *threshold, float p = 0.0, float i = 0.0, float d = 0.0, int brightness = 60);
     //旋回走行
-    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, TurningDirection direction);
+    RunPattern(Pattern pattern, int speed, DetectType type, float threshold, TurningDirection direction, int shouldBeDirection);
 
     void init();
 

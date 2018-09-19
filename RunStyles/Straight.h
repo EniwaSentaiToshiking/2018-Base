@@ -1,5 +1,6 @@
 #include "RunStyle.h"
 #include "WheelInfo.h"
+#include "Logger.h"
 
 #ifndef STRAIGHT_H
 #define STRAIGHT_H

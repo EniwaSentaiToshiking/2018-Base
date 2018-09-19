@@ -41,6 +41,7 @@ APPL_CXXOBJS += \
     Straight.o \
     Turning.o \
     Spin.o \
+    Clothoid.o \
     RunPattern.o \
     RunManager.o \
     AIRun.o \

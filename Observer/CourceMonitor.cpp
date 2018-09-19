@@ -113,6 +113,10 @@ colorid_t CourceMonitor::getColorNumber()
     {
         return COLOR_BLACK;
     }
+    else if (S < 50 && max > 90)
+    {
+        return COLOR_WHITE;
+    }
     else if (H >= 0 && H < 30)
     {
         return COLOR_RED;

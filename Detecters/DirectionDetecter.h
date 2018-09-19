@@ -12,9 +12,10 @@ class DirectionDetecter : public Detecter
     Localization *local;
     int threshold;
     int prev_direction;
+    int shouldBeDirection;
 
   public:
-    DirectionDetecter(int threshold);
+    DirectionDetecter(int threshold, int shouldBeDirection);
 
     void init();
     /**

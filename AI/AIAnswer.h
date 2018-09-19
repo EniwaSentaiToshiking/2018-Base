@@ -1,8 +1,8 @@
 #include "DigitalLog.h"
 #include "AnalogLog.h"
 
-#define THRESH_1 70
-#define THRESH_2 7
+#define THRESH_1 40
+#define THRESH_2 10
 
 
 class AIAnswer {

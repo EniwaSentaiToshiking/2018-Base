@@ -11,6 +11,7 @@ private:
 public:
 	Logger(const char *file_name);
 	void logging(float data);
+	void logging(float, float);
 
 	virtual ~Logger();
 };

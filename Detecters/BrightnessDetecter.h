@@ -5,14 +5,21 @@
 #ifndef BRIGHTNESSDETECTER_H
 #define BRIGHTNESSDETECTER_H
 
+enum Compare{
+  EQUAL,
+  LT,
+  GT
+};
+
 class BrightnessDetecter : public Detecter
 {
   private:
     CourceMonitor *courceMonitor;
     int threshold;
+    Compare compare;
 
   public:
-    BrightnessDetecter(int threshold);
+    BrightnessDetecter(int threshold, Compare compare);
 
     void init();
     /**

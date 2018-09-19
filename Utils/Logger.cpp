@@ -14,3 +14,8 @@ void Logger::logging(float data)
 {
     fprintf(log_file, "%f\n", data);
 }
+
+void Logger::logging(float data1, float data2)
+{
+    fprintf(log_file, "%f,%f\n", data1, data2);
+}
