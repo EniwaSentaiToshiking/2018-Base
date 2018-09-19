@@ -10,7 +10,7 @@
 class RunManager {
 
 private:
-    Course course = R;
+    Course course = L;
     RunState state = COURSE_RUN;
     RunStatus *status;
 
