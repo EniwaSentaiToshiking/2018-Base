@@ -1,22 +1,18 @@
 #include "Singleton.h"
 
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef ANSWER_H
+#define ANSWER_H
 
-class Block : public Singleton<Block>
+class Answer : public Singleton<Answer>
 {
 private:
-  friend class Singleton<Block>;
-  Block();
+  friend class Singleton<Answer>;
+  Answer();
 
 public:
-  int red = 1;
-  int yellow = 2;
-  int green = 12;
-  int blue = 8;
-  int black1 = 0;
-  int black2 = 1;
-
+  bool hasAnswer = false;
+  int analog = 0;
+  int digital = 0;
   // デフォルトコンストラクタ以外でインスタンスを構築したい場合、createInstance()を上書きする
   /*
   Hoge(int) { std::cout << "Hoge(int)" << std::endl; }

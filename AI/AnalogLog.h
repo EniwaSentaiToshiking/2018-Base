@@ -24,6 +24,7 @@ public:
   int i = 0;
   int j = 0;
   int brightnessLog[2][POOL_SIZE];
+  void sendToServer();
 };
 
 #endif

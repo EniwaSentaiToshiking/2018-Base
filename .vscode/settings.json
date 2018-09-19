@@ -5,6 +5,7 @@
     "vector": "cpp",
     "string": "cpp",
     "locale": "cpp",
-    "ios": "cpp"
+    "ios": "cpp",
+    "atomic": "cpp"
   }
 }

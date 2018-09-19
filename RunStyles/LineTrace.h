@@ -1,6 +1,5 @@
 #include "RunStyle.h"
 #include "CourceMonitor.h"
-#include "Logger.h"
 
 #ifndef LINETRACE_H
 #define LINETRACE_H
@@ -16,7 +15,6 @@ private:
     int targetBrightness = 20;
     int speed = 0;
     Edge edge = LEFT;
-    Logger* logger;
 
 public:
     LineTrace(PID *pid, int targetBrightness, Edge edge, int speed);

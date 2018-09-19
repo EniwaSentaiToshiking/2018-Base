@@ -1,9 +1,9 @@
 #include "RunManager.h"
 
-RunManager::RunManager()
+RunManager::RunManager(Course course)
 {
-    // status = new CourseRun(course);
-    status = new AIRun();
+    this->course = course;
+    changeStatus(this->state);
 }
 
 RunManager::~RunManager()
@@ -23,6 +23,10 @@ void RunManager::run()
 }
 
 void RunManager::changeStatus(RunState state){
+    static bool isStarted = false;
+    if(isStarted) {
+        delete status;
+    }
     switch(state){
         case COURSE_RUN:
             status = new CourseRun(course);
@@ -43,4 +47,5 @@ void RunManager::changeStatus(RunState state){
             status = new AiBlockMove();
             break;
     }
+    isStarted = true;
 }

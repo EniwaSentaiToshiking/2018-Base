@@ -5,7 +5,7 @@
 #ifndef BRACKLINEDETECTER_H
 #define BRACKLINEDETECTER_H
 
-#define WHITE 110 //白値判断基準閾値
+#define WHITE 80 //白値判断基準閾値
 #define BLACK 25 //黒値判断基準閾値
 
 typedef enum {
@@ -28,8 +28,8 @@ class BlackLineDetecter : public Detecter
     /**
      * detect - 黒ラインの条件検知
      *
-     * @param  {void}      
-     * @return {bool}         true 検出した, false 検出しなかった 
+     * @param  {void}
+     * @return {bool}         true 検出した, false 検出しなかった
      */
     bool detect();
     virtual ~BlackLineDetecter();

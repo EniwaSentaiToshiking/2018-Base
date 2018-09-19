@@ -49,7 +49,6 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 13)); //第五回
 
     patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, 0, DIRECTION_LEFT));
-    // patterns.push_back(new RunPattern(STRAIGHT, NORMAL, COLOR, COLOR_GREEN));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 10));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_WHITE));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 3));
@@ -80,13 +79,12 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 26)); //アナログ数字第2回
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN_WHITE)); //緑まで前
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 10));
+    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 15));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, 90, DIRECTION_RIGHT));
+    patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, -90, DIRECTION_RIGHT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 10));
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, COLOR, COLOR_GREEN));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_WHITE)); //白まで前
-    patterns.push_back(new RunPattern(BRAKE, 0, DISTANCE, 10));
     
     setNextState();
 }
@@ -102,6 +100,7 @@ void AIRun::init(){
 }
 
 void AIRun::setNextState(){
+    // nextState = AIBLOCKMOVE;
     nextState = STOP;
 }
 
@@ -126,13 +125,15 @@ bool AIRun::run() {
     }
     if(shouldLogging() == DIGITAL_ANSWER) {
         int digiNum = answer->answerDigital(digitalLog);
-        char num[10];
-        sprintf(num, "%d", digiNum);
-        ev3_lcd_set_font(EV3_FONT_MEDIUM);
-        ev3_lcd_draw_string(num, 10, 60);
+        Answer &ans = Answer::singleton();
+        ans.digital = digiNum;
+        // char num[10];
+        // sprintf(num, "%d", digiNum);
+        // ev3_lcd_set_font(EV3_FONT_MEDIUM);
+        // ev3_lcd_draw_string(num, 10, 60);
     }
     if(shouldLogging() == ANALOG_ANSWER) {
-        answer->answerAnalog(analogLog);
+        analogLog->sendToServer();
     }
     if(shouldLogging() == LOCALIZATION_RESET) {
         this->localization->distance_reset();
@@ -142,8 +143,6 @@ bool AIRun::run() {
 }
 
 void AIRun::saveLog() {
-    digitalLog->saveLog("digitalNumber.log");
-    analogLog->saveLog("analogNumber.log");
 }
 
 LogType AIRun::shouldLogging() {

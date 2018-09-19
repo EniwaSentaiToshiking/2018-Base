@@ -36,3 +36,18 @@ void AnalogLog::saveLog(char* filename) {
   }
   delete fileLogger;
 }
+
+void AnalogLog::sendToServer() {
+  int writableLog;
+  FILE* bt = ev3_serial_open_file(EV3_SERIAL_BT);
+  assert(bt != NULL);
+  for(int x=0; x<2; x++) {
+    for(int y=0; y<POOL_SIZE; y++) {
+      writableLog = brightnessLog[x][y];
+      if(writableLog == NULL_NUMBER) break;
+      fprintf(bt, "%d\n", writableLog);
+    }
+  }
+  fprintf(bt, "%c\n", '.');
+  fclose(bt);
+}
