@@ -1,6 +1,6 @@
 mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 
-APPL_COBJS += 
+APPL_COBJS +=
 
 APPL_CXXOBJS += \
     ObjectDetecter.o \
@@ -41,12 +41,14 @@ APPL_CXXOBJS += \
     Straight.o \
     Turning.o \
     Spin.o \
+    Clothoid.o \
     RunPattern.o \
     RunManager.o \
     Dijkstra.o \
     Game.o \
     AiBlockMove.o \
     Block.o \
+    Answer.o \
 
 SRCLANG := c++
 

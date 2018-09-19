@@ -4,6 +4,7 @@
 #include "UI.h"
 #include "RunManager.h"
 #include "Block.h"
+#include "Answer.h"
 
 using namespace ev3api;
 
@@ -32,7 +33,9 @@ ArmMotorDriver *armMotor;
 
 int color[4];
 int black[2];
+int analogAnswer = 8;
 
+const Course course = L;
 
 /* ���C���^�X�N */
 void main_task(intptr_t unused)
@@ -41,7 +44,7 @@ void main_task(intptr_t unused)
     /* �e�I�u�W�F�N�g�𐶐��E���������� */
     clock = new Clock();
     ui = new UI();
-    runManager = new RunManager();
+    runManager = new RunManager(course);
     armMotor = new ArmMotorDriver();
 
     /* Open Bluetooth file */
@@ -63,7 +66,9 @@ void main_task(intptr_t unused)
 
         if (ui->isTouched())
         {
-            fprintf(bt, "%d\n", 5);
+            if(course == R){
+                fprintf(bt, "%d\n", 5);
+            }
             break; /* �^�b�`�Z���T�������ꂽ */
         }
 
@@ -81,14 +86,21 @@ void main_task(intptr_t unused)
         if (ev3_button_is_pressed(BACK_BUTTON))
             break;
 
-        if(bt_cmd == 1){
-            Block &block = Block::singleton();
-            block.red = color[0];
-            block.yellow = color[1];
-            block.green = color[2];
-            block.blue = color[3];
-            block.black1 = black[0];
-            block.black2 = black[1];
+        if (bt_cmd == 1)
+        {
+            if(course == R){
+                Block &block = Block::singleton();
+                block.red = color[0];
+                block.yellow = color[1];
+                block.green = color[2];
+                block.blue = color[3];
+                block.black1 = black[0];
+                block.black2 = black[1];
+            }else if(course == L){
+                Answer &answer = Answer::singleton();
+                answer.analog = analogAnswer;
+                answer.hasAnswer = true;
+            }
             bt_cmd = -1;
         }
 
@@ -103,18 +115,25 @@ void main_task(intptr_t unused)
     ext_tsk();
 }
 
-void get_color(int color_pos[4], char all_pos[256]){
-    for (int i = 0; i < 4; i++ ){
-        if (all_pos[2 * i] == '0'){
+void get_color(int color_pos[4], char all_pos[256])
+{
+    for (int i = 0; i < 4; i++)
+    {
+        if (all_pos[2 * i] == '0')
+        {
             color_pos[i] = all_pos[(2 * i) + 1] - 48;
-        }else{
+        }
+        else
+        {
             color_pos[i] = 10 + all_pos[(2 * i) + 1] - 48;
         }
     }
 }
 
-void get_black(int black_pos[2], char all_pos[256]){
-    for (int i = 0; i < 2; i++ ){
+void get_black(int black_pos[2], char all_pos[256])
+{
+    for (int i = 0; i < 2; i++)
+    {
         black_pos[i] = all_pos[i + 8] - 48;
     }
 }
@@ -130,21 +149,40 @@ void bt_task(intptr_t unused)
 {
     char tmp[256];
     int count = 0;
-    while(1)
+
+    while (1)
     {
         uint8_t c = fgetc(bt); /* 受信 */
-        if (c - 48 >= 0 && c - 48 <= 9 && count <= 9){
-            if(count == 0){
-                snprintf(tmp, 255, "%d", c - 48);
-            }else{
-                snprintf(tmp, 255, "%s%d", tmp, c - 48);
+
+        if (course == L)
+        {
+            if (c - 48 >= 0 && c - 48 <= 7){
+                analogAnswer = c - 48;
+                bt_cmd = 1;
+                break;
             }
-            count ++;
-        } else  if (count == 10){
-            get_color(color, tmp);
-            get_black(black, tmp);
-            //bt_cmd = 1;
-            break;
+        }
+        else if (course == R)
+        {
+            if (c - 48 >= 0 && c - 48 <= 9 && count <= 9)
+            {
+                if (count == 0)
+                {
+                    snprintf(tmp, 255, "%d", c - 48);
+                }
+                else
+                {
+                    snprintf(tmp, 255, "%s%d", tmp, c - 48);
+                }
+                count++;
+            }
+            else if (count == 10)
+            {
+                get_color(color, tmp);
+                get_black(black, tmp);
+                //bt_cmd = 1;
+                break;
+            }
         }
         fputc(c, bt); /* エコーバック */
     }

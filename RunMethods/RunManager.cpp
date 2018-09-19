@@ -1,7 +1,8 @@
 #include "RunManager.h"
 
-RunManager::RunManager()
+RunManager::RunManager(Course course)
 {
+    this->course = course;
     changeStatus(this->state);
 }
 

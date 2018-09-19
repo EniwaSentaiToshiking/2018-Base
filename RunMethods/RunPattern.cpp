@@ -76,6 +76,9 @@ void RunPattern::createRunStyle()
     case SPIN:
         runStyle = new Spin(this->direction, this->speed);
         break;
+    case CLOTHOID:
+        runStyle = new Clothoid(this->direction, this->speed);
+        break;
     case BRAKE:
         runStyle = new Straight(this->speed);
         break;

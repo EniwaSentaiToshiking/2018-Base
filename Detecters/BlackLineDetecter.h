@@ -28,8 +28,8 @@ class BlackLineDetecter : public Detecter
     /**
      * detect - 黒ラインの条件検知
      *
-     * @param  {void}      
-     * @return {bool}         true 検出した, false 検出しなかった 
+     * @param  {void}
+     * @return {bool}         true 検出した, false 検出しなかった
      */
     bool detect();
     virtual ~BlackLineDetecter();
