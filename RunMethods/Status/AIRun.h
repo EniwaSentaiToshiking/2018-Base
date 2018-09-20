@@ -29,21 +29,23 @@ enum LogType {
 class AIRun : public RunStatus
 {
   private:
-    unsigned int logPattern[90] = {
+    unsigned int logPattern[100] = {
       0,0,0,0,0,0,0,0,0,0,
       0,0,0,0,0,0,0,1,1,0,
       0,0,0,0,0,0,0,0,1,0,
       0,0,0,0,1,1,3,0,0,0,
       0,0,0,0,0,0,0,0,0,0,
       0,0,0,0,2,0,0,0,0,0,
-      0,0,0,0,2,0,0,0,0,0,
-      0,0,0,4,0,0,0,0,0,0,
+      0,0,0,0,2,4,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
       0,0,0,0,0,0,0,0,0,0,
     };
     AnalogLog* analogLog;
     DigitalLog* digitalLog;
     AIAnswer *answer;
     Localization *localization;
+    const float nomal_pid[3] =  {1.3,0.0,0.02};
 
 
   public:

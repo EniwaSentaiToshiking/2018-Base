@@ -85,8 +85,24 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, COLOR, COLOR_GREEN));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_WHITE)); //白まで前
-    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    
+
+    //ブロック側
+    patterns.push_back(new RunPattern(STRAIGHT,   25, BLACKLINE, 1));
+    patterns.push_back(new RunPattern(STRAIGHT,   15, DISTANCE,  3));
+    patterns.push_back(new RunPattern(SPIN,       15, DIRECTION,  90, DIRECTION_LEFT));
+    patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE,   10,         nomal_pid[0], nomal_pid[1], nomal_pid[2], 80, RIGHT));
+    patterns.push_back(new RunPattern(STRAIGHT,   12, BRIGHTNESS, 10));
+    patterns.push_back(new RunPattern(STRAIGHT,   15, DISTANCE,   5));
+    patterns.push_back(new RunPattern(SPIN,       15, DIRECTION,  -90, DIRECTION_RIGHT));
+    //patterns.push_back(new RunPattern(STRAIGHT,  -speed_slow, DISTANCE,  -3));
+    //0レーン目到着
+    //1レーン目進行
+    patterns.push_back(new RunPattern(LINE_TRACE, 15, DISTANCE,   20,         nomal_pid[0], nomal_pid[1], nomal_pid[2], 80,LEFT));
+    patterns.push_back(new RunPattern(STRAIGHT, 12, BRIGHTNESS, 10));
+    //1レーン目到着
+    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 500));
+    patterns.push_back(new RunPattern(STRAIGHT,   12, DISTANCE,   5));
+    // patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 500));
     setNextState();
 }
 
