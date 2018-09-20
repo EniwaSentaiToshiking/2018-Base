@@ -47,6 +47,8 @@ colorid_t CourceMonitor::getColorNumber()
     int min = 0;
     colorid_t max_rgb = COLOR_NONE;
 
+    int B = (0.299 * red) + (0.587 * green) + (0.114 * blue);
+
     //rgbの最小値計算
     if (red <= green && red <= blue)
     {
@@ -109,7 +111,7 @@ colorid_t CourceMonitor::getColorNumber()
     S = max - min;
 
     //閾値で色判定
-    if (S < 24)
+    if (S < 24 || B < 30)
     {
         return COLOR_BLACK;
     }
