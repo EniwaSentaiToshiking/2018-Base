@@ -32,7 +32,7 @@ void Parking::createCourseL(){
 
 void Parking::createCourseR(){
     /*直角駐車*/
-    patterns.push_back(new RunPattern(STRAIGHT, 10, BLACKLINE, 1));
+    patterns.push_back(new RunPattern(STRAIGHT, 20, BLACKLINE, 1));
     patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE, 3));
     patterns.push_back(new RunPattern(SPIN, 10, BLACKLINE, 0));
     patterns.push_back(new RunPattern(LINE_TRACE, 15, GRAYLINE, 50, 1.5, 0.0, 0.03, 30, RIGHT));
