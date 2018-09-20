@@ -80,6 +80,7 @@ void Game::turnBack(){
 void Game::release(int direction, int before_point, int now_point){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
     patterns.push_back(new RunPattern(STRAIGHT, -20, DISTANCE, 12));
+    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
     int jump_direction = jumpDirection(before_point, now_point);
     switch(direction){
         case JUMP:
@@ -160,10 +161,10 @@ void Game::release(int direction, int before_point, int now_point){
 void Game::jump(){
     patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 12));
     if(edge_line==Line_L){
-        patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 5, DIRECTION_LEFT));
+        patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 15, DIRECTION_LEFT));
         edge_line = Line_L;
     }else{
-        patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, -5, DIRECTION_RIGHT));
+        patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, -15, DIRECTION_RIGHT));
         edge_line = Line_R;
     }
 }
