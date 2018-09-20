@@ -2,7 +2,7 @@
 
 AIRun::AIRun(){
     
-    localization = new Localization();
+    localization = new Localization(true);
     localization->distance_reset();
 
     analogLog  = new AnalogLog();

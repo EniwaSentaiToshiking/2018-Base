@@ -42,7 +42,7 @@ private:
   WheelMotorDriver *rightMotor;
 
 public:
-  Localization();
+  Localization(bool reset = false);
   void update();
   void distance_reset();
   float getCurrentDirection();

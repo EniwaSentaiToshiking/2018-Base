@@ -1,12 +1,17 @@
 #include "Localization.h"
 
-Localization::Localization()
+Localization::Localization(bool reset)
 {
     leftMotor = new WheelMotorDriver(PORT_C);
     rightMotor = new WheelMotorDriver(PORT_B);
 
     distance_reset();
+    if(reset) {
+        r1 = rightMotor->getCount();
+        l1 = leftMotor->getCount();
+    }
 }
+
 Localization::~Localization()
 {
 }
