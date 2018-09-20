@@ -16,25 +16,25 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN , HIGH, BRIGHTNESS, AI_GREEN_WHITE, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(LINE_TRACE,  NORMAL, BRIGHTNESS, EDGE, 1.5, 0.0, 0.025, 90, RIGHT));
-    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100)); //リセット
-    patterns.push_back(new RunPattern(STRAIGHT , -NORMAL, DISTANCE, 3));
+    patterns.push_back(new RunPattern(LINE_TRACE,  NORMAL, BRIGHTNESS, EDGE, 1.5, 0.0, 0.025, AI_GREEN_WHITE, RIGHT));
+    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
+    patterns.push_back(new RunPattern(STRAIGHT , -NORMAL, DISTANCE, 0));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, HIGH, DIRECTION, 15, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(SPIN, HIGH, BRIGHTNESS, AI_GREEN_WHITE, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 21, 1.5, 0.0, 0.025, 90, LEFT));
+    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 26, 1.5, 0.0, 0.025, AI_GREEN_WHITE, LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, 0, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 11)); //第一回
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 13)); //第二回
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN_WHITE)); //緑まで前
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 3));
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN)); //緑まで前
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 0));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, HIGH, BRIGHTNESS, AI_GREEN_WHITE, DIRECTION_LEFT)); //白まで回転
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 13, 1.5, 0.0, 0.025, 90, LEFT));
+    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 15, 1.5, 0.0, 0.025, 90, LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, -180, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
@@ -49,7 +49,7 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 13)); //第五回
 
     patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, 0, DIRECTION_LEFT));
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 15));
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 17));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_WHITE));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 3));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
@@ -57,34 +57,35 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, BRIGHTNESS, EDGE, 1.5, 0.0, 0.025, AI_GREEN_WHITE, RIGHT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100)); //リセット
-    patterns.push_back(new RunPattern(STRAIGHT , -NORMAL, DISTANCE, 5));
+    patterns.push_back(new RunPattern(STRAIGHT , -NORMAL, DISTANCE, 0));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, HIGH, DIRECTION, 15, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(SPIN, HIGH, BRIGHTNESS, AI_GREEN_WHITE, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 21, 1.5, 0.0, 0.025, 90, LEFT));
+    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 26, 1.5, 0.0, 0.025, AI_GREEN_WHITE, LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, 90, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 20)); //アナログ数字第一回
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN_WHITE)); //緑まで前
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 3));
+    patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 26)); //アナログ数字第一回
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN)); //緑まで前
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 0));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, BRIGHTNESS, AI_WHITE, DIRECTION_LEFT)); //白まで回転
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 15, 1.5, 0.0, 0.025, 90, LEFT));
+    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 15, 1.5, 0.0, 0.025, AI_GREEN_WHITE, LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, 90, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 26)); //アナログ数字第2回
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN_WHITE)); //緑まで前
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 17));
+    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 25));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, -90, DIRECTION_RIGHT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, COLOR, COLOR_GREEN));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_WHITE)); //白まで前
+    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
 
     //ブロック側
     patterns.push_back(new RunPattern(STRAIGHT,   25, BLACKLINE, 1));

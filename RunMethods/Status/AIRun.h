@@ -14,6 +14,7 @@
 #define AI_GREEN_WHITE  80
 #define AI_GREEN_WHITER 90
 #define AI_WHITE 100
+#define AI_GREEN 35
 #define EDGE 40
 
 
