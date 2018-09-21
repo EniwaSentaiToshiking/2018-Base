@@ -249,10 +249,10 @@ int Game::jumpDirection(int before_point, int now_point){
 
 void Game::startGame(){
     /*
+    edge_line = Line_L;
     straight(YELLOW);
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 1000));
 
-    edge_line = Line_L;
     straight(RED);
     release(TR,11,13);
     straight(BLUE);
