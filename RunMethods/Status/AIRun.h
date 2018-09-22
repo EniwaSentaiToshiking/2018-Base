@@ -15,7 +15,8 @@
 #define AI_GREEN_WHITER 85
 #define AI_WHITE 95
 #define AI_GREEN 30
-#define EDGE 35
+#define EDGE1 35
+#define EDGE2 40
 
 
 enum LogType {
