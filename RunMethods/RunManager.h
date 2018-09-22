@@ -11,7 +11,7 @@ class RunManager {
 
 private:
     Course course;
-    RunState state = COURSE_RUN;
+    RunState state = GAME;
     RunStatus *status;
 
 public:

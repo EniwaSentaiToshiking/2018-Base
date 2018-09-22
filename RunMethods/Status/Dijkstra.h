@@ -67,7 +67,7 @@ class Dijkstra
     void searchSameColorBlockArea(int color);
     int colorCheck(int x);
     int searchMinBlock(int u);
-    int searchMinBlockArea(int u);
+    int searchMinBlockArea(int u, int carry_block);
     int stateCheck(int x, int y);
     void setPat(int i, int now, int next);
     int checkTurn(int next_state);

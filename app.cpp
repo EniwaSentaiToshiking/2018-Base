@@ -180,7 +180,7 @@ void bt_task(intptr_t unused)
             {
                 get_color(color, tmp);
                 get_black(black, tmp);
-                bt_cmd = 1;
+                //bt_cmd = 1;
                 break;
             }
         }
