@@ -374,7 +374,8 @@ void Game::startGame(){
             }
         }
     }
-    switch(dijkstra->now_state){
+    if(dijkstra->block[2]==11){
+        switch(dijkstra->now_state){
         case UP:
             patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
             patterns.push_back(new RunPattern(STRAIGHT, -20, DISTANCE, 12));
@@ -398,5 +399,23 @@ void Game::startGame(){
             patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 30));
             patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 45, DIRECTION_LEFT));
             break;
+        }
+    }else{
+        switch(dijkstra->now_state){
+        case UP:
+            patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 6));
+            patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, -80, DIRECTION_RIGHT));
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 10));
+            break;
+        case RIG:
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 15));
+            break;
+        case DOWN:
+            patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
+            patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 80, DIRECTION_LEFT));
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 10));
+            break;
+        }
     }
 }

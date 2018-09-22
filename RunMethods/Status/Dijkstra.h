@@ -49,7 +49,6 @@ class Dijkstra
     int block_area[4];
     int settled_block[4];//RYGB
     int pat_num;
-    int block[4];//RYGB
     int to_block_route[4][30];
     int to_area_route[4][30];
 
@@ -90,6 +89,7 @@ class Dijkstra
     int now_point_num;
     int now_state;
     int start_area;
+    int block[4];//RYGB
 
     virtual ~Dijkstra();
 };
