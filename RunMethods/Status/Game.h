@@ -14,7 +14,7 @@ class Game : public RunStatus
     void straight(int color);
     void turnR();
     void turnL();
-    void turnBack();
+    void turnBack(int catch_flag);
     void jump();
     void release(int direction, int before_point, int now_point);
     void blockcatch(int direction);
