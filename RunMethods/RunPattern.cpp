@@ -102,6 +102,9 @@ void RunPattern::createDetecter()
     case DIRECTION:
         this->detecter = new DirectionDetecter(this->threshold);
         break;
+    case ADAPTIVEDIRECTION:
+        this->detecter = new AdaptiveDirectionDetecter(this->threshold);
+        break;
     case COLOR:
         this->detecter = new ColorDetecter(this->threshold);
         break;
@@ -113,6 +116,9 @@ void RunPattern::createDetecter()
         break;
     case CLOCK:
         this->detecter = new ClockDetecter(this->threshold);
+        break;
+    case GOT_ANSWER:
+        this->detecter = new GotAnswerDetecter();
         break;
     }
 }

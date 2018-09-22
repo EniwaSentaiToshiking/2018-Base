@@ -22,19 +22,19 @@ void CourseRun::init(){
 
 void CourseRun::setNextState(){
     if(this->course == L) {
-        nextState = STOP;
+        nextState = AI_RUN;
     }else if(this->course == R){
         nextState = GAME;
     }
 }
 
 void CourseRun::createCourseL(){
-    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40));
-    patterns.push_back(new RunPattern(LINE_TRACE, 80, DISTANCE, 560, 0.25, 0.0, 0.03, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 120, 0.7, 0.0, 0.03, 40));
-    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 80, 0.7, 0.0, 0.03, 40));
-    patterns.push_back(new RunPattern(LINE_TRACE, 80, DISTANCE, 250, 0.25, 0.0, 0.03, 60));
-    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 90, 0.7, 0.0, 0.03, 70));
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40));//30
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 560, 0.25, 0.01, 0.03, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 120, 0.55, 0.01, 0.03, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 80,  0.6, 0.01, 0.03, 60));//ここ変える３０0.55
+    patterns.push_back(new RunPattern(LINE_TRACE, 50, DISTANCE, 250, 0.7, 0.01, 0.03, 60));
+    patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 90, 0.6, 0.0, 0.03, 80));//30
 }
 
 void CourseRun::createCourseR(){

@@ -1,6 +1,9 @@
 #include "AiBlockMove.h"
 
 AiBlockMove::AiBlockMove(){
+
+  aians_Input();
+
   //patterns.push_back(new RunPattern(BRAKE, 0, DISTANCE, 30));
   patterns.push_back(new RunPattern(STRAIGHT,   25,    BLACKLINE,  blackline));
   patterns.push_back(new RunPattern(STRAIGHT,   speed, DISTANCE,  5));
@@ -115,7 +118,8 @@ void AiBlockMove::setNextState(){
     nextState = PARKING;
 }
 
-void AiBlockMove::aians_Input(int Predict_Ana_Num , int Predict_Deg_Num){
-  ana_ansnum = Predict_Ana_Num;
-  deg_ansnum = Predict_Deg_Num;
+void AiBlockMove::aians_Input(){
+  Answer &answer = Answer::singleton();
+  ana_ansnum = answer.analog;
+  deg_ansnum = answer.digital;
 }

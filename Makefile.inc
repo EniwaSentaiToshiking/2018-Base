@@ -12,6 +12,8 @@ APPL_CXXOBJS += \
     BlackLineDetecter.o \
     BrightnessDetecter.o \
     ClockDetecter.o \
+    AdaptiveDirectionDetecter.o \
+    GotAnswerDetecter.o \
     SonarSensorDriver.o \
     TouchSensorDriver.o \
     ColorSensorDriver.o \
@@ -35,6 +37,7 @@ APPL_CXXOBJS += \
     CourseRun.o \
     Parking.o \
     Stop.o \
+    Wait.o \
     RunStyle.o \
     LineTrace.o \
     Grid.o \
@@ -44,6 +47,10 @@ APPL_CXXOBJS += \
     Clothoid.o \
     RunPattern.o \
     RunManager.o \
+    AIRun.o \
+    AnalogLog.o \
+    DigitalLog.o \
+    AIAnswer.o \
     Dijkstra.o \
     Game.o \
     AiBlockMove.o \
@@ -69,6 +76,7 @@ APPL_DIR += \
     $(mkfile_path)/RunMethods \
     $(mkfile_path)/RunMethods/Commanders \
     $(mkfile_path)/RunMethods/Status \
+    $(mkfile_path)/AI \
 
 INCLUDES += \
     -I$(mkfile_path)/Detecters \
@@ -80,3 +88,4 @@ INCLUDES += \
     -I$(mkfile_path)/RunMethods \
     -I$(mkfile_path)/RunMethods/Commanders \
     -I$(mkfile_path)/RunMethods/Status \
+    -I$(mkfile_path)/AI \
