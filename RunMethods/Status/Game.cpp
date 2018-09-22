@@ -413,6 +413,7 @@ void Game::startGame(){
             break;
         case DOWN:
             patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 2));
             patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 80, DIRECTION_LEFT));
             patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 10));
             break;
