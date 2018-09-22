@@ -35,7 +35,7 @@ int color[4];
 int black[2];
 int analogAnswer = 8;
 
-const Course course = R;
+const Course course = L;
 
 /* ���C���^�X�N */
 void main_task(intptr_t unused)
