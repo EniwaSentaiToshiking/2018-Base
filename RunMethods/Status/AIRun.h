@@ -12,9 +12,17 @@
 #define NORMAL 17
 #define HIGH 20
 #define AI_GREEN_WHITE  80
+<<<<<<< Updated upstream
 #define AI_GREEN_WHITER 90
 #define AI_WHITE 100
 #define EDGE 40
+=======
+#define AI_GREEN_WHITER 85
+#define AI_WHITE 95
+#define AI_GREEN 30
+#define EDGE1 35
+#define EDGE2 40
+>>>>>>> Stashed changes
 
 
 enum LogType {

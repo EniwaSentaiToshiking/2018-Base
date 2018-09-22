@@ -6,13 +6,16 @@
 #include "ColorDetecter.h"
 #include "BlackLineDetecter.h"
 #include "BrightnessDetecter.h"
+#include "BrightnessLowerDetecter.h"
+#include "BrightnessUpperDetecter.h"
 #include "ClockDetecter.h"
 
 #ifndef DETECTTYPE_H
 #define DETECTTYPE_H
 
 enum DetectType {
-    POINT, GRAYLINE, DISTANCE, DIRECTION,ADAPTIVEDIRECTION, COLOR, BLACKLINE, BRIGHTNESS, CLOCK,
+    POINT, GRAYLINE, DISTANCE, DIRECTION, ADAPTIVEDIRECTION, COLOR, BLACKLINE, BRIGHTNESS, CLOCK, GOT_ANSWER,
+    BRIGHTNESSUPPER, BRIGHTNESSLOWER
 };
 
 #endif
