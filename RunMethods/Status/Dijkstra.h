@@ -50,7 +50,6 @@ class Dijkstra
     int settled_block[4];//RYGB
     int pat_num;
     int block[4];//RYGB
-    int start_area;
     int to_block_route[4][30];
     int to_area_route[4][30];
 
@@ -67,7 +66,7 @@ class Dijkstra
     void searchSameColorBlockArea(int color);
     int colorCheck(int x);
     int searchMinBlock(int u);
-    int searchMinBlockArea(int u);
+    int searchMinBlockArea(int u, int carry_block);
     int stateCheck(int x, int y);
     void setPat(int i, int now, int next);
     int checkTurn(int next_state);
@@ -90,6 +89,7 @@ class Dijkstra
     int es_direct_color[30];
     int now_point_num;
     int now_state;
+    int start_area;
 
     virtual ~Dijkstra();
 };
