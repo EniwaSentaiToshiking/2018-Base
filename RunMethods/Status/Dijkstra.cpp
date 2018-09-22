@@ -5,8 +5,6 @@ Dijkstra::Dijkstra(){
 	settled_block[1]=0;
 	settled_block[2]=0;
 	settled_block[3]=0;
-	start_area=8;
-	now_state = RIG;
 }
 
 Dijkstra::~Dijkstra(){
@@ -214,14 +212,59 @@ int Dijkstra::searchMinBlock(int u){
 	return min_block;
 }
 
-int Dijkstra::searchMinBlockArea(int u){
+int Dijkstra::searchMinBlockArea(int u, int carry_block){
 	int min_cost = INF;
 	int min_block_area =0;
 	int carry_block_area=-1;
 	for(int i=0;i<4;i++){
-		if(min_cost > cost[i]){
-			min_block_area = i;
-			min_cost = cost[i];
+		int flag = 0;
+		switch(block_area[i]){
+			case 1:
+			case 4:
+				for(int j=0;j<4;j++){
+					if(block[j]==1||block[j]==4){
+						if(carry_block!=1||carry_block!=4){
+							flag = 1;
+						}
+					}
+				}
+				break;
+			case 2:
+			case 7:
+				for(int j=0;j<4;j++){
+					if(block[j]==2||block[j]==7){
+						if(carry_block!=2||carry_block!=7){
+							flag = 1;
+						}
+					}
+				}
+				break;
+			case 8:
+			case 13:
+				for(int j=0;j<4;j++){
+					if(block[j]==8||block[j]==13){
+						if(carry_block!=8||carry_block!=13){
+							flag = 1;
+						}
+					}
+				}
+				break;
+			case 10:
+			case 15:
+				for(int j=0;j<4;j++){
+					if(block[j]==10||block[j]==15){
+						if(carry_block!=10||carry_block!=15){
+							flag = 1;
+						}
+					}
+				}
+				break;
+		}
+		if(flag!=1){
+			if(min_cost > cost[i]){
+				min_block_area = i;
+				min_cost = cost[i];
+			}
 		}
 	}
 	for(int i=0;i<30;i++){
@@ -720,7 +763,7 @@ void Dijkstra::run(){
 				}
 			}
 		}
-		int carry_area = searchMinBlockArea(u);
+		int carry_area = searchMinBlockArea(u, carry_block);
 		settled_block[carry_block_num]=1;
 		block[carry_block_color]=carry_area;
 		start_area=carry_area;
