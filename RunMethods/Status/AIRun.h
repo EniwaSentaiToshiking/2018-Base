@@ -12,9 +12,10 @@
 #define NORMAL 17
 #define HIGH 20
 #define AI_GREEN_WHITE  80
-#define AI_GREEN_WHITER 90
-#define AI_WHITE 100
-#define EDGE 40
+#define AI_GREEN_WHITER 85
+#define AI_WHITE 95
+#define AI_GREEN 30
+#define EDGE 35
 
 
 enum LogType {
@@ -29,21 +30,23 @@ enum LogType {
 class AIRun : public RunStatus
 {
   private:
-    unsigned int logPattern[90] = {
+    unsigned int logPattern[100] = {
       0,0,0,0,0,0,0,0,0,0,
       0,0,0,0,0,0,0,1,1,0,
       0,0,0,0,0,0,0,0,1,0,
       0,0,0,0,1,1,3,0,0,0,
       0,0,0,0,0,0,0,0,0,0,
+      5,0,0,0,2,0,0,0,0,0,
       0,0,0,0,2,0,0,0,0,0,
-      0,0,0,0,2,0,0,0,0,0,
-      0,0,0,4,0,0,0,0,0,0,
+      0,0,0,2,4,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
       0,0,0,0,0,0,0,0,0,0,
     };
     AnalogLog* analogLog;
     DigitalLog* digitalLog;
     AIAnswer *answer;
     Localization *localization;
+    const float nomal_pid[3] =  {1.3,0.0,0.02};
 
 
   public:

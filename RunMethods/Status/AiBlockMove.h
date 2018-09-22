@@ -5,15 +5,15 @@
 class AiBlockMove : public RunStatus
 {
   private:
-    int ana_ansnum = 2;
-    int deg_ansnum = 5;
+    int ana_ansnum = 0;
+    int deg_ansnum = 0;
     const int speed = 20;//18
     const int speed_slow = 12;//12
     const int spped_half = 15;
     const int speed_high = 28;//25
     const int block_spin =30;
-    const int arm_spin = 150;
-    const int tail_spin = 130;//120
+    const int arm_spin = 130;
+    const int tail_spin = 120;//120
     const int angle_spin = 90;
     const int delay_500 = 100;
     const float strong_pid[3] = {1.2,0.0,0.03};

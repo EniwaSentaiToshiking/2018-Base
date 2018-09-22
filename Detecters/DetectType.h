@@ -7,6 +7,8 @@
 #include "ColorDetecter.h"
 #include "BlackLineDetecter.h"
 #include "BrightnessDetecter.h"
+#include "BrightnessLowerDetecter.h"
+#include "BrightnessUpperDetecter.h"
 #include "ClockDetecter.h"
 #include "GotAnswerDetecter.h"
 
@@ -15,6 +17,7 @@
 
 enum DetectType {
     POINT, GRAYLINE, DISTANCE, DIRECTION, ADAPTIVEDIRECTION, COLOR, BLACKLINE, BRIGHTNESS, CLOCK, GOT_ANSWER,
+    BRIGHTNESSUPPER, BRIGHTNESSLOWER
 };
 
 #endif

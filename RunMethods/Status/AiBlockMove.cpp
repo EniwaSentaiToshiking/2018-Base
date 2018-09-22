@@ -4,24 +4,24 @@ AiBlockMove::AiBlockMove(){
 
   aians_Input();
 
-  //patterns.push_back(new RunPattern(BRAKE, 0, DISTANCE, 30));
-  patterns.push_back(new RunPattern(STRAIGHT,   25,    BLACKLINE,  blackline));
-  patterns.push_back(new RunPattern(STRAIGHT,   speed, DISTANCE,  5));
-  patterns.push_back(new RunPattern(SPIN,       speed, DIRECTION,  angle_spin, DIRECTION_LEFT));
-  patterns.push_back(new RunPattern(LINE_TRACE, speed, DISTANCE,   10,         nomal_pid[0], nomal_pid[1], nomal_pid[2], linenomal_threshold, RIGHT));
-  patterns.push_back(new RunPattern(STRAIGHT,   speed_slow, BRIGHTNESS, brightness));
-  patterns.push_back(new RunPattern(STRAIGHT,   speed, DISTANCE,   7));
-  patterns.push_back(new RunPattern(SPIN,       speed, DIRECTION,  -angle_spin, DIRECTION_RIGHT));
-  //patterns.push_back(new RunPattern(STRAIGHT,  -speed_slow, DISTANCE,  -3));
-  //0レーン目到着
-  //1レーン目進行
-  patterns.push_back(new RunPattern(LINE_TRACE, speed, DISTANCE,   20,         nomal_pid[0], nomal_pid[1], nomal_pid[2], linenomal_threshold,LEFT));
-  patterns.push_back(new RunPattern(STRAIGHT, speed_slow, BRIGHTNESS, brightness));
-  //1レーン目到着
+  // //patterns.push_back(new RunPattern(BRAKE, 0, DISTANCE, 30));
+  // patterns.push_back(new RunPattern(STRAIGHT,   25,    BLACKLINE,  blackline));
+  // patterns.push_back(new RunPattern(STRAIGHT,   speed, DISTANCE,  5));
+  // patterns.push_back(new RunPattern(SPIN,       speed, DIRECTION,  angle_spin, DIRECTION_LEFT));
+  // patterns.push_back(new RunPattern(LINE_TRACE, speed, DISTANCE,   10,         nomal_pid[0], nomal_pid[1], nomal_pid[2], linenomal_threshold, RIGHT));
+  // patterns.push_back(new RunPattern(STRAIGHT,   speed_slow, BRIGHTNESS, brightness));
+  // patterns.push_back(new RunPattern(STRAIGHT,   speed, DISTANCE,   7));
+  // patterns.push_back(new RunPattern(SPIN,       speed, DIRECTION,  -angle_spin, DIRECTION_RIGHT));
+  // //patterns.push_back(new RunPattern(STRAIGHT,  -speed_slow, DISTANCE,  -3));
+  // //0レーン目到着
+  // //1レーン目進行
+  // patterns.push_back(new RunPattern(LINE_TRACE, speed, DISTANCE,   20,         nomal_pid[0], nomal_pid[1], nomal_pid[2], linenomal_threshold,LEFT));
+  // patterns.push_back(new RunPattern(STRAIGHT, speed_slow, BRIGHTNESS, brightness));
+  // //1レーン目到着
 
-  patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, delay_500));
-  patterns.push_back(new RunPattern(STRAIGHT,   speed_slow, DISTANCE,   5));
-  patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, delay_500));
+  // patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, delay_500));
+  // patterns.push_back(new RunPattern(STRAIGHT,   speed_slow, DISTANCE,   5));
+  // patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, delay_500));
 
   //3.解答方向へ回転(if文の中)
   if(ana_ansnum >=4){
