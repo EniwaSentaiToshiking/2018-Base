@@ -263,6 +263,21 @@ void Game::startGame(){
     patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_RED, 0.6, 0.0, 0.03, 25));
     Block &block = Block::singleton();
     int blocks[4]={block.red, block.yellow, block.green, block.blue};
+    int dead_flag = 0;
+    for(int i= 0;i<4;i++){
+        if(blocks[i]==4||blocks[i]==8||blocks[i]==9||blocks[i]==12){
+            dead_flag++;
+        }
+    }
+    if(dead_flag==4){
+        release(TL,1,2);
+        straight(YELLOW);
+        dijkstra->start_area = 4;
+        dijkstra->now_state = UP;
+    }else{
+        dijkstra->start_area = 8;
+        dijkstra->now_state = RIG;
+    }
     dijkstra->setBlock(blocks);
     dijkstra->run();
     dijkstra->createPat();

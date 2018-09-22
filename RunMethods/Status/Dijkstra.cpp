@@ -5,8 +5,6 @@ Dijkstra::Dijkstra(){
 	settled_block[1]=0;
 	settled_block[2]=0;
 	settled_block[3]=0;
-	start_area=8;
-	now_state = RIG;
 }
 
 Dijkstra::~Dijkstra(){
