@@ -47,7 +47,7 @@ colorid_t CourceMonitor::getColorNumber()
     int min = 0;
     colorid_t max_rgb = COLOR_NONE;
 
-    int B = (0.299 * red) + (0.587 * green) + (0.114 * blue);
+    //int B = (0.299 * red) + (0.587 * green) + (0.114 * blue);
 
     //rgbの最小値計算
     if (red <= green && red <= blue)
@@ -115,19 +115,19 @@ colorid_t CourceMonitor::getColorNumber()
     {
         return COLOR_BLACK;
     }
-    else if (H >= 0 && H < 30)
+    if (H >= 10 && H < 30 && S >= 20)
     {
         return COLOR_RED;
     }
-    else if (H >= 40 && H < 76 && B<=40)
+    if (H >= 40 && H < 60 && S >= 40)
     {
         return COLOR_YELLOW;
     }
-    else if (H >= 100 && H < 130)
+    if (H >= 100 && H < 130 && S >= 20)
     {
         return COLOR_GREEN;
     }
-    else if (H >= 155 && H < 210)
+    if (H >= 155 && H < 210 && S >= 20)
     {
         return COLOR_BLUE;
     }
