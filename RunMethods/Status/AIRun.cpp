@@ -1,7 +1,7 @@
 #include "AIRun.h"
 
 AIRun::AIRun(){
-    
+
     localization = new Localization();
     localization->distance_reset();
 
@@ -12,7 +12,7 @@ AIRun::AIRun(){
     /* デジタル走行 */
     patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, COLOR, COLOR_GREEN, 0.3, 0.01, 0.1, 50, LEFT));
     patterns.push_back(new RunPattern(STRAIGHT , NORMAL, BRIGHTNESSUPPER, AI_GREEN_WHITE));
-    patterns.push_back(new RunPattern(STRAIGHT , NORMAL, DISTANCE, 3));
+    patterns.push_back(new RunPattern(STRAIGHT , NORMAL, DISTANCE, 3));//changed by nagai bofore 3
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN , HIGH, BRIGHTNESSLOWER, AI_GREEN_WHITE, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
@@ -159,7 +159,7 @@ bool AIRun::run() {
         }
         bool isFinishStatus = changeNextPattern();
         if(isFinishStatus) return true;
-    } 
+    }
 
     // Logging
     if(shouldLogging() == DIGITAL_LOG) {

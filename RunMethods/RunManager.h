@@ -13,7 +13,7 @@ class RunManager {
 
 private:
     Course course;
-    RunState state = COURSE_RUN;
+    RunState state = AI_RUN;
     RunStatus *status;
 
 public:

@@ -1,4 +1,4 @@
-#ifndef AIRUN_H 
+#ifndef AIRUN_H
 #define AIRUN_H
 
 #include "RunStatus.h"
@@ -11,11 +11,11 @@
 #define SLOW 10
 #define NORMAL 17
 #define HIGH 20
-#define AI_GREEN_WHITE  80
+#define AI_GREEN_WHITE  70//changed by nagai before 80
 #define AI_GREEN_WHITER 85
 #define AI_WHITE 95
-#define AI_GREEN 30
-#define EDGE1 35
+#define AI_GREEN 45//changed by nagai begore 30
+#define EDGE1 40//changed by nagai before 35
 #define EDGE2 40
 
 

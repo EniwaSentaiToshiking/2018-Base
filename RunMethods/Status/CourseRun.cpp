@@ -30,7 +30,7 @@ void CourseRun::setNextState(){
 
 void CourseRun::createCourseL(){
     //安全速度での走行
-    
+
     patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40));//30
     patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 560, 0.25, 0.01, 0.03, 60));
     patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 120, 0.55, 0.01, 0.03, 60));
