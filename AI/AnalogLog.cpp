@@ -2,7 +2,7 @@
 
 AnalogLog::AnalogLog() {
   sensor = new CourceMonitor();
-  fill(brightnessLog[0], brightnessLog[2], NULL_NUMBER);
+  fill(brightnessLog[0], brightnessLog[3], NULL_NUMBER);
 }
 
 AnalogLog::~AnalogLog() {
@@ -26,7 +26,7 @@ int* AnalogLog::getSeries(int i) {
 void AnalogLog::saveLog(char* filename) {
   int writableLog;
   fileLogger = new Logger(filename);
-  for(int x=0; x<2; x++) {
+  for(int x=0; x<3; x++) {
     for(int y=0; y<POOL_SIZE; y++) {
       writableLog = brightnessLog[x][y];
       if(writableLog == NULL_NUMBER) break;
@@ -42,7 +42,7 @@ void AnalogLog::sendToServer() {
   FILE* bt = ev3_serial_open_file(EV3_SERIAL_BT);
   assert(bt != NULL);
   ev3_speaker_play_tone (480,100);
-  for(int x=0; x<2; x++) {
+  for(int x=0; x<3; x++) {
     for(int y=0; y<POOL_SIZE; y++) {
       writableLog = brightnessLog[x][y];
       if(writableLog == NULL_NUMBER) break;

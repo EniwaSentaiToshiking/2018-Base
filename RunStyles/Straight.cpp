@@ -5,9 +5,10 @@ Straight::Straight(int speed){
     this->speed = speed;
     pid = new PID(0,0,0);
 
-    if(speed==10) {
-        pid = new PID(2.5, 0.0, 0.01);
-    }
+    // if(speed==10) {
+    //     pid = new PID(2.5, 0.0, 0.01);
+    // }
+    pid = new PID(2.5, 0.0, 0.01);
 }
 
 Straight::~Straight(){

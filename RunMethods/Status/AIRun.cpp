@@ -2,7 +2,7 @@
 
 AIRun::AIRun(){
     
-    localization = new Localization(true);
+    localization = new Localization();
     localization->distance_reset();
 
     analogLog  = new AnalogLog();
@@ -40,11 +40,11 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 8)); //第三回
     // 下から上へ
-    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 8));
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 9));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, -90, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 5));
+    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 3));
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 13)); //第四回
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 13)); //第五回
 
@@ -64,7 +64,7 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 26, 1.5, 0.0, 0.025, AI_GREEN_WHITE, LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, 90, DIRECTION_LEFT));
+    patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, 90, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 26)); //アナログ数字第一回
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN)); //緑まで前
@@ -72,16 +72,25 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, BRIGHTNESS, AI_WHITE, DIRECTION_LEFT)); //白まで回転
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 15, 1.5, 0.0, 0.025, AI_GREEN_WHITE, LEFT));
+    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 9, 1.5, 0.0, 0.025, AI_GREEN_WHITE, LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, 90, DIRECTION_LEFT));
+    patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, -90, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 26)); //アナログ数字第2回
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(STRAIGHT, -NORMAL, DISTANCE, 25));
+
+    patterns.push_back(new RunPattern(SPIN, NORMAL, BRIGHTNESS, AI_WHITE, DIRECTION_RIGHT)); //白まで回転
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, -90, DIRECTION_RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 11, 1.5, 0.0, 0.025, AI_GREEN_WHITE, RIGHT));
+    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
+    patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, 90, DIRECTION_RIGHT));
+    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
+    patterns.push_back(new RunPattern(STRAIGHT, SLOW, DISTANCE, 26)); //アナログ数字第3回
+    patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_GREEN));
+
+    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
+    patterns.push_back(new RunPattern(SPIN, NORMAL, DIRECTION, 90, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, COLOR, COLOR_GREEN));
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, BRIGHTNESS, AI_WHITE)); //白まで前
@@ -145,6 +154,9 @@ bool AIRun::run() {
         if(shouldLogging() == ANALOG_ANSWER) {
             analogLog->sendToServer();
         }
+        if(shouldLogging() == LOCALIZATION_RESET) {
+            this->localization->distance_reset();
+        }
         bool isFinishStatus = changeNextPattern();
         if(isFinishStatus) return true;
     } 
@@ -155,9 +167,6 @@ bool AIRun::run() {
     }
     if(shouldLogging() == ANALOG_LOG){
         analogLog->logging();
-    }
-    if(shouldLogging() == LOCALIZATION_RESET) {
-        this->localization->distance_reset();
     }
 
     return false;

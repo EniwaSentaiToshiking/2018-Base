@@ -12,10 +12,10 @@
 #define NORMAL 17
 #define HIGH 20
 #define AI_GREEN_WHITE  80
-#define AI_GREEN_WHITER 90
-#define AI_WHITE 100
-#define AI_GREEN 35
-#define EDGE 40
+#define AI_GREEN_WHITER 85
+#define AI_WHITE 95
+#define AI_GREEN 30
+#define EDGE 35
 
 
 enum LogType {
@@ -36,9 +36,9 @@ class AIRun : public RunStatus
       0,0,0,0,0,0,0,0,1,0,
       0,0,0,0,1,1,3,0,0,0,
       0,0,0,0,0,0,0,0,0,0,
+      5,0,0,0,2,0,0,0,0,0,
       0,0,0,0,2,0,0,0,0,0,
-      0,0,0,0,2,4,0,0,0,0,
-      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,2,4,0,0,0,0,0,
       0,0,0,0,0,0,0,0,0,0,
       0,0,0,0,0,0,0,0,0,0,
     };
