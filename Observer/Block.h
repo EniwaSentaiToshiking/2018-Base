@@ -10,9 +10,9 @@ private:
   Block();
 
 public:
-  int red = 1;
-  int yellow = 2;
-  int green = 12;
+  int red = 15;
+  int yellow = 11;
+  int green = 14;
   int blue = 8;
   int black1 = 0;
   int black2 = 1;
