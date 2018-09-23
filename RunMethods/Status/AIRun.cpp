@@ -15,7 +15,7 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(STRAIGHT , NORMAL, DISTANCE, 3));//changed by nagai bofore 3
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN , HIGH, BRIGHTNESSLOWER, AI_GREEN_WHITE, DIRECTION_LEFT));
-    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
+    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 5, 1.2, 0.0, 0.01, AI_GREEN_WHITE, RIGHT));//patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, BRIGHTNESS, EDGE1, 1.5, 0.0, 0.025, AI_GREEN_WHITE, RIGHT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(STRAIGHT , -NORMAL, DISTANCE, 0));
@@ -54,7 +54,7 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(STRAIGHT, NORMAL, DISTANCE, 3));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, BRIGHTNESSLOWER, AI_GREEN_WHITE, DIRECTION_LEFT));
-    patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
+    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 5, 1.2, 0.0, 0.01, AI_GREEN_WHITE, RIGHT));//patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, BRIGHTNESSLOWER, EDGE2, 1.5, 0.0, 0.025, AI_GREEN_WHITE, RIGHT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100)); //リセット
     patterns.push_back(new RunPattern(STRAIGHT , -NORMAL, DISTANCE, 0));
@@ -72,7 +72,7 @@ AIRun::AIRun(){
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, BRIGHTNESSUPPER, AI_WHITE, DIRECTION_LEFT)); //白まで回転
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 9, 1.5, 0.0, 0.025, AI_GREEN_WHITE, LEFT));
+    patterns.push_back(new RunPattern(LINE_TRACE, SLOW, DISTANCE, 9, 1.5, 0.0, 0.025, AI_GREEN_WHITE, LEFT));//change by nagai speed = normal, distance=9
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, -90, DIRECTION_LEFT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
@@ -82,7 +82,7 @@ AIRun::AIRun(){
 
     patterns.push_back(new RunPattern(SPIN, NORMAL, BRIGHTNESSUPPER, AI_WHITE, DIRECTION_RIGHT)); //白まで回転
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
-    patterns.push_back(new RunPattern(LINE_TRACE, NORMAL, DISTANCE, 11, 1.5, 0.0, 0.025, AI_GREEN_WHITE, RIGHT));
+    patterns.push_back(new RunPattern(LINE_TRACE, SLOW, DISTANCE, 11, 1.5, 0.0, 0.025, AI_GREEN_WHITE, RIGHT));//change by nagai speed = normal, distance=11
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));
     patterns.push_back(new RunPattern(SPIN, NORMAL, ADAPTIVEDIRECTION, 90, DIRECTION_RIGHT));
     patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 100));

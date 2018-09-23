@@ -30,21 +30,20 @@ void CourseRun::setNextState(){
 
 void CourseRun::createCourseL(){
     //安全速度での走行
-
+/*
     patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40));//30
     patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 560, 0.25, 0.01, 0.03, 60));
     patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 120, 0.55, 0.01, 0.03, 60));
     patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 80,  0.6, 0.01, 0.03, 60));//ここ変える３０0.55
     patterns.push_back(new RunPattern(LINE_TRACE, 40, DISTANCE, 250, 0.25, 0.01, 0.03, 60));
     patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 90, 0.6, 0.0, 0.03, 80));//30
-    /*
+    */
     patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 20, 0.7, 0.0, 0.03, 40));//30
     patterns.push_back(new RunPattern(LINE_TRACE, 70, DISTANCE, 560, 0.25, 0.01, 0.03, 60));
     patterns.push_back(new RunPattern(LINE_TRACE, 70, DISTANCE, 120, 0.55, 0.01, 0.03, 60));//0.6,0.01,0.03
     patterns.push_back(new RunPattern(LINE_TRACE, 65, DISTANCE, 80,  0.6, 0.00, 0.05, 60));//ここ変える３０0.55
     patterns.push_back(new RunPattern(LINE_TRACE, 80, DISTANCE, 250, 0.25, 0.01, 0.03, 60));
     patterns.push_back(new RunPattern(LINE_TRACE, 30, DISTANCE, 90, 0.6, 0.0, 0.03, 80));//30
-  */
 }
 
 void CourseRun::createCourseR(){
