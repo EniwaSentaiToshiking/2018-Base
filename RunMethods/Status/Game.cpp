@@ -25,19 +25,19 @@ void Game::straight(int color){
     }else{
         edge = RIGHT;
     }
-    patterns.push_back(new RunPattern(LINE_TRACE, 20, DISTANCE, 7, 1.5, 0.0, 0.1, 25, edge));
+    patterns.push_back(new RunPattern(LINE_TRACE, 20, DISTANCE, 5, 1.5, 0.0, 0.1, 25, edge));
     switch(color){
         case RED:
-            patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_RED, 0.7, 0.0, 0.03, 25, edge));
+            patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_RED, 1.5, 0.0, 0.1, 25, edge));
             break;
         case YELLOW:
-            patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_YELLOW, 0.7, 0.0, 0.03, 25, edge));
+            patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_YELLOW, 1.5, 0.0, 0.1, 25, edge));
             break;
         case GREEN:
-            patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_GREEN, 0.7, 0.0, 0.03, 25, edge));
+            patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_GREEN, 1.5, 0.0, 0.1, 25, edge));
             break;
         case BLUE:
-            patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_BLUE, 0.7, 0.0, 0.03, 25, edge));
+            patterns.push_back(new RunPattern(LINE_TRACE, 20, COLOR, COLOR_BLUE, 1.5, 0.0, 0.1, 25, edge));
             break;
     }
 }
@@ -63,7 +63,17 @@ void Game::turnL(){
     }
 }
 
-void Game::turnBack(){
+void Game::turnBack(int catch_flag){
+    if(catch_flag==0){
+        if(edge_line==Line_R){
+            patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, -90, DIRECTION_RIGHT));
+            patterns.push_back(new RunPattern(SPIN, 20, BLACKLINE, 0, DIRECTION_RIGHT));
+        }else{
+            patterns.push_back(new RunPattern(SPIN, -20, DIRECTION, 90, DIRECTION_LEFT));
+            patterns.push_back(new RunPattern(SPIN, -20, BLACKLINE, 0, DIRECTION_LEFT));
+        }
+        return;
+    }
     if(edge_line==Line_R){
         patterns.push_back(new RunPattern(SPIN, 10, DIRECTION, -90, DIRECTION_RIGHT));
         patterns.push_back(new RunPattern(STRAIGHT, 10, DISTANCE, 1));
@@ -125,13 +135,13 @@ void Game::release(int direction, int before_point, int now_point){
             break;
         case TL:
             if(edge_line==Line_R){
-                patterns.push_back(new RunPattern(SPIN, 30, DIRECTION, 20, DIRECTION_LEFT));
+                patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 30, DIRECTION_LEFT));
                 patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 4));
                 patterns.push_back(new RunPattern(STRAIGHT, 20, BLACKLINE, 0));
                 patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, 30, DIRECTION_LEFT));
                 edge_line = Line_L;
             }else{
-                patterns.push_back(new RunPattern(SPIN, 30, DIRECTION, 20, DIRECTION_LEFT));
+                patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 30, DIRECTION_LEFT));
                 patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 4));
                 patterns.push_back(new RunPattern(STRAIGHT, 20, BLACKLINE, 0));
                 patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, 33, DIRECTION_LEFT));
@@ -140,13 +150,13 @@ void Game::release(int direction, int before_point, int now_point){
             break;
         case TR:
             if(edge_line==Line_L){
-                patterns.push_back(new RunPattern(SPIN, 30, DIRECTION, -20, DIRECTION_RIGHT));
+                patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, -30, DIRECTION_RIGHT));
                 patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 4));
                 patterns.push_back(new RunPattern(STRAIGHT, 20, BLACKLINE, 0));
                 patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, -30, DIRECTION_RIGHT));
                 edge_line = Line_R;
             }else{
-                patterns.push_back(new RunPattern(SPIN, 30, DIRECTION, -20, DIRECTION_RIGHT));
+                patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, -30, DIRECTION_RIGHT));
                 patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 4));
                 patterns.push_back(new RunPattern(STRAIGHT, 20, BLACKLINE, 0));
                 patterns.push_back(new RunPattern(SPIN, 15, DIRECTION, -33, DIRECTION_RIGHT));
@@ -275,6 +285,7 @@ void Game::startGame(){
     for(int j=0;j<4;j++){
         int color_num=0;
         int now_num=0;
+        int catch_flag = 0;
         for(int i=0;i<30;i++){
             if(dijkstra->pat[j][i]==-1){
                 break;
@@ -297,10 +308,11 @@ void Game::startGame(){
                     }
                     break;
                 case TB:
-                    turnBack();
+                    turnBack(catch_flag);
                     break;
                 case CAT:
                     blockcatch(dijkstra->pat[j][i+1]);
+                    catch_flag = 1;
                     break;
                 case REL:
                     if(j!=3){
@@ -343,7 +355,7 @@ void Game::startGame(){
                     }
                     break;
                 case TB:
-                    turnBack();
+                    turnBack(0);
                     break;
                 case REL:
                     if(i==0){
@@ -362,7 +374,8 @@ void Game::startGame(){
             }
         }
     }
-    switch(dijkstra->now_state){
+    if(dijkstra->block[2]==11){
+        switch(dijkstra->now_state){
         case UP:
             patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
             patterns.push_back(new RunPattern(STRAIGHT, -20, DISTANCE, 12));
@@ -386,5 +399,24 @@ void Game::startGame(){
             patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 30));
             patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 45, DIRECTION_LEFT));
             break;
+        }
+    }else{
+        switch(dijkstra->now_state){
+        case UP:
+            patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 6));
+            patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, -80, DIRECTION_RIGHT));
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 10));
+            break;
+        case RIG:
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 15));
+            break;
+        case DOWN:
+            patterns.push_back(new RunPattern(BRAKE, 0, CLOCK, 300));
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 2));
+            patterns.push_back(new RunPattern(SPIN, 20, DIRECTION, 80, DIRECTION_LEFT));
+            patterns.push_back(new RunPattern(STRAIGHT, 20, DISTANCE, 10));
+            break;
+        }
     }
 }
